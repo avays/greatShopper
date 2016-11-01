@@ -14,6 +14,12 @@ const Product = db.define('products', {
 		}
 	},
 
+	quantity: {
+		type: Sequelize.INTEGER,
+		allowNull: false,
+		defaultValue: 0
+	},
+
 	name: {
 		type: Sequelize.STRING,
 		allowNull: false
@@ -45,9 +51,9 @@ const Product = db.define('products', {
 	},
 
 	isVisible: {
-		type: Sequelize.BOOLEAN,
+		type: Sequelize.ENUM("discontinued", "hidden", "visible"),
 		allowNull: false,
-		defaultValue: true
+		defaultValue: "visible"
 	}
 }, {
 
