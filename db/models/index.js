@@ -6,5 +6,7 @@
 
 const User = require('./user')
 const Address = require("./address")
+const Payment = require("./payment")
+const Order = require("./order")
 
 module.exports = {User, Address}

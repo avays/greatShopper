@@ -8,13 +8,15 @@ const User = db.define('users', {
   firstName: {
     type: Sequelize.STRING,
     validate: {
-      is: ["^[a-z]+$",'i']
+      is: ["^[a-z]+$",'i'],
+      len: [2,50]
     }
   },
   lastName: {
     type: Sequelize.STRING,
     validate: {
-      is: ["^[a-z]+$",'i']
+      is: ["^[a-z]+$",'i'],
+      len: [2,50]
     }
   },
   email: {
@@ -27,7 +29,12 @@ const User = db.define('users', {
   isAdmin: Sequelize.BOOLEAN,
   // We support oauth, so users may or may not have passwords.
   password_digest: Sequelize.STRING,
-	password: Sequelize.VIRTUAL
+	password: {
+    type: Sequelize.VIRTUAL,
+    validate: {
+      len: [6,50]
+    }
+  }
 }, {
 	indexes: [{fields: ['email'], unique: true,}],
   hooks: {

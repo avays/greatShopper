@@ -9,20 +9,20 @@ const Address = db.define('addresses', {
     type: Sequelize.STRING,
     // defaultValue: defaultAddress(),
     validate: {
-      notEmpty: true,
+      notEmpty: true
     }
   },
   name: {
     type: Sequelize.STRING,
     validate: {
       is: ["^[a-z]+$",'i'],
-      notEmpty: true,
+      notEmpty: true
     }
   },
   street1: {
     type: Sequelize.TEXT,
     validate: {
-      notEmpty: true,
+      notEmpty: true
     }
   },
   street2: {
@@ -31,20 +31,20 @@ const Address = db.define('addresses', {
   city: {
     type: Sequelize.STRING,
     validate: {
-      notEmpty: true,
+      notEmpty: true
     }
   },
   state: {
     type: Sequelize.STRING(2),
     validate: {
-      notEmpty: true,
+      notEmpty: true
     }
   },
   zip: {
     type: Sequelize.STRING,
      validate: {
       is: / ^\d{5}(?:[-\s]\d{4})?$/,
-      notEmpty: true,
+      notEmpty: true
     }
   }
 })
