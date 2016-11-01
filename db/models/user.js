@@ -19,7 +19,7 @@ const User = db.define('users', {
       len: [2,50]
     }
   },
-  email: {
+  email: { // for guests, this will be the only populated field
     type: Sequelize.STRING,
     validate: {
 			isEmail: true,
