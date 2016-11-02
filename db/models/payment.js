@@ -12,7 +12,7 @@ const Payment = db.define('payments', {
     }
   },
   number_digest: {
-    type: Sequelize.BIGINT(16),
+    type: Sequelize.STRING,
     validate: {
       notEmpty: true
     }

@@ -22,9 +22,8 @@ Payment.belongsTo(Address, {
 		allowNull: false
 	}
 );
-Address.belongsTo(User,  {
-		as: "shippingAddress"
-	});
+Address.belongsTo(User);
+User.hasMany(Address); // for eager loading
 Review.belongsTo(User,  {
 		allowNull: false
 	});
@@ -40,7 +39,7 @@ Order.belongsTo(Payment,  {
 Order_Item.belongsTo(Order,  {
 		allowNull: false
 	});
-Order.belongsTo(Order_Item,  {
+Order.hasMany(Order_Item,  {
 		allowNull: false
 	}); // for eager loading
 Order_Item.belongsTo(Product,  {
