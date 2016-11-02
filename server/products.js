@@ -11,15 +11,23 @@ const customProductRoutes = require('express').Router()
 // })
 // Custom routes go here.
 
+/*
+
+	NOTE: need to write custom routes for read and list
+		- Do not show non-Admin users quantity
+
+*/
+
 module.exports = customProductRoutes
 
 // Epilogue will automatically create standard RESTful routes
 const products = epilogue.resource({
   model: db.model('products'),
   endpoints: ['/products', '/products/:id']
-})
+});
 
-const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
-products.delete.auth(forbidden("No one removes anything from here"))
+const {mustBeAdmin, forbidden} = epilogue.filters;
 
-products.read.auth() // is there scenario where user needs to see full contents of single product?
+products.delete.auth(forbidden("No one removes anything from here"));
+products.create.auth(mustBeAdmin);
+products.update.auth(mustBeAdmin);

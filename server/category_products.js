@@ -19,8 +19,8 @@ const category_products = epilogue.resource({
   endpoints: ['/category_products', '/category_products/:id']
 })
 
-const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
-category_products.delete.auth(mustBeLoggedIn)
-category_products.delete.auth(selfOnly)
-category_products.list.auth(forbidden("Verboten!"))
-category_products.read.auth(mustBeLoggedIn)
+const {mustBeAdmin} = epilogue.filters;
+
+category_products.delete.auth(mustBeAdmin);
+category_products.create.auth(mustBeAdmin);
+category_products.update.auth(mustBeAdmin);

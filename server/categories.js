@@ -17,10 +17,10 @@ module.exports = customCategoryRoutes
 const categories = epilogue.resource({
   model: db.model('categories'),
   endpoints: ['/categories', '/categories/:id']
-})
+});
 
-const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
-categories.delete.auth(mustBeLoggedIn)
-categories.delete.auth(selfOnly)
-categories.list.auth(forbidden("Verboten!"))
-categories.read.auth(mustBeLoggedIn)
+const {mustBeAdmin} = epilogue.filters;
+
+categories.delete.auth(mustBeAdmin);
+categories.create.auth(mustBeAdmin);
+categories.update.auth(mustBeAdmin);
