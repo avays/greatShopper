@@ -24139,9 +24139,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _Navbar = __webpack_require__(212);
 	
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	var _Navbar2 = _interopRequireDefault(_Navbar);
+	
+	var _Footer = __webpack_require__(213);
+	
+	var _Footer2 = _interopRequireDefault(_Footer);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -24149,83 +24155,325 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var BonesJokes = function (_Component) {
-	  _inherits(BonesJokes, _Component);
+	var MainPage = function (_Component) {
+	  _inherits(MainPage, _Component);
 	
-	  function BonesJokes() {
-	    _classCallCheck(this, BonesJokes);
+	  function MainPage() {
+	    _classCallCheck(this, MainPage);
 	
-	    var _this = _possibleConstructorReturn(this, (BonesJokes.__proto__ || Object.getPrototypeOf(BonesJokes)).call(this));
-	
-	    _this.nextJoke = _this.nextJoke.bind(_this);
-	    _this.answer = _this.answer.bind(_this);
-	    return _this;
+	    return _possibleConstructorReturn(this, (MainPage.__proto__ || Object.getPrototypeOf(MainPage)).call(this));
 	  }
 	
-	  _createClass(BonesJokes, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.nextJoke();
-	    }
-	  }, {
-	    key: 'nextJoke',
-	    value: function nextJoke() {
-	      this.setState({
-	        joke: randomJoke(),
-	        answered: false
-	      });
-	    }
-	  }, {
-	    key: 'answer',
-	    value: function answer() {
-	      this.setState({ answered: true });
-	    }
-	  }, {
+	  _createClass(MainPage, [{
 	    key: 'render',
 	    value: function render() {
-	      if (!this.state) {
-	        return null;
-	      }
-	
-	      var _state = this.state,
-	          joke = _state.joke,
-	          answered = _state.answered;
-	
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(_Navbar2.default, null),
+	        _react2.default.createElement(_Footer2.default, null)
+	      );
+	    }
+	  }]);
+	
+	  return MainPage;
+	}(_react.Component);
+	
+	exports.default = MainPage;
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Navbar = function (_Component) {
+	  _inherits(Navbar, _Component);
+	
+	  function Navbar() {
+	    _classCallCheck(this, Navbar);
+	
+	    return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call(this));
+	  }
+	
+	  _createClass(Navbar, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        null,
 	        _react2.default.createElement(
-	          'h1',
-	          { onClick: answered ? this.nextJoke : this.answer },
-	          joke.q
-	        ),
-	        answered && _react2.default.createElement(
-	          'h2',
-	          null,
-	          joke.a
-	        ),
-	        _react2.default.createElement(
-	          'cite',
-	          null,
-	          '~xoxo, bones'
+	          "nav",
+	          { className: "navbar navbar-default" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "container-fluid" },
+	            _react2.default.createElement(
+	              "div",
+	              { className: "navbar-header" },
+	              _react2.default.createElement(
+	                "button",
+	                { type: "button", className: "navbar-toggle collapsed", "data-toggle": "collapse", "data-target": "#bs-example-navbar-collapse-1", "aria-expanded": "false" },
+	                _react2.default.createElement(
+	                  "span",
+	                  { className: "sr-only" },
+	                  "Toggle navigation"
+	                ),
+	                _react2.default.createElement("span", { className: "icon-bar" }),
+	                _react2.default.createElement("span", { className: "icon-bar" }),
+	                _react2.default.createElement("span", { className: "icon-bar" })
+	              ),
+	              _react2.default.createElement(
+	                "a",
+	                { className: "navbar-brand", href: "#" },
+	                "Brand"
+	              )
+	            ),
+	            _react2.default.createElement(
+	              "div",
+	              { className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1" },
+	              _react2.default.createElement(
+	                "ul",
+	                { className: "nav navbar-nav" },
+	                _react2.default.createElement(
+	                  "li",
+	                  { className: "active" },
+	                  _react2.default.createElement(
+	                    "a",
+	                    { href: "#" },
+	                    "Link ",
+	                    _react2.default.createElement(
+	                      "span",
+	                      { className: "sr-only" },
+	                      "(current)"
+	                    )
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  "li",
+	                  null,
+	                  _react2.default.createElement(
+	                    "a",
+	                    { href: "#" },
+	                    "Link"
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  "li",
+	                  { className: "dropdown" },
+	                  _react2.default.createElement(
+	                    "a",
+	                    { href: "#", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-haspopup": "true", "aria-expanded": "false" },
+	                    "Dropdown ",
+	                    _react2.default.createElement("span", { className: "caret" })
+	                  ),
+	                  _react2.default.createElement(
+	                    "ul",
+	                    { className: "dropdown-menu" },
+	                    _react2.default.createElement(
+	                      "li",
+	                      null,
+	                      _react2.default.createElement(
+	                        "a",
+	                        { href: "#" },
+	                        "Action"
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      "li",
+	                      null,
+	                      _react2.default.createElement(
+	                        "a",
+	                        { href: "#" },
+	                        "Another action"
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      "li",
+	                      null,
+	                      _react2.default.createElement(
+	                        "a",
+	                        { href: "#" },
+	                        "Something else here"
+	                      )
+	                    ),
+	                    _react2.default.createElement("li", { role: "separator", className: "divider" }),
+	                    _react2.default.createElement(
+	                      "li",
+	                      null,
+	                      _react2.default.createElement(
+	                        "a",
+	                        { href: "#" },
+	                        "Separated link"
+	                      )
+	                    ),
+	                    _react2.default.createElement("li", { role: "separator", className: "divider" }),
+	                    _react2.default.createElement(
+	                      "li",
+	                      null,
+	                      _react2.default.createElement(
+	                        "a",
+	                        { href: "#" },
+	                        "One more separated link"
+	                      )
+	                    )
+	                  )
+	                )
+	              ),
+	              _react2.default.createElement(
+	                "ul",
+	                { className: "nav navbar-nav navbar-right" },
+	                _react2.default.createElement(
+	                  "li",
+	                  null,
+	                  _react2.default.createElement(
+	                    "a",
+	                    { href: "#" },
+	                    "Link"
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  "li",
+	                  { className: "dropdown" },
+	                  _react2.default.createElement(
+	                    "a",
+	                    { href: "#", className: "dropdown-toggle", "data-toggle": "dropdown", role: "button", "aria-haspopup": "true", "aria-expanded": "false" },
+	                    "Dropdown ",
+	                    _react2.default.createElement("span", { className: "caret" })
+	                  ),
+	                  _react2.default.createElement(
+	                    "ul",
+	                    { className: "dropdown-menu" },
+	                    _react2.default.createElement(
+	                      "li",
+	                      null,
+	                      _react2.default.createElement(
+	                        "a",
+	                        { href: "#" },
+	                        "Action"
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      "li",
+	                      null,
+	                      _react2.default.createElement(
+	                        "a",
+	                        { href: "#" },
+	                        "Another action"
+	                      )
+	                    ),
+	                    _react2.default.createElement(
+	                      "li",
+	                      null,
+	                      _react2.default.createElement(
+	                        "a",
+	                        { href: "#" },
+	                        "Something else here"
+	                      )
+	                    ),
+	                    _react2.default.createElement("li", { role: "separator", className: "divider" }),
+	                    _react2.default.createElement(
+	                      "li",
+	                      null,
+	                      _react2.default.createElement(
+	                        "a",
+	                        { href: "#" },
+	                        "Separated link"
+	                      )
+	                    )
+	                  )
+	                )
+	              )
+	            )
+	          )
 	        )
 	      );
 	    }
 	  }]);
 	
-	  return BonesJokes;
+	  return Navbar;
 	}(_react.Component);
 	
-	exports.default = BonesJokes;
+	exports.default = Navbar;
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
 	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
-	function randomJoke() {
-	  return jokes[Math.floor(Math.random() * jokes.length)];
-	}
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var jokes = 'Q: Who won the skeleton beauty contest? \nA: No body\nQ: What do skeletons say before they begin dining? \nA: Bone appetit !\nQ: When does a skeleton laugh? \nA: When something tickles his funny bone.\nQ: Why didn\'t the skeleton dance at the Halloween party? \nA: It had no body to dance with.\nQ: What type of art do skeletons like? \nA: Skull tures\nQ: What did the skeleton say when his brother told a lie? \nA: You can\'t fool me, I can see right through you.\nQ: What did the skeleton say while riding his Harley Davidson motorcycle? \nA: I\'m bone to be wild!\nQ: Why didn\'t the skeleton dance at the party? \nA: He had no body to dance with.\nQ: What do you give a skeleton for valentine\'s day? \nA: Bone-bones in a heart shaped box.\nQ: Who was the most famous skeleton detective? \nA: Sherlock Bones.\nQ: Who was the most famous French skeleton? \nA: Napoleon bone-apart\nQ: What instrument do skeletons play? \nA: Trom-BONE.\nQ: What does a skeleton orders at a restaurant? \nA: Spare ribs!!!\nQ: When does a skeleton laugh? \nA: When something tickles his funny bone.\nQ: Why didn\'t the skeleton eat the cafeteria food? \nA: Because he didn\'t have the stomach for it!\nQ: Why couldn\'t the skeleton cross the road? \nA: He didn\'t have the guts.\nQ: Why are skeletons usually so calm ? \nA: Nothing gets under their skin !\nQ: Why do skeletons hate winter? \nA: Beacuse the cold goes right through them !\nQ: Why are graveyards so noisy ? \nA: Beacause of all the coffin !\nQ: Why didn\'t the skeleton go to the party ? \nA: He had no body to go with !\nQ: What happened when the skeletons rode pogo sticks ? \nA: They had a rattling good time !\nQ: Why did the skeleton go to hospital ? \nA: To have his ghoul stones removed !\nQ: How did the skeleton know it was going to rain ? \nA: He could feel it in his bones !\nQ: What\'s a skeleton\'s favourite musical instrument ? \nA: A trom-bone !\nQ: How do skeletons call their friends ? \nA: On the telebone !\nQ: What do you call a skeleton who won\'t get up in the mornings ? \nA: Lazy bones !\nQ: What do boney people use to get into their homes ? \nA: Skeleton keys !\nQ: What do you call a skeleton who acts in Westerns ? \nA: Skint Eastwood !\nQ: What happened to the boat that sank in the sea full of piranha fish ? \nA: It came back with a skeleton crew !\nQ: What do you call a skeleton snake ? \nA: A rattler !\nQ: What is a skeletons like to drink milk ? \nA: Milk - it\'s so good for the bones !\nQ: Why did the skeleton stay out in the snow all night ? \nA: He was a numbskull !\nQ: What do you call a stupid skeleton ? \nA: Bonehead !\nQ: What happened to the skeleton who stayed by the fire too long ? \nA: He became bone dry !\nQ: What happened to the lazy skeleton ? \nA: He was bone idle !\nQ: Why did the skeleton pupil stay late at school ? \nA: He was boning up for his exams !\nQ: What sort of soup do skeletons like ? \nA: One with plenty of body in it !\nQ: Why did the skeleton run up a tree ? \nA: Because a dog was after his bones !\nQ: What did the skeleton say to his girlfriend ? \nA: I love every bone in your body !\nQ: Why wasn\'t the naughty skeleton afraid of the police ? \nA: Because he knew they couldn\'t pin anything on him !\nQ: How do skeletons get their mail ? \nA: By bony express !\nQ: Why don\'t skeletons play music in church ? \nA: They have no organs !\nQ: What kind of plate does a skeleton eat off ? \nA: Bone china !\nQ: Why do skeletons hate winter ? \nA: Because the wind just goes straight through them !\nQ: What\'s a skeleton\'s favourite pop group ? \nA: Boney M !\nQ: What do you do if you see a skeleton running across a road ? \nA: Jump out of your skin and join him !\nQ: What did the old skeleton complain of ? \nA: Aching bones !\nQ: What is a skeleton ? \nA: Somebody on a diet who forgot to say "when" !\nQ: What happened to the skeleton that was attacked by a dog ? \nA: He ran off with some bones and didn\'t leave him with a leg to stand on !\nQ: Why are skeletons so calm ? \nA: Because nothing gets under their skin !\nQ: What do you call a skeleton that is always telling lies ? \nA: A boney phoney !\nQ: Why didn\'t the skeleton want to play football ? \nA: Because his heart wasn\'t in it !\nQ: What happened to the skeleton who went to a party ? \nA: All the others used him as a coat rack !\nQ: What do you call a skeleton who presses the door bell ? \nA: A dead ringer !\nQ: When does a skeleton laugh? \nA: When something tickles his funny bone.\nQ: How did skeletons send their letters in the old days? \nA: By bony express!\nQ: How do you make a skeleton laugh? \nA: Tickle his funny bone!'.split('\n').reduce(function (all, row, i) {
-	  return i % 2 === 0 ? [].concat(_toConsumableArray(all), [{ q: row }]) : [].concat(_toConsumableArray(all.slice(0, all.length - 1)), [Object.assign({ a: row }, all[all.length - 1])]);
-	}, []);
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Footer = function (_Component) {
+	  _inherits(Footer, _Component);
+	
+	  function Footer() {
+	    _classCallCheck(this, Footer);
+	
+	    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this));
+	  }
+	
+	  _createClass(Footer, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        null,
+	        _react2.default.createElement(
+	          "footer",
+	          { "class": "footer" },
+	          _react2.default.createElement(
+	            "div",
+	            { "class": "container" },
+	            _react2.default.createElement(
+	              "p",
+	              { "class": "text-muted" },
+	              "Place sticky footer content here."
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Footer;
+	}(_react.Component);
+	
+	exports.default = Footer;
 
 /***/ }
 /******/ ]);
