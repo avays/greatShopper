@@ -5,18 +5,36 @@ const Sequelize = require('sequelize')
 const db = require('APP/db')
 
 const User = db.define('users', {
-  name: Sequelize.STRING,  
-  email: {
+  firstName: {
+    type: Sequelize.STRING,
+    validate: {
+      is: ["^[a-z]+$",'i'],
+      len: [2,50]
+    }
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    validate: {
+      is: ["^[a-z]+$",'i'],
+      len: [2,50]
+    }
+  },
+  email: { // for guests, this will be the only populated field
     type: Sequelize.STRING,
     validate: {
 			isEmail: true,
 			notEmpty: true,
 		}
   },
-
+  isAdmin: Sequelize.BOOLEAN,
   // We support oauth, so users may or may not have passwords.
   password_digest: Sequelize.STRING,
-	password: Sequelize.VIRTUAL
+	password: {
+    type: Sequelize.VIRTUAL,
+    validate: {
+      len: [6,50]
+    }
+  }
 }, {
 	indexes: [{fields: ['email'], unique: true,}],
   hooks: {
