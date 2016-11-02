@@ -4,8 +4,9 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const {resolve} = require('path')
 const passport = require('passport')
-const sassMiddleware = require('node-sass-middleware');
+//const sassMiddleware = require('node-sass-middleware');
 const path = require('path');
+var sass = require('node-sass');
 
 // Bones has a symlink from node_modules/APP to the root of the app.
 // That means that we can require paths relative to the app root by
@@ -36,13 +37,7 @@ module.exports = app
   .use(passport.initialize())
   .use(passport.session())
 
-  .use(
-    sassMiddleware({
-      src: __dirname + '/sass',
-      dest: __dirname + '/src/css',
-      debug: true,
-    })
-  )
+
   // Serve static files from ../public
   .use(express.static(resolve(__dirname, '..', 'public')))
   .use('/js', express.static(__dirname + '/../node_modules/bootstrap/dist/js'))
