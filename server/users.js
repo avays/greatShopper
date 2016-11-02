@@ -41,9 +41,13 @@ customUserRoutes.get("/:id", function(req, res, next){
 
 customUserRoutes.put("/:id", function(req, res, next){
 
-	if(!mustBeAdmin(req)){
-		res.status(403).send('You do not have administrative privileges.')
+	if(!mustBeLoggedIn(req)){
+		res.status(401).send('You must be logged in.')
 	}
+	if(!mustHavePermission(req)){
+		res.status(403).send(`You do not have permission.`)
+	}
+
 	User.update(req.body, {where: {id: req.params.id}})
 		.then(rowsModified => res.json(rowsModified))
 		.catch(next);
