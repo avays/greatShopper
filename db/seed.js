@@ -49,10 +49,10 @@ const categoryProductsToSeed = [
 ];
 
 const usersToSeed = [
-  {firstName: 'Alec', lastname: 'Friedman', email: 'dude@fellow.com', password: '654321'},
-  {firstName: 'Barack', lastname: 'Obama', email: 'barack@example.gov', password: '123458'},
-  {firstName: 'Porkchop', lastname: 'Dog', email: 'dogface@pupper.com', password: '555555'},
-  {firstName: 'Bubba', lastname: 'Dawg', email: 'doggo@pupper.com', password: '999999'}
+  {firstName: 'Alec', lastName: 'Friedman', email: 'dude@fellow.com', password: '654321'},
+  {firstName: 'Barack', lastName: 'Obama', email: 'barack@example.gov', password: '123458'},
+  {firstName: 'Porkchop', lastName: 'Dog', email: 'dogface@pupper.com', password: '555555'},
+  {firstName: 'Bubba', lastName: 'Dawg', email: 'doggo@pupper.com', password: '999999'}
 ];
 
 const reviewsToSeed = [
