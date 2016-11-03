@@ -17,7 +17,7 @@ api
   // .use('/media_products', require('./media_products'))
   // .use('/media', require('./media'))
   // .use('/category_products', require('./category_products'))
-  // .use('/categories', require('./categories'))
+   .use('/categories', require('./categories'))
   // .use('/addresses', require('./addresses'))
 
 
