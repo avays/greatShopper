@@ -12,7 +12,7 @@ const Address = db.model("addresses");
 customUserRoutes.get("/", function(req, res, next){
 
 	if(!mustBeAdmin(req)){
-		res.status(403).send('You do not have administrative privileges')
+		return res.status(403).send('You do not have administrative privileges')
 	}
 	 User.findAll({
 	 	include: [{all: true}]
@@ -25,10 +25,10 @@ customUserRoutes.get("/", function(req, res, next){
 customUserRoutes.get("/:id", function(req, res, next){
 
 	if(!mustBeLoggedIn(req)){
-		res.status(401).send('You must be logged in.')
+		return res.status(401).send('You must be logged in.')
 	}
 	if(!mustHavePermission(req)){
-		res.status(403).send(`You do not have permission.`)
+		return res.status(403).send(`You do not have permission.`)
 	}
 
 	 User.findById(req.params.id, {	 	
@@ -41,10 +41,10 @@ customUserRoutes.get("/:id", function(req, res, next){
 customUserRoutes.put("/:id", function(req, res, next){
 
 	if(!mustBeLoggedIn(req)){
-		res.status(401).send('You must be logged in.')
+		return res.status(401).send('You must be logged in.')
 	}
 	if(!mustHavePermission(req)){
-		res.status(403).send(`You do not have permission.`)
+		return res.status(403).send(`You do not have permission.`)
 	}
 
 	User.update(req.body, {where: {id: req.params.id}})
@@ -68,33 +68,14 @@ customUserRoutes.post("/", function(req, res, next){
 customUserRoutes.delete("/:id", function(req, res, next){
 
 	if(!mustBeLoggedIn(req)){
-		res.status(401).send('You must be logged in.')
+		return res.status(401).send('You must be logged in.')
 	}
 	if(!mustHavePermission(req)){
-		res.status(403).send(`You do not have permission.`)
+		return res.status(403).send(`You do not have permission.`)
 	}
 	User.destroy({where: {id: req.params.id}})
 		.then(rowsModified => res.json(rowsModified))
 		.catch(next);
 });
 
-// Custom routes go here.
 module.exports = customUserRoutes;
-
-
-// // Epilogue will automatically create standard RESTful routes
-// const users = epilogue.resource({
-//   model: db.model('users'),
-//   endpoints: ['/users', '/users/:id']
-// })
-
-
-// const {mustBeAdmin, mustHavePermission, mustBeLoggedIn, selfOnly} = epilogue.filters
-// users.delete.auth(mustBeLoggedIn)
-// users.delete.auth(selfOnly("delete"))
-// users.list.auth(mustBeAdmin)
-// users.read.auth(mustBeLoggedIn)
-// users.read.auth(selfOnly("get info on"))
-// users.update.auth(mustBeLoggedIn)
-// users.update.auth(mustHavePermission)
-
