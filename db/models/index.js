@@ -17,6 +17,7 @@ const Media = require("./media")
 Payment.belongsTo(User,  {
 		allowNull: false
 	});
+User.hasMany(Payment); // for eager loading
 Payment.belongsTo(Address, {
 		as: "billingAddress",
 		allowNull: false
@@ -27,9 +28,11 @@ User.hasMany(Address); // for eager loading
 Review.belongsTo(User,  {
 		allowNull: false
 	});
+User.hasMany(Review); // for eager loading
 Order.belongsTo(User,  {
 		allowNull: false
 	});
+User.hasMany(Order); // for eager loading
 Order.belongsTo(Address,  {
 		allowNull: false
 	});
@@ -50,9 +53,7 @@ Review.belongsTo(Product,  {
 	});
 Product.hasMany(Review); // for eager loading
 Category.belongsToMany(Product, {through: "CategoryProduct"});
-Product.hasMany(Category, {
-		allowNull: false
-	});
+
 Media.belongsToMany(Product, {
 		through: "MediaProduct",
 		allowNull: false

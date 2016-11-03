@@ -1,8 +1,8 @@
 'use strict'
 
-const bcrypt = require('bcrypt')
-const Sequelize = require('sequelize')
-const db = require('APP/db')
+const bcrypt = require('bcrypt');
+const Sequelize = require('sequelize');
+const db = require('APP/db');
 
 const Payment = db.define('payments', {
   cardType: {
@@ -20,7 +20,7 @@ const Payment = db.define('payments', {
   number: {
     type: Sequelize.VIRTUAL,
     validate: {
-      isCreditCard: true
+      is: /^\d{13,16}$/
     }
   },
   expirationDate: {
@@ -33,7 +33,7 @@ const Payment = db.define('payments', {
   name: {
     type: Sequelize.STRING,
     validate: {
-      is: ["^[a-z]+$",'i'],
+      is: /^[a-z \.]+$/i,
       notEmpty: true
     }
   }
