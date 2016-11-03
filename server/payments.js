@@ -1,6 +1,6 @@
 'use strict'
 
-const epilogue = require('./epilogue')
+
 const db = require('APP/db')
 
 const customPaymentRoutes = require('express').Router() 

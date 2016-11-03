@@ -9,8 +9,8 @@ api
   .use('/users', require('./users'))
 
   // new code 11/2
-  // .use('/reviews', require('./reviews'))
-  .use('/products', require('./products'))
+  .use('/reviews', require('./reviews'))
+  //.use('/products', require('./products'))
   // .use('/payments', require('./payments'))
   // .use('/orders', require('./orders'))
   // .use('/order_items', require('./order_items'))
