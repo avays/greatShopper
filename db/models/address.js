@@ -15,7 +15,7 @@ const Address = db.define('addresses', {
   name: {
     type: Sequelize.STRING,
     validate: {
-      is: ["^[a-z]+$",'i'],
+      is: /^[a-z ]+$/i,
       notEmpty: true
     }
   },
@@ -43,7 +43,7 @@ const Address = db.define('addresses', {
   zip: {
     type: Sequelize.STRING,
      validate: {
-      is: / ^\d{5}(?:[-\s]\d{4})?$/,
+      is: /^\d{5}(?:[-\s]\d{4})?$/,
       notEmpty: true
     }
   }

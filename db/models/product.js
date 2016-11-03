@@ -4,7 +4,7 @@ const db = require('APP/db');
 const Product = db.define('products', {
 
 	sku: {
-		type: Sequelize.INTEGER,
+		type: Sequelize.BIGINT,
 		allowNull: false,
 		unique: true,
 		primaryKey: true,
