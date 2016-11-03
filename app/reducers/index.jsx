@@ -1,12 +1,8 @@
-import { combineReducers } from 'redux'
-import carousel from 'carousel';
+import { combineReducers } from 'redux';
+import carousel from './carousel';
 
-const initialState = {}
-
-const rootReducer = function(state = initialState, action) {
-  switch(action.type) {
-    default: return state
-  }
-};
+const rootReducer = combineReducers({
+	carousel
+});
 
 export default rootReducer

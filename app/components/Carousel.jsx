@@ -1,32 +1,19 @@
 import React, { Component } from 'react';
 import { Carousel, Image } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { clickRight, clickLeft } from '../reducers/carousel';
 
-
-export default class CustomCarousel extends Component {
-  constructor() {
-    super();
-    this.state = this.getInitialState();
-  }
-
-  getInitialState() {
-    return {
-      index: 0,
-      direction: null
-    };
-  }
-
-
-  handleSelect(selectedIndex, e) {
-    alert('selected=' + selectedIndex + ', direction=' + e.direction);
-    this.setState({
-      index: selectedIndex,
-      direction: e.direction
-    });
+/* -----------------    COMPONENT     ------------------ */
+class DumbCarousel extends Component {
+  constructor(props) {
+    super(props);
+    this.clickRight = this.props.clickRight.bind(this);
   }
 
   render() {
-  	return (
-      <Carousel activeIndex={this.state.index} direction={this.state.direction} onSelect={this.handleSelect} responsive>
+    const { index, direction } = this.props;
+    return(
+      <Carousel activeIndex={index} direction={direction} onSelect={() => this.clickRight(index)} >
         <Carousel.Item>
           <Image width={900} height={500} alt="900x500" src="/images/default.jpg" responsive />
           <Carousel.Caption>
@@ -49,7 +36,19 @@ export default class CustomCarousel extends Component {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-
-  	)
+    )
   }
 }
+
+
+
+/* -----------------    CONTAINER     ------------------ */
+const mapStateToProps = ({ carousel }) => ({ carousel });
+const mapDispatchToProps = () => ({
+  clickRight,
+  clickLeft
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DumbCarousel);
+
+
