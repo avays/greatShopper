@@ -53,9 +53,7 @@ Review.belongsTo(Product,  {
 	});
 Product.hasMany(Review); // for eager loading
 Category.belongsToMany(Product, {through: "CategoryProduct"});
-Product.hasMany(Category, {
-		allowNull: false
-	});
+
 Media.belongsToMany(Product, {
 		through: "MediaProduct",
 		allowNull: false
