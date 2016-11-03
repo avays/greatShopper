@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Navbar, FormGroup, FormControl, Glyphicon, InputGroup } from 'react-bootstrap';
+
 
 export default class Search extends Component {
   constructor() {
@@ -8,12 +10,17 @@ export default class Search extends Component {
 
   render() {
     return (
-          <form className="navbar-form navbar-left">
-            <div className="form-group">
-              <input type="text" className="form-control" placeholder="Search" />
-            </div>
-            <button type="submit" className="btn btn-default">Submit</button>
-          </form>
+      <Navbar.Form>
+        <FormGroup>
+          <InputGroup>
+            <FormControl type="text" placeholder="Winner!" />
+            <InputGroup.Addon>
+              <Glyphicon glyph="search" />
+            </InputGroup.Addon>
+          </InputGroup>
+        </FormGroup>
+        
+      </Navbar.Form>
     )
   }
 }
