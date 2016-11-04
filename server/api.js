@@ -10,15 +10,15 @@ api
 
   // new code 11/2
   .use('/reviews', require('./reviews'))
-  //.use('/products', require('./products'))
-  // .use('/payments', require('./payments'))
+  .use('/categories', require('./categories'))
+  .use('/addresses', require('./addresses'))
+  .use('/products', require('./products'))
+  .use('/payments', require('./payments'))
   // .use('/orders', require('./orders'))
   // .use('/order_items', require('./order_items'))
   // .use('/media_products', require('./media_products'))
   // .use('/media', require('./media'))
   // .use('/category_products', require('./category_products'))
-  // .use('/categories', require('./categories'))
-  // .use('/addresses', require('./addresses'))
 
 
 

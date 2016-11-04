@@ -1,5 +1,5 @@
 const mustBeAdmin = (req) => {
-	console.log("test")
+
 	return req.user && req.user.isAdmin;
 }
 
