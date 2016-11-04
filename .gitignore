@@ -1,5 +1,9 @@
-node_modules
+# Ignore all node_moduels except symlink
+node_modules/*
+!node_modules/APP
+
 */.DS_Store
 public/bundle.js
 public/bundle.js.map
 bones_orig_backup
+npm-debug.log

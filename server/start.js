@@ -17,8 +17,9 @@ const pkg = require('APP')
 
 const app = express()
 
-if (!pkg.isProduction) {
-  // Logging middleware (dev & testing only)
+
+if (!pkg.isProduction && !pkg.isTesting) {
+  // Logging middleware (dev only)
   app.use(require('volleyball'))
 }
 
@@ -44,6 +45,7 @@ module.exports = app
   .use('/js', express.static(__dirname + '/../node_modules/jquery/dist'))
   .use('/css', express.static(__dirname + '/../node_modules/bootstrap/dist/css'))
 
+
   // Serve our api
   .use('/api', require('./api'))
 
@@ -52,7 +54,7 @@ module.exports = app
 
 if (module === require.main) {
   // Start listening only if we're the main module.
-  //
+
   // https://nodejs.org/api/modules.html#modules_accessing_the_main_module
   const server = app.listen(
     process.env.PORT || 1337,
