@@ -9,7 +9,7 @@
     "test-watch": "check-node-version --node '>= 6.7.0' && bin/setup && mocha --watch app/**/*.test.js db/**/*.test.js server/**/*.test.js",
     "build": "check-node-version --node '>= 6.7.0' && bin/setup && webpack",
     "build-watch": "check-node-version --node '>= 6.7.0' && bin/setup && webpack -w",
-    "start": "check-node-version --node '>= 6.7.0' && npm run build &&  npm run build-css && bin/setup && nodemon server/start.js",
+    "start": "check-node-version --node '>= 6.7.0' && npm run seed && npm run build &&  npm run build-css && bin/setup && nodemon server/start.js",
     "seed": "node db/seed.js"
   },
     "engines": {
