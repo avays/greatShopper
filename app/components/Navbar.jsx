@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
-import Search from './navbarComponents/search';
-import Login from './navbarComponents/login';
-import Cart from './navbarComponents/cart';
-import Catagories from './navbarComponents/collapsable';
+import Search from './Search';
+
 
 export default class CustomNavBar extends Component {
   constructor() {
