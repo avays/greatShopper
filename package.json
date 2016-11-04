@@ -12,6 +12,9 @@
     "start": "check-node-version --node '>= 6.7.0' && bin/setup && nodemon server/start.js",
     "seed": "node db/seed.js"
   },
+    "engines": {
+    "node": "6.7.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/queerviolet/bones.git"
