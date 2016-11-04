@@ -12,7 +12,7 @@ const moveBackward = index => ({ type: MOVE_BACKWARD, index });
 
 /* ------------       REDUCER     ------------------ */
 
-export default function reducer (carousel = {index: 0, direction: null}, action) {
+export default function reducer (previousState = {index: 0, direction: null}, action) {
   switch (action.type) {
 
     case MOVE_FORWARD:

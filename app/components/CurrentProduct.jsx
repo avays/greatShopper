@@ -3,17 +3,19 @@ import { connect } from 'react-redux';
 
 /* -----------------    COMPONENT     ------------------ */
 
-class CurrentProduct extends Component {
-	constructor(props) {
-		super(props)
-	}
+const CurrentProduct = ({ currentProduct }) => (
+	<div>
+		<h3>{ currentProduct.name }</h3>
+		<img src="./images/default.jpg"></img>
+		<h4>{ currentProduct.price }</h4>
+		<p>{ currentProduct.description }</p>
+	</div>
 
-
-}
+)
 
 
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = () => ({});
+const mapStateToProps = ({ currentProduct }) => ({ currentProduct });
 const mapDispatchToProps = () => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(DumbCarousel);
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentProduct);
