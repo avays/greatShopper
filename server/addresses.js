@@ -1,26 +1,97 @@
 'use strict'
 
-const epilogue = require('./epilogue')
 const db = require('APP/db')
+const {mustBeAdmin, mustHavePermission, mustBeLoggedIn, selfOnly}  = require("./utils")
 
 const customAddressRoutes = require('express').Router() 
 
-// customAddressRoutes.get("/", function(req, res, next){
-// 	console.log("hello worold");
-// 	res.send("Hello");
-// })
-// Custom routes go here.
+const User = db.model("users");
+const Payment = db.model("payments");
+const Address = db.model("addresses");
 
-module.exports = customAddressRoutes
+customAddressRoutes.get("/:id", function(req, res, next){
 
-// Epilogue will automatically create standard RESTful routes
-const addresses = epilogue.resource({
-  model: db.model('addresses'),
-  endpoints: ['/addresses', '/addresses/:id']
-})
+	if(!mustBeLoggedIn(req)){
+		return res.status(401).send('You must be logged in.')
+	}
+	if(!mustHavePermission(req)){
+		return res.status(403).send(`You do not have permission.`)
+	}
 
-const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
-addresses.delete.auth(mustBeLoggedIn)
-addresses.delete.auth(selfOnly)
-addresses.list.auth(forbidden("Verboten!"))
-addresses.read.auth(mustBeLoggedIn)
+	 Address.findAll({	 	
+	 	include: [{
+	 		model: User,
+	 		where: {id: req.params.id},
+	 		attributes: ['firstName', 'lastName']}]
+	 })
+	 	.then(addresses => res.json(addresses))
+		.catch(next);
+});
+
+customAddressRoutes.get("/:id/:aid", function(req, res, next){
+
+	if(!mustBeLoggedIn(req)){
+		return res.status(401).send('You must be logged in.')
+	}
+	if(!mustHavePermission(req)){
+		return res.status(403).send(`You do not have permission.`)
+	}
+
+	 Address.findById(req.params.aid, {	 	
+	 	include: [{
+	 		model: User,
+	 		where: {id: req.params.id},
+	 		attributes: ['firstName', 'lastName']}]
+	 })
+	 	.then(address => res.json(address))
+		.catch(next);
+});
+
+customAddressRoutes.put("/:id/:aid", function(req, res, next){
+
+	if(!mustBeLoggedIn(req)){
+		return res.status(401).send('You must be logged in.')
+	}
+	if(!mustHavePermission(req)){
+		return res.status(403).send(`You do not have permission.`)
+	}
+
+	Address.update(req.body, {where: {id: req.params.aid}})
+		.then(rowsModified => res.json(rowsModified))
+		.catch(next);
+});
+
+customAddressRoutes.post("/:id", function(req, res, next){
+
+	if(!mustBeLoggedIn(req)){
+		return res.status(401).send('You must be logged in.')
+	}
+	if(!mustHavePermission(req)){
+		return res.status(403).send(`You do not have permission.`)
+	}
+
+	Address.findOrCreate({where: {
+			alias: req.body.alias
+		}
+	})
+		.spread((address, created) => {
+			return created ? res.json(address) : res.status(300).send(address)
+		}
+	)
+		.catch(next);
+});
+
+customAddressRoutes.delete("/:id/:aid", function(req, res, next){
+
+	if(!mustBeLoggedIn(req)){
+		return res.status(401).send('You must be logged in.')
+	}
+	if(!mustHavePermission(req)){
+		return res.status(403).send(`You do not have permission.`)
+	}
+	Address.destroy({where: {id: req.params.aid}})
+		.then(rowsModified => res.json(rowsModified))
+		.catch(next);
+});
+
+module.exports = customAddressRoutes;

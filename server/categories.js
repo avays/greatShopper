@@ -23,42 +23,73 @@ customCategoryRoutes.get("/", function(req, res, next) {
 });
 
 customCategoryRoutes.get("/:name", function(req, res, next) {
-
-	Category.findAll({
-			where: {
-				name: req.params.name
-			},
-			include: [{
-				model: Product,
+	// only return hidden products if admin
+	if (!mustBeAdmin(req)) {
+		Category.findAll({
 				where: {
-					isVisible: {
-						$not: "hidden"
+					name: req.params.name
+				},
+				include: [{
+					model: Product,
+					where: {
+						isVisible: {
+							$not: "hidden"
+						}
 					}
-				}
-			}]
-		})
-		.then(category => res.json(category))
-		.catch(next);
+				}]
+			})
+			.then(category => res.json(category))
+			.catch(next);
+	}
+	else{
+		Category.findAll({
+				where: {
+					name: req.params.name
+				},
+				include: [{
+					model: Product
+				}]
+			})
+			.then(category => res.json(category))
+			.catch(next);
+	}
 });
 
 customCategoryRoutes.get("/:name/:sku", function(req, res, next) {
-
-	Category.findAll({
-			where: {
-				name: req.params.name
-			},
-			include: [{
-				model: Product,
+	// only return hidden products if admin
+	if (!mustBeAdmin(req)) {
+		Category.findAll({
 				where: {
-					sku: req.params.sku,
-					isVisible: {
-						$not: "hidden"
+					name: req.params.name
+				},
+				include: [{
+					model: Product,
+					where: {
+						sku: req.params.sku,
+						isVisible: {
+							$not: "hidden"
+						}
 					}
-				}
-			}]
-		})
-		.then(category => res.json(category))
-		.catch(next);
+				}]
+			})
+			.then(category => res.json(category))
+			.catch(next);
+	}
+	else{
+		Category.findAll({
+				where: {
+					name: req.params.name
+				},
+				include: [{
+					model: Product,
+					where: {
+						sku: req.params.sku
+					}
+				}]
+			})
+			.then(category => res.json(category))
+			.catch(next);
+	}
 });
 
 customCategoryRoutes.put("/:name", function(req, res, next) {
