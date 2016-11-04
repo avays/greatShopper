@@ -23,7 +23,7 @@ export default class CustomNavBar extends Component {
       <Navbar.Collapse>
         <Nav title="Departments">
           <NavDropdown title="Vehicles" id="vehicles-nav">
-            <MenuItem>Jets</MenuItem>
+            <MenuItem onClick={() => fetch(jets)}>Jets</MenuItem>
             <MenuItem>Yachts</MenuItem>
             <MenuItem>Cars</MenuItem>
             <MenuItem>Motorcycles</MenuItem>

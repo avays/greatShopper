@@ -17,7 +17,7 @@ const Media = require("./media")
 Payment.belongsTo(User,  {
 		allowNull: false
 	});
-User.hasMany(Payment, {onDelete: 'cascade'}); // for eager loading, also added cascade 
+User.hasMany(Payment, {onDelete: 'cascade'}); // for eager loading, also added cascade
 Payment.belongsTo(Address, {
 		as: "billingAddress",
 		allowNull: false
@@ -44,7 +44,7 @@ Order_Item.belongsTo(Order,  {
 	});
 Order.hasMany(Order_Item,  {
 		allowNull: false, onDelete: 'cascade'
-	}); // for eager loading, also added cascade 
+	}); // for eager loading, also added cascade
 Order_Item.belongsTo(Product,  {
 		allowNull: false
 	});
@@ -53,6 +53,7 @@ Review.belongsTo(Product,  {
 	});
 Product.hasMany(Review, { onDelete: 'cascade' }); // for eager loading, also added cascade ); // for eager loading
 Category.belongsToMany(Product, {through: "CategoryProduct"});
+Category.belongsTo(Category, {as: "metaCategory"});
 
 Media.belongsToMany(Product, {
 		through: "MediaProduct",
