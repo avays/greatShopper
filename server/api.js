@@ -4,7 +4,7 @@ const db = require('APP/db')
 const api = module.exports = require('express').Router()
 
 api
-  .get('/heartbeat', (req, res) => res.send({ok: true,}))
+  .get('/heartbeat', (req, res) => res.send({ok: true}))
   .use('/auth', require('./auth'))
   .use('/users', require('./users'))
 
@@ -19,6 +19,7 @@ api
   // .use('/category_products', require('./category_products'))
   // .use('/categories', require('./categories'))
   // .use('/addresses', require('./addresses'))
+
 
 
 // Send along any errors

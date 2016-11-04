@@ -62,3 +62,4 @@ Product.hasMany(Media);
 
 
 module.exports = {User, Address, Payment, Order, Order_Item, Review, Product, Category, Media}
+

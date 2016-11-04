@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "build-css": "node-sass  app/assets/main/ -o public/stylesheets",
-    "test": "bin/setup && mocha app/**/*.test.js db/**/*.test.js server/**/*.test.js",
-    "test-watch": "bin/setup && mocha --watch app/**/*.test.js db/**/*.test.js server/**/*.test.js",
-    "build": "bin/setup && webpack",
-    "build-watch": "bin/setup && webpack -w",
-    "start": "bin/setup && nodemon server/start.js",
+    "test": "check-node-version --node '>= 6.7.0' && bin/setup && mocha app/**/*.test.js db/**/*.test.js server/**/*.test.js",
+    "test-watch": "check-node-version --node '>= 6.7.0' && bin/setup && mocha --watch app/**/*.test.js db/**/*.test.js server/**/*.test.js",
+    "build": "check-node-version --node '>= 6.7.0' && bin/setup && webpack",
+    "build-watch": "check-node-version --node '>= 6.7.0' && bin/setup && webpack -w",
+    "start": "check-node-version --node '>= 6.7.0' && bin/setup && nodemon server/start.js",
     "seed": "node db/seed.js"
   },
   "repository": {
@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/queerviolet/bones#readme",
   "dependencies": {
+    "axios": "^0.15.2",
     "babel-preset-stage-2": "^6.18.0",
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
@@ -40,6 +41,9 @@
     "node-sass": "^3.10.1",
     "node-sass-middleware": "^0.9.8",
     "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-github2": "^0.1.10",
+    "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "pg": "^6.1.0",
     "pg-native": "^1.10.0",
@@ -50,7 +54,10 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.7.0",
     "redux-thunk": "^2.1.0",
-    "sequelize": "^3.24.6"
+    "sequelize": "^3.24.6",
+    "react-router": "^3.0.0",   
+    "sinon": "^1.17.6",
+    "sinon-chai": "^2.8.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",
