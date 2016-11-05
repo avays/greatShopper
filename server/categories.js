@@ -92,6 +92,16 @@ customCategoryRoutes.get("/:name/:sku", function(req, res, next) {
 	}
 });
 
+customCategoryRoutes.get("/meta/:name", function(req, res, next) {
+		Category.findAll({
+				where: {
+          meta_category_id: req.body.id
+				}
+			})
+			.then(category => res.json(category))
+			.catch(next);
+});
+
 customCategoryRoutes.put("/:name", function(req, res, next) {
 
 	if (!mustBeAdmin(req)) {
