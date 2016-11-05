@@ -54,7 +54,7 @@ Review.belongsTo(Product,  {
 Product.hasMany(Review, { onDelete: 'cascade' }); // for eager loading, also added cascade ); // for eager loading
 Category.belongsToMany(Product, {through: "CategoryProduct"});
 Category.belongsTo(Category, {as: "metaCategory"});
-
+Category.hasMany(Category, {as: "metaCategory"});
 Media.belongsToMany(Product, {
 		through: "MediaProduct",
 		allowNull: false

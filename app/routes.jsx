@@ -10,10 +10,11 @@ import CurrentProduct from './components/CurrentProduct';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
 import { onProductSelect } from './enter-hooks';
+import { loadCategories } from './enter-hooks';
 
 export default () => (
 	<Router history={browserHistory}>
-    <Route path="/" component={Root}>
+    <Route path="/" component={Root} onEnter={loadCategories}>
       <IndexRoute component={Main} />
       <Route path="/product/:sku" component={CurrentProduct} onEnter={onProductSelect} />
     </Route>

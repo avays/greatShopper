@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
 import Search from './Search';
+import { Link } from 'react-router'
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -39,6 +40,7 @@ class Navigbar extends React.Component {
     );
   }
 
+
   render(){
     return (
       <Navbar inverse collapseOnSelect>
@@ -53,31 +55,31 @@ class Navigbar extends React.Component {
           <Nav title="Departments">
             <NavDropdown title="Vehicles" id="vehicles-nav">
               {this.state.vehicles.map(category => (
-                <MenuItem onClick={() => go(category)}>{ category.name }</MenuItem>
+                <MenuItem>{ category.name }</MenuItem>
               ))
               }
             </NavDropdown>
             <NavDropdown title="Real Estate" id="real-estate-nav">
               {this.state.realEstate.map(category => (
-                <MenuItem onClick={() => go(category)}>{ category.name }</MenuItem>
+                <MenuItem>{ category.name }</MenuItem>
               ))
               }
             </NavDropdown>
             <NavDropdown title="Apparel" id="apparel-nav">
               {this.state.apparel.map(category => (
-                <MenuItem onClick={() => go(category)}>{ category.name }</MenuItem>
+                <MenuItem>{ category.name }</MenuItem>
               ))
               }
             </NavDropdown>
             <NavDropdown title="Accessories" id="accessories-nav">
               {this.state.accessories.map(category => (
-                <MenuItem onClick={() => go(category)}>{ category.name }</MenuItem>
+                <MenuItem>{ category.name }</MenuItem>
               ))
               }
             </NavDropdown>
             <NavDropdown title="Services" id="services-nav">
               {this.state.services.map(category => (
-                <MenuItem onClick={() => go(category)}>{ category.name }</MenuItem>
+                <MenuItem>{ category.name }</MenuItem>
               ))
               }
             </NavDropdown>
@@ -96,13 +98,13 @@ class Navigbar extends React.Component {
 
 const mapProps = ({ categories }) => ({ categories });
 
-const mapDispatch = dispatch => ({ 
-  go: category => dispatch(fetchCategoryProducts(category))
-  }
-  // logout: () => {
-  //   dispatch(logout())
-  //   browserHistory.push('/');
-  // }
-})
+// const mapDispatch = dispatch => ({ 
+//   go: category => dispatch(fetchCategoryProducts(category))
+//   }
+//   // logout: () => {
+//   //   dispatch(logout())
+//   //   browserHistory.push('/');
+//   // }
+// })
 
-export default connect(mapProps, mapDispatch)(Navigbar);
+export default connect(mapProps, null)(Navigbar);
