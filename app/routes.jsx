@@ -21,6 +21,7 @@ export default () => (
       <IndexRoute component={Main} />
       <Route path="/product/:sku" component={CurrentProduct} onEnter={onProductSelect} />
       <Route path="/cart" component={Cart} />
+      <Route path="/search" component={SelectedProducts}/>
       <Route path="/:categoryName" component={SelectedProducts} onEnter={loadCategoryProducts} />
     </Route>
   </Router>

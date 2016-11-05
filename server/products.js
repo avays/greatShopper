@@ -23,6 +23,36 @@ customProductRoutes.get("/", function(req, res, next) {
 		.catch(next);
 });
 
+customProductRoutes.get("/search/:searchInput", function(req, res, next) {
+
+	Product.findAll({
+    where: {
+      $or: [
+        {name: {
+          $ilike: `%${req.params.searchInput}%`
+          }
+        },
+        {manufacturer: {
+          $ilike: `%${req.params.searchInput}%`
+          }
+        },
+        {location: {
+          $ilike: `%${req.params.searchInput}%`
+          }
+        },
+        {description: {
+          $ilike: `%${req.params.searchInput}%`
+          }
+        }
+        ]
+    }
+  })
+		.then(products => res.json(products))
+		.catch(next);
+});
+
+// name of product, manufacturer, location, word in description
+
 customProductRoutes.get("/:sku", function(req, res, next) {
 
 	// need to account for some edge cases:
@@ -63,7 +93,7 @@ customProductRoutes.post("/", function(req, res, next) {
 
 	Product.findOrCreate({
 			where: req.body
-			
+
 		})
 		.spread((product, created) => {
 			return created ? res.json(product) : res.status(300).send("Product SKU already exists.")
