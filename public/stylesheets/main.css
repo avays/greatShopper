@@ -34,3 +34,16 @@ footer {
 
 .review #review-text {
   display: inline-block; }
+
+.productThumbnail {
+  width: 300px;
+  height: 300px; }
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+
+.imgThumb {
+  width: 150px;
+  height: auto; }
