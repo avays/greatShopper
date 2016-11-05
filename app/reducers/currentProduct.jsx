@@ -37,8 +37,8 @@ export default function reducer (previousState = {}, action) {
 
 export const fetchAndGoToProduct = sku => {
   return dispatch => {
-    axios.get('/api/products/:sku')
-      .then(product => dispatch(loadProduct(product)))
+    axios.get(`/api/products/${sku}`)
+      .then(product => dispatch(loadProduct(product.data)))
       .catch(err => console.error('Fetching product failed', err))
   }
 }

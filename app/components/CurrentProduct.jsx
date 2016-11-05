@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 
 const CurrentProduct = ({ currentProduct }) => (
 	<div>
+		<h1>Component loaded!</h1>
 		<h3>{ currentProduct.name }</h3>
-		<img src="./images/default.jpg"></img>
+		<img src="/images/default.jpg"></img>
 		<h4>{ currentProduct.price }</h4>
 		<p>{ currentProduct.description }</p>
 	</div>

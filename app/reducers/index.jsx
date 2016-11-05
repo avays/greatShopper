@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import carousel from './carousel';
-import currentProuct from './currentProuct';
+import currentProduct from './currentProduct';
 
 const rootReducer = combineReducers({
-	carousel,
-	currentProuct
+	currentProduct
 });
 
 
