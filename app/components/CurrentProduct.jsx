@@ -4,9 +4,9 @@ import { Image } from 'react-bootstrap';
 import Review from './Review';
 import { addItem } from '../reducers/cart'
 
-/* -----------------    COMPONENT     ------------------ */
+/* -----------------    DUMB COMPONENT     ------------------ */
 
-const CurrentProduct = ({ currentProduct, add }) => (
+const DumbCurrentProduct = ({ currentProduct, addToCart, changeAmnt }) => (
 	<div id="currentProduct">
 		<photo>
 			<Image className="mainPhoto" src={ currentProduct && currentProduct.img } responsive />
@@ -15,14 +15,14 @@ const CurrentProduct = ({ currentProduct, add }) => (
 			<h3>{ currentProduct.name }</h3>
 			<h5>SKU { currentProduct.sku }</h5>
 			<h4>${ currentProduct.price && currentProduct.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h4>
-			<form>
-				<select name="dropdown">
+			<form onSubmit={ addToCart }>
+				<select onChange={ changeAmnt } name="dropdown">
 					<option value="1" defaultValue>1</option>
 					<option value="2">2</option>
-					<option value="2">3</option>
+					<option value="3">3</option>
 				</select>
+				<button type="submit">Add To Cart</button>
 			</form>
-			<button onClick={ () => add(currentProduct, 1)}>Add To Cart</button>
 		</info>
 		<description>
 			<h4>PRODUCT DETAILS</h4>
@@ -44,13 +44,51 @@ const CurrentProduct = ({ currentProduct, add }) => (
 			}	
 		</reviews>
 	</div>
-);
+)
+	
+
+
+/* -----------------    STATEFUL REACT COMPONENT     ------------------ */
+
+class CurrentProduct extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			quantity: 0
+		};
+		this.addToCart = this.addToCart.bind(this);
+		this.changeAmnt = this.changeAmnt.bind(this);
+	}
+
+	addToCart(evt) {
+		evt.preventDefault();
+		this.props.add(this.props.currentProduct, this.state.quantity);
+	}
+
+	changeAmnt(evt) {
+		const quantity = Number(evt.target.value);
+		this.setState({ quantity });
+	}
+
+
+	render() {
+		const { currentProduct } = this.props;
+		return (
+			<DumbCurrentProduct
+				currentProduct={ currentProduct }
+				addToCart={ this.addToCart }
+				changeAmnt={ this.changeAmnt }
+			/>
+		)
+	}
+}
+
 
 
 /* -----------------    CONTAINER     ------------------ */
 const mapStateToProps = ({ currentProduct }) => ({ currentProduct });
 const mapDispatchToProps = (dispatch) => ({
-	add: (product, quantity) => dispatch(addItem(product,quantity))
+	add: (product, quantity) => dispatch(addItem(product, quantity))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrentProduct);
