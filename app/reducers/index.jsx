@@ -4,7 +4,7 @@ import selectedProducts from './selectedProductsRedux';
 
 const rootReducer = combineReducers({
 	carousel,
-  selectedProducts
+  	selectedProducts
 });
 
 

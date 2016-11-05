@@ -1,33 +1,38 @@
 import React, { Component } from 'react';
 
-export default ({ products, go }) => (
- <div>
-   <h3>Albums</h3>
+
+/* -----------------    COMPONENT     ------------------ */
+
+function SelectedProducts({ products, go }){
+ return (
+  <div>
+   <h3>Products</h3>
    <div className="row">
      {
-       albums.map(album => (
-         <div className="col-xs-4" key={ album.id }>
-           <a className="thumbnail" href="#" onClick={() => go(album)}>
-             <img src={ album.imageUrl } />
+       products.map(products => (
+         <div className="col-xs-4" key={ products.id }>
+           <a className="thumbnail" href="#" onClick={() => go(products)}>
+             <img src={ products.imageUrl } />
              <div className="caption">
                <h5>
-                 <span>{ album.name }</span>
+                 <span>{ products.name }</span>
                </h5>
-               <small>{ album.songs.length } songs</small>
+               <small>{ products.songs.length } songs</small>
              </div>
            </a>
          </div>
        ))
      }
    </div>
- </div>
-);
+ </div>);
+}
 
 /* -----------------    CONTAINER     ------------------ */
-const mapStateToProps = ({ carousel }) => ({ carousel });
+
+const mapStateToProps = ({ selectedProducts }) => ({ selectedProducts });
 const mapDispatchToProps = () => ({
   clickRight,
   clickLeft
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DumbCarousel);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectedProducts);
