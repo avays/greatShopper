@@ -1,10 +1,8 @@
 #currentProduct {
 	margin-bottom: 150px;
 	min-height: 400px;
-	clear: both;
-	/*above styling is to make sure footer doesn't sit on top of page content*/
-	/*could probably make it nicer, this is a quick fix*/
-	
+  clear: both;
+  
 	.mainPhoto {
 		display: inline-block;
 		width: 50%

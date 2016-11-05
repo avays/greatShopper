@@ -54,7 +54,7 @@ class CurrentProduct extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			quantity: 0
+			quantity: 1
 		};
 		this.addToCart = this.addToCart.bind(this);
 		this.changeAmnt = this.changeAmnt.bind(this);
