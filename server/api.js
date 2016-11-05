@@ -16,8 +16,6 @@ api
   .use('/payments', require('./payments'))
   // .use('/orders', require('./orders'))
   // .use('/order_items', require('./order_items'))
-  // .use('/media_products', require('./media_products'))
-  // .use('/media', require('./media'))
   // .use('/category_products', require('./category_products'))
 
 
