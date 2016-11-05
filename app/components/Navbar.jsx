@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
 import Search from './Search';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -31,7 +31,7 @@ class Navigbar extends React.Component {
               {this.props.categories.filter((category) => {
                 return category.meta_category_id === 2
               }).map(category => (
-                <MenuItem><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
+                <MenuItem key={category.id}><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
               ))
               }
             </NavDropdown>
@@ -39,7 +39,7 @@ class Navigbar extends React.Component {
               {this.props.categories.filter((category) => {
                 return category.meta_category_id === 3
               }).map(category => (
-                <MenuItem><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
+                <MenuItem key={category.id}><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
               ))
               }
             </NavDropdown>
@@ -47,7 +47,7 @@ class Navigbar extends React.Component {
               {this.props.categories.filter((category) => {
                 return category.meta_category_id === 4
               }).map(category => (
-                <MenuItem><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
+                <MenuItem key={category.id}><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
               ))
               }
             </NavDropdown>
@@ -55,7 +55,7 @@ class Navigbar extends React.Component {
               {this.props.categories.filter((category) => {
                 return category.meta_category_id === 1
               }).map(category => (
-                <MenuItem><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
+                <MenuItem key={category.id}><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
               ))
               }
             </NavDropdown>
@@ -63,7 +63,7 @@ class Navigbar extends React.Component {
               {this.props.categories.filter((category) => {
                 return category.meta_category_id === 5
               }).map(category => (
-                <MenuItem><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
+                <MenuItem key={category.id}><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
               ))
               }
             </NavDropdown>
