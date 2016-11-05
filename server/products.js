@@ -25,33 +25,24 @@ customProductRoutes.get("/", function(req, res, next) {
 
 customProductRoutes.get("/:sku", function(req, res, next) {
 	// only return hidden product if admin
-	if (!mustBeAdmin(req)) {
-		Product.findAll({
-			where: {
-				sku: req.params.sku,
-				isVisible: {
-						$not: "hidden"
-					}
-			},
-			include: [{
-				model: Review
-			}]
-		})
+	Product.findById(req.params.sku)
 		.then(product => res.json(product))
-		.catch(next);
-	}
-	else{
-		Product.findAll({
-			where: {
-				sku: req.params.sku
-			},
-			include: [{
-				model: Review
-			}]
-		})
-		.then(product => res.json(product))
-		.catch(next);
-	}
+		.catch(next)
+
+	// need to account for some edge cases:
+	// 1. Product is discontinued (only admin can access)
+	// 2. Product is hidden (only admin OR customer who accessed it previously can access)
+	// NEED TO INCLUDE REVIEWS, TOO!!!!
+		
+
+	// 		Product.findAll({
+	// 	where: {
+	// 		sku: req.params.sku
+	// 	},
+	// 	include: [{model: Review}]
+	// })
+
+
 });
 
 customProductRoutes.put("/:sku", function(req, res, next) {
