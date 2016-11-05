@@ -36,14 +36,14 @@ export default function reducer (state = [], action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const fetchAndGoToProducts = (categoryName) =>
-  dispatch => {
+export const fetchAndGoToProducts = (categoryName) => {
+  return dispatch => {
     axios.get(`api/categories/${categoryName}`)
       .then(category => {
-        let products = category.data[0] ? category.data[0].products : [];
-        dispatch(selectProducts(products));
+        dispatch(selectProducts(category.data[0] ? category.data[0].products : []));
       });
-};
+  };
+}
 
 export const fetchAndGoToQueriedProduct = search=> {
   return dispatch => {
@@ -51,7 +51,7 @@ export const fetchAndGoToQueriedProduct = search=> {
       .then(products => {
         console.log('products', products.data)
         dispatch(searchForProducts(products.data))
-        browserHistory.push('/searched')
+        browserHistory.push('/search')
       })
       .catch(err => console.error('Fetching product failed', err))
   }

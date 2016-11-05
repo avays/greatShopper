@@ -8,6 +8,7 @@ import Root from './components/Root';
 import Main from './components/Main';
 import CurrentProduct from './components/CurrentProduct';
 import SelectedProducts from './components/SelectedProducts';
+import Cart from './components/Cart';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
 import { onProductSelect } from './enter-hooks';
@@ -19,6 +20,8 @@ export default () => (
     <Route path="/" component={Root} onEnter={loadCategories}>
       <IndexRoute component={Main} />
       <Route path="/product/:sku" component={CurrentProduct} onEnter={onProductSelect} />
+      <Route path="/cart" component={Cart} />
+      <Route path="/search" component={SelectedProducts}/>
       <Route path="/:categoryName" component={SelectedProducts} onEnter={loadCategoryProducts} />
     </Route>
   </Router>
