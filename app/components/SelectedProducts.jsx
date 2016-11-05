@@ -5,7 +5,6 @@ import { Link } from 'react-router';
 /* -----------------    COMPONENT     ------------------ */
 
 function SelectedProducts({ selectedProducts, go }){
- console.log(selectedProducts)
  return (
   <div>
    <h3>Products</h3>
@@ -33,15 +32,3 @@ const mapDispatchToProps = () => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectedProducts);
-
-// <div className="col-xs-4" key={ products.id }>
-//            <a className="thumbnail" href="#" onClick={() => go(products)}>
-//              <img src={ products.imageUrl } />
-//              <div className="caption">
-//                <h5>
-//                  <span>{ products.name }</span>
-//                </h5>
-//                <small>{ products.songs.length } songs</small>
-//              </div>
-//            </a>
-//          </div>
