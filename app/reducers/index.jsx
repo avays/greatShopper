@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import carousel from './carousel';
 import selectedProducts from './selectedProductsRedux';
+import currentProduct from './currentProduct';
 
 const rootReducer = combineReducers({
-	carousel,
+	currentProduct,
   	selectedProducts
 });
 
