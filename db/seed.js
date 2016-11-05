@@ -17,9 +17,9 @@ const categoriesToSeed = [
   {name: 'Suit', meta_category_id: 4},
   {name: 'Ties', meta_category_id: 4},
   {name: 'Pocket Squares', meta_category_id: 4},
-  {name: 'Fake Tanner', meta_category_id: 4},
-  {name: 'Watches', meta_category_id: 4},
-  {name: 'Toupees', meta_category_id: 4},
+  {name: 'Fake Tanner', meta_category_id: 1},
+  {name: 'Watches', meta_category_id: 1},
+  {name: 'Toupees', meta_category_id: 1},
   {name: 'Jets', meta_category_id: 2},
   {name: 'Yachts', meta_category_id: 2},
   {name: 'Cars', meta_category_id: 2},
@@ -34,9 +34,9 @@ const categoriesToSeed = [
 ];
 
 const productsToSeed = [
-  {sku: 9154950247, quantity: 1, name: 'Castle in Loire Valley', price: 12500000, location: 'France', description: 'Better than a dream-come-true, this Castle and Chateau in the Loire Valley in France is simply one of the finest properties anywhere in Europe. Entirely private and free of any French government landmark rights, this 79 acre (32 hectare) estate features a completely-restored, 33,000 square foot chateau, made up of a 16th century castle that was later expanded to the current chateau in the 18th century. A four-year, recently-completed renovation project has restored the chateau to its original glory. And yet, the conveniences of the modern world have been added, providing all-new electrical, plumbing, heating and electronics. There is so much history attached to the chateau from French royalty to its occupation by German forces in the second world war. Today, the chateau and its surrounding property capture the elegance of yesterday, but with modern living conveniences.', isVisible: 'visible'},
-  {sku: 4435561075, quantity: 1, name: 'Penthouse at Ocean Drive', price: 6000000, location: 'Miami', description: 'Contemporary lines and a sleek white canvas meets art deco sensibility and beautiful terrazzo floors. The seemingly endless circular terrace hugs this ocean front home illuminating every room with sunshine or moonlight. Over forty five hundred square feet facing the Atlantic Ocean and boasting five spacious bedrooms and five and a half bathrooms, makes this residence one of a kind.'},
-  {sku: 7662992825, quantity: 1, name: 'The Bradbury Estate', price: 72000000, location: 'Sonoma Valley, CA', description: 'This regal masterpiece in guard-gated Bradbury Estates, sits on a promontory with unparalleled city, canyon and ocean views. The location was ranked by Forbes as one of the most expensive ZIP codes in America. This sprawling compound with multiple structures was magnificently realized after more than 8 years of construction by consummate craftsmen with meticulous attention to detail, using only the finest materials from around the world. The Main House is approximately 30,000 square feet plus 3,000 square feet of Loggias, 2 Master Suites, a 2 story Library, Chef’s Kitchen with pizza oven, a walk-in butler’s pantry, both walk-in refrigerator and freezer. Additionally featured is a large 3D Theater, 2,000-bottle Wine Cellar, Elevator, and a poker room with its own bar and built-in humidor. There is close to one acre of porches, decks, loggias, and walkways hewn of French limestone. One is brought to the Main House, elevated in a Palladian Neo-Classical style by way of a dramatic 600-foot Blue Stone private entry drive that ends in a circular flow entrance that allows for 60-foot truck access, or multiple limousines. This once in a lifetime trophy property with the highest level of artistic craftsmanship, state of the art engineering, and consummate attention to detail has never before been offered for sale; it belongs in the portfolio of the most astute collector.'},
+  {sku: 9154950247, quantity: 1, name: 'Castle in Loire Valley', imageUrl: '/images/castle.jpg', price: 12500000, location: 'France', description: 'Better than a dream-come-true, this Castle and Chateau in the Loire Valley in France is simply one of the finest properties anywhere in Europe. Entirely private and free of any French government landmark rights, this 79 acre (32 hectare) estate features a completely-restored, 33,000 square foot chateau, made up of a 16th century castle that was later expanded to the current chateau in the 18th century. A four-year, recently-completed renovation project has restored the chateau to its original glory. And yet, the conveniences of the modern world have been added, providing all-new electrical, plumbing, heating and electronics. There is so much history attached to the chateau from French royalty to its occupation by German forces in the second world war. Today, the chateau and its surrounding property capture the elegance of yesterday, but with modern living conveniences.', isVisible: 'visible'},
+  {sku: 4435561075, quantity: 1, name: 'Penthouse at Ocean Drive', imageUrl: '/images/miami.jpg', price: 6000000, location: 'Miami', description: 'Contemporary lines and a sleek white canvas meets art deco sensibility and beautiful terrazzo floors. The seemingly endless circular terrace hugs this ocean front home illuminating every room with sunshine or moonlight. Over forty five hundred square feet facing the Atlantic Ocean and boasting five spacious bedrooms and five and a half bathrooms, makes this residence one of a kind.'},
+  {sku: 7662992825, quantity: 1, name: 'The Bradbury Estate', imageUrl: '/images/bradbury.jpg', price: 72000000, location: 'Sonoma Valley, CA', description: 'This regal masterpiece in guard-gated Bradbury Estates, sits on a promontory with unparalleled city, canyon and ocean views. The location was ranked by Forbes as one of the most expensive ZIP codes in America. This sprawling compound with multiple structures was magnificently realized after more than 8 years of construction by consummate craftsmen with meticulous attention to detail, using only the finest materials from around the world. The Main House is approximately 30,000 square feet plus 3,000 square feet of Loggias, 2 Master Suites, a 2 story Library, Chef’s Kitchen with pizza oven, a walk-in butler’s pantry, both walk-in refrigerator and freezer. Additionally featured is a large 3D Theater, 2,000-bottle Wine Cellar, Elevator, and a poker room with its own bar and built-in humidor. There is close to one acre of porches, decks, loggias, and walkways hewn of French limestone. One is brought to the Main House, elevated in a Palladian Neo-Classical style by way of a dramatic 600-foot Blue Stone private entry drive that ends in a circular flow entrance that allows for 60-foot truck access, or multiple limousines. This once in a lifetime trophy property with the highest level of artistic craftsmanship, state of the art engineering, and consummate attention to detail has never before been offered for sale; it belongs in the portfolio of the most astute collector.'},
   {sku: 7487601920, quantity: 90, name: 'Aerodyne 021', manufacturer: 'Richard Mille', price: 272629, description: 'expensive'},
   {sku: 1598092930, quantity: 50, name: 'Black Caviar Bang', manufacturer: 'Hublot', price: 895860, description: 'more expensive'},
   {sku: 6848737699, quantity: 30, name: 'Perpetual Calendar Platinum 2499', manufacturer: 'Patek Philippe', price: 3483900, description: 'most expensive'},
@@ -45,12 +45,9 @@ const productsToSeed = [
 
 
 const categoryProductsToSeed = [
-  {product_sku: 9154950247, category_id: 19},
-  {product_sku: 4435561075, category_id: 19},
-  {product_sku: 7662992825, category_id: 19},
-  {product_sku: 7487601920, category_id: 11},
-  {product_sku: 1598092930, category_id: 11},
-  {product_sku: 6848737699, category_id: 11},
+  {product_sku: 9154950247, category_id: 24},
+  {product_sku: 4435561075, category_id: 24},
+  {product_sku: 7662992825, category_id: 24},
   {product_sku: 7487601920, category_id: 17},
   {product_sku: 1598092930, category_id: 17},
   {product_sku: 6848737699, category_id: 17}
@@ -104,18 +101,6 @@ const orderItemsToSeed = [
   {status: 'shipped', quantity: 1, priceAtPurchase: 250000, shippingDate: '2016-10-03', receiveDate: '2016-10-10', taxCost: 28000, shippingCost: 7.99, itemCost: 250000, order_id: 1, product_sku: 7487601920}
 ];
 
-const mediaToSeed = [
-  {type: 'photo', url: '/images/sample1.png'},
-  {type: 'photo', url: '/images/sample2.png'},
-  {type: 'photo', url: '/images/sample3.png'},
-  {type: 'photo', url: '/images/sample4.png'}
-];
-
-const mediaProductsToSeed = [
-  {product_sku: 9154950247, medium_id: 1},
-  {product_sku: 4435561075, medium_id: 2},
-  {product_sku: 7662992825, medium_id: 3}
-];
 
 const seedCategories = () => db.Promise.map(categoriesToSeed, category => db.model('categories').create(category));
 const seedUsers = () => db.Promise.map(usersToSeed, user => db.model('users').create(user));
@@ -124,8 +109,6 @@ const seedProducts = () => db.Promise.map(productsToSeed, product => db.model('p
 const seedAddresses = () => db.Promise.map(addressesToSeed, address => db.model('addresses').create(address));
 const seedCategoryProducts = () => db.Promise.map(categoryProductsToSeed, categoryProduct => db.model('CategoryProduct').create(categoryProduct));
 const seedPayments = () => db.Promise.map(paymentsToSeed, payment => db.model('payments').create(payment));
-const seedMedia = () => db.Promise.map(mediaToSeed, medium => db.model('media').create(medium));
-const seedMediaProducts = () => db.Promise.map(mediaProductsToSeed, mediaProduct => db.model('MediaProduct').create(mediaProduct));
 const seedOrders = () => db.Promise.map(ordersToSeed, order => db.model('orders').create(order));
 const seedOrderItems = () => db.Promise.map(orderItemsToSeed, order_item => db.model('order_items').create(order_item));
 
@@ -146,10 +129,6 @@ db.didSync
   .then(addresses => console.log(`Seeded ${addresses.length} addresses OK`))
   .then(seedPayments)
   .then(payments => console.log(`Seeded ${payments.length} payments OK`))
-  .then(seedMedia)
-  .then(media => console.log(`Seeded ${media.length} media OK`))
-  .then(seedMediaProducts)
-  .then(mediaProduct => console.log(`Seeded ${mediaProduct.length} mediaProduct OK`))
   .then(seedOrders)
   .then(orders => console.log(`Seeded ${orders.length} orders OK`))
   .then(seedOrderItems)

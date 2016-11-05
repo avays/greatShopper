@@ -12,7 +12,6 @@ const Order_Item = require("./order_item")
 const Review = require("./review")
 const Product = require("./product")
 const Category = require("./category")
-const Media = require("./media")
 
 Payment.belongsTo(User,  {
 		allowNull: false
@@ -53,14 +52,11 @@ Review.belongsTo(Product,  {
 	});
 Product.hasMany(Review, { onDelete: 'cascade' }); // for eager loading, also added cascade ); // for eager loading
 Category.belongsToMany(Product, {through: "CategoryProduct"});
+
 Category.belongsTo(Category, {as: "metaCategory"});
 Category.hasMany(Category, {as: "metaCategory"});
-Media.belongsToMany(Product, {
-		through: "MediaProduct",
-		allowNull: false
-	});
-Product.hasMany(Media, { onDelete: 'cascade' }); // for eager loading, also added cascade );
 
 
-module.exports = {User, Address, Payment, Order, Order_Item, Review, Product, Category, Media}
+
+module.exports = {User, Address, Payment, Order, Order_Item, Review, Product, Category }
 

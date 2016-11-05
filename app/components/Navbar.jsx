@@ -9,35 +9,9 @@ import { Link } from 'react-router'
 class Navigbar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      accessories: [],
-      vehicles: [],
-      realEstate: [],
-      apparel: [],
-      services: []};
+
     // this.renderLoginSignup = this.renderLoginSignup.bind(this);
     // this.renderLogout = this.renderLogout.bind(this);
-  }
-
-  componentDidMount(){
-    // this adds the subcategories to the state
-    this.props.categories.forEach(category => {
-      switch (category.meta_category_id){
-        case 1:
-          return this.state.accessories.push(category);
-        case 2:
-          return this.state.vehicles.push(category);
-        case 3:
-          return this.state.realEstate.push(category);
-        case 4:
-          return this.state.apparel.push(category);
-        case 5:
-          return this.state.services.push(category);
-        default:
-          break;
-        }
-      }
-    );
   }
 
 
@@ -54,32 +28,42 @@ class Navigbar extends React.Component {
         <Navbar.Collapse>
           <Nav title="Departments">
             <NavDropdown title="Vehicles" id="vehicles-nav">
-              {this.state.vehicles.map(category => (
-                <MenuItem>{ category.name }</MenuItem>
+              {this.props.categories.filter((category) => {
+                return category.meta_category_id === 2
+              }).map(category => (
+                <MenuItem><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
               ))
               }
             </NavDropdown>
             <NavDropdown title="Real Estate" id="real-estate-nav">
-              {this.state.realEstate.map(category => (
-                <MenuItem>{ category.name }</MenuItem>
+              {this.props.categories.filter((category) => {
+                return category.meta_category_id === 3
+              }).map(category => (
+                <MenuItem><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
               ))
               }
             </NavDropdown>
             <NavDropdown title="Apparel" id="apparel-nav">
-              {this.state.apparel.map(category => (
-                <MenuItem>{ category.name }</MenuItem>
+              {this.props.categories.filter((category) => {
+                return category.meta_category_id === 4
+              }).map(category => (
+                <MenuItem><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
               ))
               }
             </NavDropdown>
             <NavDropdown title="Accessories" id="accessories-nav">
-              {this.state.accessories.map(category => (
-                <MenuItem>{ category.name }</MenuItem>
+              {this.props.categories.filter((category) => {
+                return category.meta_category_id === 1
+              }).map(category => (
+                <MenuItem><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
               ))
               }
             </NavDropdown>
             <NavDropdown title="Services" id="services-nav">
-              {this.state.services.map(category => (
-                <MenuItem>{ category.name }</MenuItem>
+              {this.props.categories.filter((category) => {
+                return category.meta_category_id === 5
+              }).map(category => (
+                <MenuItem><Link to={`/${category.name}`}>{ category.name }</Link></MenuItem>
               ))
               }
             </NavDropdown>
@@ -98,7 +82,7 @@ class Navigbar extends React.Component {
 
 const mapProps = ({ categories }) => ({ categories });
 
-// const mapDispatch = dispatch => ({ 
+// const mapDispatch = dispatch => ({
 //   go: category => dispatch(fetchCategoryProducts(category))
 //   }
 //   // logout: () => {

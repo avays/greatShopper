@@ -8,7 +8,7 @@ import Review from './Review';
 const CurrentProduct = ({ currentProduct }) => (
 	<div id="currentProduct">
 		<photo>
-			<Image className="mainPhoto" src="/images/default.jpg" responsive />
+			<Image className="mainPhoto" src={ currentProduct && currentProduct.img } responsive />
 		</photo>
 		<info>
 			<h3>{ currentProduct.name }</h3>
@@ -31,9 +31,9 @@ const CurrentProduct = ({ currentProduct }) => (
 			<h4>REVIEWS</h4>
 			{
 				currentProduct.reviews && currentProduct.reviews.length ?
-					currentProduct.reviews.map(review => {
+					currentProduct.reviews.map((review, index) => {
 						return (
-							<Review review={review} />
+							<Review key={index} review={review} />
 						);
 					})
 					: 
