@@ -69,7 +69,7 @@ class Navigbar extends React.Component {
             </NavDropdown>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={1} href="#">Cart</NavItem>
+            <NavItem><Link to="/c/a/r/t">Cart</Link></NavItem>
             <NavItem eventKey={1} href="#">Login</NavItem>
           </Nav>
         </Navbar.Collapse>

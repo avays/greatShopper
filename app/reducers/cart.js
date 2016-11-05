@@ -59,7 +59,3 @@ export default function reducer (previousState = [], action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const fetchAndStoreCategories = dispatch => ({
-  dispatch(addItem(product, quantity))
-})
-}

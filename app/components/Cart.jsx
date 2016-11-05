@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { }
+import { addItem, removeItem, changeQuantity, clearCart } from '../reducers/cart'
 
 
 /* -----------------    COMPONENT     ------------------ */
 
-function Cart({ cart, remove, change }){
+function Cart({ cart, add, remove, change, clear }){
 
  return (
   <div>
@@ -18,6 +18,7 @@ function Cart({ cart, remove, change }){
           <img src={item.product.imageUrl}/>
      	  <h4>{item.product.price}</h4>
           <h6>{item.product.quantity}</h6>
+          <button onClick= { () => change(item.product, item.product.quantity++)}>Remove from cart</button>
          </div>
        ))
      }
@@ -29,7 +30,10 @@ function Cart({ cart, remove, change }){
 
 const mapStateToProps = ({ cart }) => ({ cart });
 const mapDispatchToProps = (dispatch) => ({
-	remove: (product) => dispatch(removeItem(product))
+	add: (product, quantity) => dispatch(addItem(product,quantity)),
+	remove: (product) => dispatch(removeItem(product)),
+	change: (product, quantity) => dispatch(changeQuantity(product, quantity)),
+	clear: () => dispatch(clearCart())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
