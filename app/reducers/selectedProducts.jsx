@@ -28,11 +28,12 @@ export default function reducer (state = [], action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const fetchAndGoToProducts = (categoryName) =>
-  dispatch => {
+export const fetchAndGoToProducts = (categoryName) => {
+  return dispatch => {
     axios.get(`api/categories/${categoryName}`)
       .then(category => {
-        let products = category.data[0] ? category.data[0].products : [];
-        dispatch(selectProducts(products));
+        
+        dispatch(selectProducts(category.data[0] ? category.data[0].products : []));
       });
-};
+  }
+}

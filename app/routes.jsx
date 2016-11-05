@@ -20,8 +20,8 @@ export default () => (
     <Route path="/" component={Root} onEnter={loadCategories}>
       <IndexRoute component={Main} />
       <Route path="/product/:sku" component={CurrentProduct} onEnter={onProductSelect} />
+      <Route path="/cart" component={Cart} />
       <Route path="/:categoryName" component={SelectedProducts} onEnter={loadCategoryProducts} />
-      <Route path="/c/a/r/t" component={Cart} />
     </Route>
   </Router>
 );

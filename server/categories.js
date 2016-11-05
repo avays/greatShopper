@@ -23,6 +23,7 @@ customCategoryRoutes.get("/", function(req, res, next) {
 });
 
 customCategoryRoutes.get("/:name", function(req, res, next) {
+	console.log("MADE ITTTTTTTT", req.params.name)
 	// only return hidden products if admin
 	if (!mustBeAdmin(req)) {
 		Category.findAll({

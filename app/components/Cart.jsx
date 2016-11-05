@@ -10,19 +10,19 @@ function Cart({ cart, add, remove, change, clear }){
  return (
   <div>
    <h3>Your Cart</h3>
-   <div className="row">
+   <ul>
      {
        cart && cart.map(item => (
-         <div className="col-xs-4">
+         <li>
           <h3>{item.product.name}</h3>
-          <img src={item.product.imageUrl}/>
-     	  <h4>{item.product.price}</h4>
+          <img src={item.product.img}/>
+     	  <h4>${ item.product.price && item.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h4>
           <h6>{item.product.quantity}</h6>
-          <button onClick= { () => change(item.product, item.product.quantity++)}>Remove from cart</button>
-         </div>
+          <button onClick= { () => remove(item.product)}>Remove from cart</button>
+         </li>
        ))
      }
-   </div>
+   </ul>
  </div>);
 }
 
