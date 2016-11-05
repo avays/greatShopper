@@ -2,27 +2,35 @@ const bcrypt = require('bcrypt');
 const db = require('APP/db')
 
 const categoriesToSeed = [
-  {name: 'Lawyer'},
-  {name: 'Bodyguard'},
-  {name: 'Accountant'},
-  {name: 'Chauffuer'},
-  {name: 'Pilot'},
-  {name: 'Butler'},
-  {name: 'Suit'},
-  {name: 'Ties'},
-  {name: 'Pocket Squares'},
-  {name: 'Fake Tanner'},
-  {name: 'Watches'},
-  {name: 'Toupees'},
-  {name: 'Jets'},
-  {name: 'Yachts'},
-  {name: 'Cars'},
-  {name: 'Motorcycles'},
   {name: 'Accessories'},
   {name: 'Vehicles'},
   {name: 'Real Estate'},
   {name: 'Apparel'},
-  {name: 'Services'}
+  {name: 'Services'},
+  {name: 'Attorney', meta_category_id: 5},
+  {name: 'Bodyguard', meta_category_id: 5},
+  {name: 'Accountant', meta_category_id: 5},
+  {name: 'Chauffuer', meta_category_id: 5},
+  {name: 'Pilot', meta_category_id: 5},
+  {name: 'Butler', meta_category_id: 5},
+  {name: 'Social Media Reps', meta_category_id: 5},
+  {name: 'Suit', meta_category_id: 4},
+  {name: 'Ties', meta_category_id: 4},
+  {name: 'Pocket Squares', meta_category_id: 4},
+  {name: 'Fake Tanner', meta_category_id: 1},
+  {name: 'Watches', meta_category_id: 1},
+  {name: 'Toupees', meta_category_id: 1},
+  {name: 'Jets', meta_category_id: 2},
+  {name: 'Yachts', meta_category_id: 2},
+  {name: 'Cars', meta_category_id: 2},
+  {name: 'Motorcycles', meta_category_id: 2},
+  {name: 'Helicopters', meta_category_id: 2},
+  {name: "Mansions", meta_category_id: 3},
+  {name: "Walls", meta_category_id: 3},
+  {name: "Casinos", meta_category_id: 3},
+  {name: "Hotels", meta_category_id: 3},
+  {name: "Islands", meta_category_id: 3},
+  {name: "Golf Courses", meta_category_id: 3}
 ];
 
 const productsToSeed = [
@@ -31,18 +39,15 @@ const productsToSeed = [
   {sku: 7662992825, quantity: 1, name: 'The Bradbury Estate', imageUrl: '/images/bradbury.jpg', price: 72000000, location: 'Sonoma Valley, CA', description: 'This regal masterpiece in guard-gated Bradbury Estates, sits on a promontory with unparalleled city, canyon and ocean views. The location was ranked by Forbes as one of the most expensive ZIP codes in America. This sprawling compound with multiple structures was magnificently realized after more than 8 years of construction by consummate craftsmen with meticulous attention to detail, using only the finest materials from around the world. The Main House is approximately 30,000 square feet plus 3,000 square feet of Loggias, 2 Master Suites, a 2 story Library, Chef’s Kitchen with pizza oven, a walk-in butler’s pantry, both walk-in refrigerator and freezer. Additionally featured is a large 3D Theater, 2,000-bottle Wine Cellar, Elevator, and a poker room with its own bar and built-in humidor. There is close to one acre of porches, decks, loggias, and walkways hewn of French limestone. One is brought to the Main House, elevated in a Palladian Neo-Classical style by way of a dramatic 600-foot Blue Stone private entry drive that ends in a circular flow entrance that allows for 60-foot truck access, or multiple limousines. This once in a lifetime trophy property with the highest level of artistic craftsmanship, state of the art engineering, and consummate attention to detail has never before been offered for sale; it belongs in the portfolio of the most astute collector.'},
   {sku: 7487601920, quantity: 90, name: 'Aerodyne 021', manufacturer: 'Richard Mille', price: 272629, description: 'expensive'},
   {sku: 1598092930, quantity: 50, name: 'Black Caviar Bang', manufacturer: 'Hublot', price: 895860, description: 'more expensive'},
-  {sku: 6848737699, quantity: 30, name: 'Perpetual Calendar Platinum 2499', manufacturer: 'Patek Philippe', price: 3483900, description: 'most expensive'}, 
+  {sku: 6848737699, quantity: 30, name: 'Perpetual Calendar Platinum 2499', manufacturer: 'Patek Philippe', price: 3483900, description: 'most expensive'},
 ];
 
 
 
 const categoryProductsToSeed = [
-  {product_sku: 9154950247, category_id: 19},
-  {product_sku: 4435561075, category_id: 19},
-  {product_sku: 7662992825, category_id: 19},
-  {product_sku: 7487601920, category_id: 11},
-  {product_sku: 1598092930, category_id: 11},
-  {product_sku: 6848737699, category_id: 11},
+  {product_sku: 9154950247, category_id: 24},
+  {product_sku: 4435561075, category_id: 24},
+  {product_sku: 7662992825, category_id: 24},
   {product_sku: 7487601920, category_id: 17},
   {product_sku: 1598092930, category_id: 17},
   {product_sku: 6848737699, category_id: 17}

@@ -7,15 +7,19 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import Root from './components/Root';
 import Main from './components/Main';
 import CurrentProduct from './components/CurrentProduct';
+import SelectedProducts from './components/SelectedProducts';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
 import { onProductSelect } from './enter-hooks';
+import { loadCategories } from './enter-hooks';
+import { loadCategoryProducts } from './enter-hooks';
 
 export default () => (
 	<Router history={browserHistory}>
-    <Route path="/" component={Root}>
+    <Route path="/" component={Root} onEnter={loadCategories}>
       <IndexRoute component={Main} />
       <Route path="/product/:sku" component={CurrentProduct} onEnter={onProductSelect} />
+      <Route path="/:categoryName" component={SelectedProducts} onEnter={loadCategoryProducts} />
     </Route>
   </Router>
 );
@@ -37,7 +41,7 @@ export default () => (
 //     <div>
 //       <nav>
 //         {user ? <WhoAmI/> : <Login/>}
-//       </nav> 
+//       </nav>
 //       {children}
 //     </div>
 // )
