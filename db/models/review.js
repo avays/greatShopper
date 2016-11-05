@@ -12,6 +12,12 @@ const Review = db.define('reviews', {
       len: [1, 10000]
     }
   },
+  summary: {
+    type: Sequelize.STRING,
+    validate: {
+      notEmpty: true
+    }
+  },
   stars: {
     type: Sequelize.INTEGER,
     validate: {

@@ -64,11 +64,11 @@ const usersToSeed = [
 ];
 
 const reviewsToSeed = [
-  {text: 'Wow this product was so amaze, love it, lulz', stars: 5, user_id: 1, date: '2016-10-31', product_sku: productsToSeed[0].sku},
-  {text: 'Worst thing ever, will never buy, terrible', stars: 1, user_id: 2, date: '2016-08-19', product_sku: productsToSeed[0].sku},
-  {text: 'This changed my life, hooray, I have no soul', stars: 3, user_id: 3, date: '2016-01-03', product_sku: productsToSeed[1].sku},
-  {text: 'This product has ALL the best things', stars: 5, user_id: 2, date: '2016-09-24', product_sku: productsToSeed[1].sku},
-  {text: 'Decided to write this review instead of tweeting about this product', stars: 2, user_id: 4, date: '2015-04-04', product_sku: productsToSeed[2].sku}
+  {text: 'Wow this product was so amaze, love it, lulz', summary: 'best thing ever', stars: 5, user_id: 1, date: '2016-10-31', product_sku: productsToSeed[0].sku},
+  {text: 'Worst thing ever, will never buy, terrible', summary: 'THE WORST', stars: 1, user_id: 2, date: '2016-08-19', product_sku: productsToSeed[0].sku},
+  {text: 'This changed my life, hooray, I have no soul', summary: 'meh', stars: 3, user_id: 3, date: '2016-01-03', product_sku: productsToSeed[1].sku},
+  {text: 'This product has ALL the best things', summary: 'Love it!', stars: 5, user_id: 2, date: '2016-09-24', product_sku: productsToSeed[1].sku},
+  {text: 'Decided to write this review instead of tweeting about this product', summary: 'loser product', stars: 2, user_id: 4, date: '2015-04-04', product_sku: productsToSeed[2].sku}
 ];
 
 const addressesToSeed = [
