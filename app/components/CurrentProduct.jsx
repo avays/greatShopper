@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Image } from 'react-bootstrap';
+import Review from './Review';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -27,10 +28,22 @@ const CurrentProduct = ({ currentProduct }) => (
 			<p>{ currentProduct.description }</p>
 		</description>
 		<reviews>
-			<div>Number of reviews: { currentProduct.reviews && currentProduct.reviews.length }</div>
+			<h4>REVIEWS</h4>
+			{
+				currentProduct.reviews && currentProduct.reviews.length ?
+					currentProduct.reviews.map(review => {
+						return (
+							<Review review={review} />
+						);
+					})
+					: 
+						<div>
+							<p>Be the first to review this product!</p>
+						</div>		
+			}	
 		</reviews>
 	</div>
-)
+);
 
 
 /* -----------------    CONTAINER     ------------------ */

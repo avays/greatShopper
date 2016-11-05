@@ -16,9 +16,21 @@ footer {
   min-height: 500px;
   min-width: 500px; }
 
-#currentProduct .mainPhoto {
-  display: inline-block;
-  width: 50%; }
+#currentProduct {
+  margin-bottom: 150px;
+  min-height: 400px;
+  clear: both;
+  /*above styling is to make sure footer doesn't sit on top of page content*/
+  /*could probably make it nicer, this is a quick fix*/ }
+  #currentProduct .mainPhoto {
+    display: inline-block;
+    width: 50%; }
+  #currentProduct info {
+    display: inline-block; }
 
-#currentProduct info {
+.review details {
+  display: inline-block;
+  width: 30%; }
+
+.review #review-text {
   display: inline-block; }
