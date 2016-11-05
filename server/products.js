@@ -35,7 +35,7 @@ customProductRoutes.get("/:sku", function(req, res, next) {
 		},
 		include: [Review]
 	})
-		.then(product=> res.json(product))
+		.then(product => res.json(product))
 		.catch(next)
 
 });

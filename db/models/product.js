@@ -25,6 +25,10 @@ const Product = db.define('products', {
 		allowNull: false
 	},
 
+	imageUrl: {
+		type: Sequelize.STRING
+	},
+
 	color: {
 		type: Sequelize.STRING
 	},
@@ -58,8 +62,10 @@ const Product = db.define('products', {
 }, {
 
 	getterMethods: {
-		mainImage: function() {
-			// TODO: fetches first image in related media association OR default image
+		img: function() {
+			return (this.imageUrl) ?
+				this.imageUrl :
+				'/images/default.jpg'
 		}
 	}
 
