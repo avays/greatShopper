@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -9,11 +9,15 @@ function SelectedProducts({ selectedProducts, go }){
  return (
   <div>
    <h3>Products</h3>
-   <div className="row">
+   <div className="gallery">
      {
        selectedProducts && selectedProducts.map(product => (
-         <div className="col-xs-4">
-          <h3>{product.name}</h3>
+         <div className="productThumbnail" key={product.id}>
+          <Link to={`product/${product.sku}`}>
+            <h4>{product.name}</h4>
+            <img className="imgThumb" src={product.img} />
+            <p>Price: ${product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+          </Link>
          </div>
        ))
      }

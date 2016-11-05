@@ -102,15 +102,15 @@ const orderItemsToSeed = [
 ];
 
 
-const seedCategories = () => db.Promise.map(categoriesToSeed, category => db.model('categories').create(category));
-const seedUsers = () => db.Promise.map(usersToSeed, user => db.model('users').create(user));
-const seedReviews = () => db.Promise.map(reviewsToSeed, review => db.model('reviews').create(review));
-const seedProducts = () => db.Promise.map(productsToSeed, product => db.model('products').create(product));
-const seedAddresses = () => db.Promise.map(addressesToSeed, address => db.model('addresses').create(address));
-const seedCategoryProducts = () => db.Promise.map(categoryProductsToSeed, categoryProduct => db.model('CategoryProduct').create(categoryProduct));
-const seedPayments = () => db.Promise.map(paymentsToSeed, payment => db.model('payments').create(payment));
-const seedOrders = () => db.Promise.map(ordersToSeed, order => db.model('orders').create(order));
-const seedOrderItems = () => db.Promise.map(orderItemsToSeed, order_item => db.model('order_items').create(order_item));
+const seedCategories = () => db.Promise.mapSeries(categoriesToSeed, category => db.model('categories').create(category));
+const seedUsers = () => db.Promise.mapSeries(usersToSeed, user => db.model('users').create(user));
+const seedReviews = () => db.Promise.mapSeries(reviewsToSeed, review => db.model('reviews').create(review));
+const seedProducts = () => db.Promise.mapSeries(productsToSeed, product => db.model('products').create(product));
+const seedAddresses = () => db.Promise.mapSeries(addressesToSeed, address => db.model('addresses').create(address));
+const seedCategoryProducts = () => db.Promise.mapSeries(categoryProductsToSeed, categoryProduct => db.model('CategoryProduct').create(categoryProduct));
+const seedPayments = () => db.Promise.mapSeries(paymentsToSeed, payment => db.model('payments').create(payment));
+const seedOrders = () => db.Promise.mapSeries(ordersToSeed, order => db.model('orders').create(order));
+const seedOrderItems = () => db.Promise.mapSeries(orderItemsToSeed, order_item => db.model('order_items').create(order_item));
 
 
 db.didSync
