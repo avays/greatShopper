@@ -1,25 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 
 /* -----------------    COMPONENT     ------------------ */
 
-function SelectedProducts({ products, go }){
+function SelectedProducts({ selectedProducts, go }){
+ console.log(selectedProducts)
  return (
   <div>
    <h3>Products</h3>
    <div className="row">
      {
-       products.map(products => (
-         <div className="col-xs-4" key={ products.id }>
-           <a className="thumbnail" href="#" onClick={() => go(products)}>
-             <img src={ products.imageUrl } />
-             <div className="caption">
-               <h5>
-                 <span>{ products.name }</span>
-               </h5>
-               <small>{ products.songs.length } songs</small>
-             </div>
-           </a>
+       selectedProducts && selectedProducts.map(product => (
+         <div className="col-xs-4">
+          <h3>{product.name}</h3>
          </div>
        ))
      }
@@ -31,8 +25,19 @@ function SelectedProducts({ products, go }){
 
 const mapStateToProps = ({ selectedProducts }) => ({ selectedProducts });
 const mapDispatchToProps = () => ({
-  clickRight,
-  clickLeft
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectedProducts);
+
+// <div className="col-xs-4" key={ products.id }>
+//            <a className="thumbnail" href="#" onClick={() => go(products)}>
+//              <img src={ products.imageUrl } />
+//              <div className="caption">
+//                <h5>
+//                  <span>{ products.name }</span>
+//                </h5>
+//                <small>{ products.songs.length } songs</small>
+//              </div>
+//            </a>
+//          </div>

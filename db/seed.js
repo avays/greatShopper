@@ -17,9 +17,9 @@ const categoriesToSeed = [
   {name: 'Suit', meta_category_id: 4},
   {name: 'Ties', meta_category_id: 4},
   {name: 'Pocket Squares', meta_category_id: 4},
-  {name: 'Fake Tanner', meta_category_id: 4},
-  {name: 'Watches', meta_category_id: 4},
-  {name: 'Toupees', meta_category_id: 4},
+  {name: 'Fake Tanner', meta_category_id: 1},
+  {name: 'Watches', meta_category_id: 1},
+  {name: 'Toupees', meta_category_id: 1},
   {name: 'Jets', meta_category_id: 2},
   {name: 'Yachts', meta_category_id: 2},
   {name: 'Cars', meta_category_id: 2},
@@ -45,12 +45,9 @@ const productsToSeed = [
 
 
 const categoryProductsToSeed = [
-  {product_sku: 9154950247, category_id: 19},
-  {product_sku: 4435561075, category_id: 19},
-  {product_sku: 7662992825, category_id: 19},
-  {product_sku: 7487601920, category_id: 11},
-  {product_sku: 1598092930, category_id: 11},
-  {product_sku: 6848737699, category_id: 11},
+  {product_sku: 9154950247, category_id: 24},
+  {product_sku: 4435561075, category_id: 24},
+  {product_sku: 7662992825, category_id: 24},
   {product_sku: 7487601920, category_id: 17},
   {product_sku: 1598092930, category_id: 17},
   {product_sku: 6848737699, category_id: 17}
