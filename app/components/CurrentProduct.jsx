@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Image } from 'react-bootstrap';
 import Review from './Review';
+import { addItem } from '../reducers/cart'
 
 /* -----------------    COMPONENT     ------------------ */
 
-const CurrentProduct = ({ currentProduct }) => (
+const CurrentProduct = ({ currentProduct, add }) => (
 	<div id="currentProduct">
 		<photo>
 			<Image className="mainPhoto" src={ currentProduct && currentProduct.img } responsive />
@@ -21,7 +22,7 @@ const CurrentProduct = ({ currentProduct }) => (
 					<option value="2">3</option>
 				</select>
 			</form>
-			<button>Add To Cart</button>
+			<button onClick={ () => add(currentProduct, 1)}>Add To Cart</button>
 		</info>
 		<description>
 			<h4>PRODUCT DETAILS</h4>
@@ -48,6 +49,8 @@ const CurrentProduct = ({ currentProduct }) => (
 
 /* -----------------    CONTAINER     ------------------ */
 const mapStateToProps = ({ currentProduct }) => ({ currentProduct });
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = (dispatch) => ({
+	add: (product, quantity) => dispatch(addItem(product,quantity))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrentProduct);
