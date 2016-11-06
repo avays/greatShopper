@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { addItem, removeItem, changeQuantity, clearCart } from '../reducers/cart';
 import { Link } from 'react-router';
 import CartItem from './CartItem';
+import { Button } from 'react-bootstrap';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -18,8 +19,8 @@ function Cart({ cart, add, remove, change, clear }){
        {
          cart.map((item, index) => (
            <CartItem
+            key={ index }
             item={ item }
-            index={ index }
             remove={ remove }
            />
          ))
@@ -34,8 +35,8 @@ function Cart({ cart, add, remove, change, clear }){
         }).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       }
       </div>
-      <button onClick={clear}>Clear all items from cart</button>
-      <button><Link to="/checkout/shipping">Checkout</Link></button>
+      <Button><Link to="/checkout/shipping">Proceed to Checkout</Link></Button>
+      <Button onClick={clear}>Clear all items from cart</Button>
      </div>
      :
     <h3>Your cart is empty!</h3>
