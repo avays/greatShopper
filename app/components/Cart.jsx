@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addItem, removeItem, changeQuantity, clearCart } from '../reducers/cart';
 import { Link } from 'react-router';
+import CartItem from './CartItem';
+import { Button } from 'react-bootstrap';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -16,30 +18,25 @@ function Cart({ cart, add, remove, change, clear }){
      <ul>
        {
          cart.map((item, index) => (
-           <li key={index}>
-            <Link to={`item.product/${item.product.sku}`}>
-              <h3>{item.product.name}</h3>
-              <img src={item.product.img}/>
-            </Link>
-       	  <h4>${ item.product.price && item.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h4>
-            <h6>Quantity: {item.quantity}</h6>
-            <button onClick= { () => { remove(item) }}>Remove from cart</button>
-           </li>
+           <CartItem
+            key={ index }
+            item={ item }
+            remove={ remove }
+           />
          ))
        }
       </ul>
       <div>Total price: ${
         cart.map(item => {
-          // console.log("price", item.product.price, "quantity", item.quantity)
-          return +item.product.price * +item.quantity
+          return +item.product.price * +item.quantity;
         })
-          .reduce((sum,current) => {
+          .reduce((sum, current) => {
             return sum + current;
         }).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       }
       </div>
-      <button onClick={clear}>Clear all items from cart</button>
-      <button><Link to="/checkout/shipping">Checkout</Link></button>
+      <Button><Link to="/checkout/shipping">Proceed to Checkout</Link></Button>
+      <Button onClick={clear}>Clear all items from cart</Button>
      </div>
      :
     <h3>Your cart is empty!</h3>

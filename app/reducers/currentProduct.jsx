@@ -3,6 +3,7 @@ import axios from 'axios';
 /* -----------------    ACTIONS     ------------------ */
 
 const LOAD_PRODUCT = 'LOAD_PRODUCT';
+const CLEAR_PRODUCT = 'CLEAR_PRODUCT';
 
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -10,6 +11,10 @@ const LOAD_PRODUCT = 'LOAD_PRODUCT';
 const loadProduct = product => ({
   type: LOAD_PRODUCT,
   product
+});
+
+export const clearProduct = () => ({
+  type: CLEAR_PRODUCT
 });
 
 
@@ -20,6 +25,9 @@ export default function reducer (previousState = {}, action) {
 
     case LOAD_PRODUCT:
       return action.product;
+
+    case CLEAR_PRODUCT:
+      return {};
 
     default:
       return previousState;

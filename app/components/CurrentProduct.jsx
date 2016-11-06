@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Image } from 'react-bootstrap';
 import Review from './Review';
-import { addItem } from '../reducers/cart'
+import Notification from './Notification';
+import { addItem } from '../reducers/cart';
 
 /* -----------------    DUMB COMPONENT     ------------------ */
 
-const DumbCurrentProduct = ({ currentProduct, addToCart, changeAmnt }) => (
+const DumbCurrentProduct = ({ currentProduct, addToCart, changeAmnt, notify }) => (
 	<div id="currentProduct">
+		{
+			notify ? <Notification /> : ''
+		}
 		<photo>
 			<Image className="mainPhoto" src={ currentProduct && currentProduct.img } responsive />
 		</photo>
@@ -40,7 +44,7 @@ const DumbCurrentProduct = ({ currentProduct, addToCart, changeAmnt }) => (
 					: 
 						<div>
 							<p>Be the first to review this product!</p>
-						</div>		
+						</div>	
 			}	
 		</reviews>
 	</div>
@@ -54,7 +58,8 @@ class CurrentProduct extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			quantity: 1
+			quantity: 1,
+			notify: false
 		};
 		this.addToCart = this.addToCart.bind(this);
 		this.changeAmnt = this.changeAmnt.bind(this);
@@ -62,11 +67,12 @@ class CurrentProduct extends Component {
 
 	addToCart(evt) {
 		evt.preventDefault();
+		this.setState({ notify: true })
 		this.props.add(this.props.currentProduct, this.state.quantity);
 	}
 
 	changeAmnt(evt) {
-		const quantity = Number(evt.target.value);
+		const quantity = +evt.target.value;
 		this.setState({ quantity });
 	}
 
@@ -78,6 +84,7 @@ class CurrentProduct extends Component {
 				currentProduct={ currentProduct }
 				addToCart={ this.addToCart }
 				changeAmnt={ this.changeAmnt }
+				notify={ this.state.notify }
 			/>
 		)
 	}
