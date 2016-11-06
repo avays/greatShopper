@@ -20,7 +20,7 @@ class Navigbar extends React.Component {
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <a href="#">Great Shopper</a>
+            <Link to="/">Great Shopper</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
