@@ -68,7 +68,6 @@ class CurrentProduct extends Component {
 	addToCart(evt) {
 		evt.preventDefault();
 		this.setState({ notify: true })
-		console.log('NOTIY IS ', this.state.notify)
 		this.props.add(this.props.currentProduct, this.state.quantity);
 	}
 

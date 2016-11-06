@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Button } from 'react-bootstrap';
 
 class Notification extends Component {
 	constructor(props) {
@@ -10,7 +11,7 @@ class Notification extends Component {
 		return (
 			<div className="notification">
 				<h5>Item added to cart!</h5>
-				<Link to="/cart"><button>My Cart</button></Link>
+				<LinkContainer to="/cart"><Button>My Cart</Button></LinkContainer>
 			</div>
 		)
 	}

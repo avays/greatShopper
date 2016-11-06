@@ -49,7 +49,6 @@ export const fetchAndGoToQueriedProduct = search=> {
   return dispatch => {
     axios.get(`/api/products/search/${search}`)
       .then(products => {
-        console.log('products', products.data)
         dispatch(searchForProducts(products.data))
         browserHistory.push('/search')
       })
