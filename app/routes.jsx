@@ -13,9 +13,7 @@ import Checkout from './components/Checkout';
 import Shipping from './components/Shipping';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
-import { onProductSelect } from './enter-hooks';
-import { loadCategories } from './enter-hooks';
-import { loadCategoryProducts } from './enter-hooks';
+import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts } from './enter-hooks';
 
 export default () => (
 	<Router history={browserHistory}>
@@ -26,7 +24,7 @@ export default () => (
       <Route path="/checkout" component={Checkout} >
         <Route path="/checkout/shipping" component={Shipping} />
       </Route>
-      <Route path="/search" component={SelectedProducts}/>
+      <Route path="/search/:query" component={SelectedProducts} onEnter={loadQueriedProducts} />
       <Route path="/:categoryName" component={SelectedProducts} onEnter={loadCategoryProducts} />
     </Route>
   </Router>

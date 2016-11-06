@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Navbar, FormGroup, FormControl, InputGroup, Button } from 'react-bootstrap';
-import { fetchAndGoToQueriedProduct } from '../reducers/selectedProducts';
+import { fetchAndGoToQueriedProducts } from '../reducers/selectedProducts';
 import { connect } from 'react-redux';
 
 
@@ -63,7 +63,7 @@ class Search extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     submitQuery: input => {
-      dispatch(fetchAndGoToQueriedProduct(input));
+      dispatch(fetchAndGoToQueriedProducts(input));
     }
   };
 };
