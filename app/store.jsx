@@ -5,6 +5,8 @@ import thunkMiddleware from 'redux-thunk';
 
 import {whoami} from './reducers/auth';
 
+import persistState from 'redux-localstorage'
+
 const composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
 
 // added this for redux chrome devtools
@@ -12,10 +14,11 @@ const composeEnhancers = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;
 // https://github.com/reactjs/redux/blob/master/docs/api/createStore.md
 const preloadedState = {currentProduct: {}};
 // BUT DEVTOOLS STILL NOT WORKING AGGGHHHH
+// lol
 
 
 const store = createStore(rootReducer, preloadedState, composeEnhancers(
-	applyMiddleware(createLogger(), thunkMiddleware)
+	applyMiddleware(createLogger(), thunkMiddleware), persistState("cart", {key: "greatShopperCart"})
 ));
 
 export default store;

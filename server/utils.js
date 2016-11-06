@@ -1,18 +1,19 @@
 const mustBeAdmin = (req) => {
-
-	return req.user && req.user.isAdmin;
+	// admin probably needs to be redone
+	return req.session.passport && req.session.passport.user.isAdmin;
 }
 
 const mustHavePermission = (req) => {
-  return (req.user && req.user.isAdmin) || (req.params.id === (req.user && req.user.id))
+	// admin probably needs to be redone
+  return (req.session.passport && req.session.passport.user.isAdmin) || (req.session.passport && (req.params.id === req.session.passport.user)) 
 }
 
 const mustBeLoggedIn = (req) => {
-  return req.user
+  return req.session.passport && req.session.passport.user;
 }
 
 const selfOnly = (req) => {
- return (req.params.id === (req.user && req.user.id)) 
+ return req.session.passport && (req.params.id === req.session.passport.user) 
 }
 
 const formatDate = () => {

@@ -28,7 +28,19 @@ module.exports = app
   .use(require('cookie-session') ({
     name: 'session',
     keys: [process.env.SESSION_SECRET || 'an insecure secret key'],
+    maxAge : 1 * 60 * 1000 // 1 min sessions for testing
   }))
+
+  // this renews cookie-session
+  app.get('*', function(req, res, next) {
+  // To update the session expiration time we need to send the new
+  // expiration in the response cookie.
+  // To send again the response cookie to the client we need to
+  // update the session object.
+  console.log(req.session)
+  req.session.renewSession = Date.now();
+  next();
+  })
 
   // Body parsing middleware
   .use(bodyParser.urlencoded({ extended: true }))

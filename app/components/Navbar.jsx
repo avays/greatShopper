@@ -73,7 +73,7 @@ class Navigbar extends React.Component {
             </NavDropdown>
           </Nav>
           <Nav pullRight>
-            <LinkContainer to="/cart"><NavItem>Cart</NavItem></LinkContainer>
+            <LinkContainer to="/cart"><NavItem>Cart ({this.props.cart && this.props.cart.length})</NavItem></LinkContainer>
             {this.props.user && this.props.user.email ? <button onClick={this.props.signout}>Sign out</button> : <LinkContainer to="/login"><NavItem>Login</NavItem></LinkContainer>
             }
           </Nav>
@@ -85,7 +85,7 @@ class Navigbar extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapProps = ({ categories, user }) => ({ categories, user });
+const mapProps = ({ categories, user , cart}) => ({ categories, user, cart });
 
 const mapDispatch = (dispatch) => ({
   signout: () => {
