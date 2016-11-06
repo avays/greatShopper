@@ -72,7 +72,7 @@ customUserRoutes.post("/", function(req, res, next){
 		firstName: req.body.firstName,
 		lastName: req.body.lastName, 
 		isAdmin: false 
-	}, { fields: [ 'email', 'password', 'password_digest','firstName', 'lastName' ] })
+	}, { fields: [ 'email', 'password', 'password_digest','firstName', 'isAdmin', 'lastName' ] })
 		.then(user => res.json(user))
 		.catch(next);
 });

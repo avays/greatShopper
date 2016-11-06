@@ -1,26 +1,66 @@
 'use strict'
 
-const epilogue = require('./epilogue')
 const db = require('APP/db')
+const {mustBeAdmin, mustHavePermission, mustBeLoggedIn, selfOnly, formatDate}  = require("./utils")
 
 const customOrderRoutes = require('express').Router() 
 
-// customOrderRoutes.get("/", function(req, res, next){
-// 	console.log("hello worold");
-// 	res.send("Hello");
-// })
-// Custom routes go here.
+const User = db.model("users");
+const Order = db.model("orders");
+const Order_Item = db.model("order_items");
+const Address = db.model("addresses");
+const Payment = db.model("payments");
 
-module.exports = customOrderRoutes
+customOrderRoutes.get("/:id", function(req, res, next){
 
-// Epilogue will automatically create standard RESTful routes
-const orders = epilogue.resource({
-  model: db.model('orders'),
-  endpoints: ['/orders', '/orders/:id']
-})
+	if(!mustBeLoggedIn(req)){
+		return res.status(401).send('You must be logged in.')
+	}
+	if(!mustHavePermission(req)){
+		return res.status(403).send(`You do not have permission.`)
+	}
 
-const {mustBeLoggedIn, selfOnly, forbidden} = epilogue.filters
-orders.delete.auth(mustBeLoggedIn)
-orders.delete.auth(selfOnly)
-orders.list.auth(forbidden("Verboten!"))
-orders.read.auth(mustBeLoggedIn)
+	Order.findAll({	 	
+	 	include: [
+	 		{model: User,
+		 		where: {
+						id: req.params.id
+					}
+			},
+			{model: Address},
+			{model: Order_Item},
+			{model: Payment}
+			]
+	 })
+		.then(orders => res.json(orders))
+		.catch(next);
+});
+
+customOrderRoutes.post("/", function(req, res, next){
+	// how do we prevent people from ordering using this route directly?
+	Order.create({
+		status: 'pending',
+		submitDate: formatDate(),
+		user_id: req.body.id,
+		address_id: req.body.address_id,
+		payment_id: req.body.payment_id
+	})
+		.then(order => res.json(order))
+		.catch(next);
+});
+
+// Don't delete orders, just change their status
+// customOrderRoutes.delete("/:id/:pid", function(req, res, next){
+
+// 	if(!mustBeLoggedIn(req)){
+// 		return res.status(401).send('You must be logged in.')
+// 	}
+// 	if(!mustHavePermission(req)){
+// 		return res.status(403).send(`You do not have permission.`)
+// 	}
+// 	Order.destroy({where: {id: req.params.pid}})
+// 		.then(rowsModified => res.json(rowsModified))
+// 		.catch(next);
+// });
+
+module.exports = customOrderRoutes;

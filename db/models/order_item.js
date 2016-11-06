@@ -41,7 +41,7 @@ const OrderItem = db.define('order_items', {
   itemCost: {
     type: Sequelize.DECIMAL(10, 2),
     defaultValue: 0.0
-  },
+  }
 }, {
   hooks: {
     afterCreate: updateOrder
