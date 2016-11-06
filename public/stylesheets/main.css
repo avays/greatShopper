@@ -66,3 +66,27 @@ footer {
 #searchImg {
   width: 20px;
   height: auto; }
+
+.notification {
+  height: 50px;
+  width: 150px;
+  margin: 0 auto;
+  background-color: "blue";
+  display: flex;
+  text-align: center;
+  padding: 10; }
+
+.cart-item {
+  list-style-type: none;
+  border-color: grey;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 1em;
+  margin-bottom: 2em;
+  width: 80vw; }
+  .cart-item img {
+    width: 30vw;
+    height: auto; }
+  .cart-item item-details {
+    display: inline-block;
+    padding-left: 3vw; }

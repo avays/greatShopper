@@ -45,13 +45,12 @@ export const fetchAndGoToProducts = (categoryName) => {
   };
 }
 
-export const fetchAndGoToQueriedProduct = search=> {
+export const fetchAndGoToQueriedProducts = search => {
   return dispatch => {
     axios.get(`/api/products/search/${search}`)
       .then(products => {
-        console.log('products', products.data)
         dispatch(searchForProducts(products.data))
-        browserHistory.push('/search')
+        browserHistory.push(`/search/${search}`)
       })
       .catch(err => console.error('Fetching product failed', err))
   }

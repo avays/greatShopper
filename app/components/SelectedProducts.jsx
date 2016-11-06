@@ -4,14 +4,14 @@ import { Link } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */
 
-function SelectedProducts({ selectedProducts, go }){
+function SelectedProducts({ selectedProducts }){
  return (
   <div>
    <h3>Products</h3>
    <div className="gallery">
      {
        selectedProducts && selectedProducts.map(product => (
-         <div className="productThumbnail" key={product.id}>
+         <div className="productThumbnail" key={product.sku}>
           <Link to={`product/${product.sku}`}>
             <h4>{product.name}</h4>
             <img className="imgThumb" src={product.img} />

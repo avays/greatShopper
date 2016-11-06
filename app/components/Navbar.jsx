@@ -4,6 +4,8 @@ import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
 import Search from './Search';
 import { Link } from 'react-router';
 import { logout } from '../reducers/auth';
+import { LinkContainer } from 'react-router-bootstrap';
+
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -33,7 +35,7 @@ class Navigbar extends React.Component {
               {this.props.categories.filter((category) => {
                 return category.meta_category_id === 2
               }).map(category => (
-                <Link to={`/${category.name}`}><MenuItem key={category.id}>{ category.name }</MenuItem></Link>
+                <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
               ))
               }
             </NavDropdown>
@@ -41,7 +43,7 @@ class Navigbar extends React.Component {
               {this.props.categories.filter((category) => {
                 return category.meta_category_id === 3
               }).map(category => (
-                <Link to={`/${category.name}`}><MenuItem key={category.id}>{ category.name }</MenuItem></Link>
+                <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
               ))
               }
             </NavDropdown>
@@ -49,7 +51,7 @@ class Navigbar extends React.Component {
               {this.props.categories.filter((category) => {
                 return category.meta_category_id === 4
               }).map(category => (
-                <Link to={`/${category.name}`}><MenuItem key={category.id}>{ category.name }</MenuItem></Link>
+                <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
               ))
               }
             </NavDropdown>
@@ -57,7 +59,7 @@ class Navigbar extends React.Component {
               {this.props.categories.filter((category) => {
                 return category.meta_category_id === 1
               }).map(category => (
-                <Link to={`/${category.name}`}><MenuItem key={category.id}>{ category.name }</MenuItem></Link>
+                <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
               ))
               }
             </NavDropdown>
@@ -65,14 +67,14 @@ class Navigbar extends React.Component {
               {this.props.categories.filter((category) => {
                 return category.meta_category_id === 5
               }).map(category => (
-                <Link to={`/${category.name}`}><MenuItem key={category.id}>{ category.name }</MenuItem></Link>
+                <LinkContainer key={category.id} to={`/${category.name}`}><MenuItem>{ category.name }</MenuItem></LinkContainer>
               ))
               }
             </NavDropdown>
           </Nav>
           <Nav pullRight>
-            <NavItem><Link to="/cart">Cart</Link></NavItem>
-            {this.props.user && this.props.user.email ? <button onClick={this.props.signout}>Sign out</button> : <NavItem><Link to="/login">Login</Link></NavItem>
+            <LinkContainer to="/cart"><NavItem>Cart</NavItem></LinkContainer>
+            {this.props.user && this.props.user.email ? <button onClick={this.props.signout}>Sign out</button> : <LinkContainer to="/login"><NavItem>Login</NavItem></LinkContainer>
             }
           </Nav>
         </Navbar.Collapse>
