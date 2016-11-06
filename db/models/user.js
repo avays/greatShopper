@@ -27,6 +27,7 @@ const User = db.define('users', {
 			notEmpty: true,
 		}
   },
+  googleId: Sequelize.STRING,
 
   isAdmin: Sequelize.BOOLEAN,
   // We support oauth, so users may or may not have passwords.

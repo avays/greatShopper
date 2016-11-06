@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
 import Search from './Search';
 import { Link } from 'react-router';
+import { logout } from '../reducers/auth';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -25,6 +26,7 @@ class Navigbar extends React.Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Search />
+        <span style={{color: "white"}}>{this.props.user && this.props.user.firstName ? `Welcome back, ${this.props.user.firstName}!`: (this.props.user && this.props.user.email ? `Logged in as: ${this.props.user.email}` : '')}</span>
         <Navbar.Collapse>
           <Nav title="Departments">
             <NavDropdown title="Vehicles" id="vehicles-nav">
@@ -69,8 +71,9 @@ class Navigbar extends React.Component {
             </NavDropdown>
           </Nav>
           <Nav pullRight>
-            <Link to="/cart"><NavItem>Cart</NavItem></Link>
-            <Link to="/"><NavItem>Login</NavItem></Link>
+            <NavItem><Link to="/cart">Cart</Link></NavItem>
+            {this.props.user && this.props.user.email ? <button onClick={this.props.signout}>Sign out</button> : <NavItem><Link to="/login">Login</Link></NavItem>
+            }
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -80,15 +83,12 @@ class Navigbar extends React.Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapProps = ({ categories }) => ({ categories });
+const mapProps = ({ categories, user }) => ({ categories, user });
 
-// const mapDispatch = dispatch => ({
-//   go: category => dispatch(fetchCategoryProducts(category))
-//   }
-//   // logout: () => {
-//   //   dispatch(logout())
-//   //   browserHistory.push('/');
-//   // }
-// })
+const mapDispatch = (dispatch) => ({
+  signout: () => {
+    dispatch(logout())
+  }
+})
 
-export default connect(mapProps, null)(Navigbar);
+export default connect(mapProps, mapDispatch)(Navigbar);
