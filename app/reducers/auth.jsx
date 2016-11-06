@@ -1,6 +1,13 @@
 import axios from 'axios'
 import { browserHistory } from 'react-router';
 
+// Action Creators
+const AUTHENTICATED = 'AUTHENTICATED'
+export const authenticated = user => ({
+  type: AUTHENTICATED, user
+})
+
+// Reducer
 const reducer = (state='', action) => {
   switch(action.type) {
   case AUTHENTICATED:
@@ -8,11 +15,15 @@ const reducer = (state='', action) => {
   }
   return state
 }
+export default reducer;
 
-const AUTHENTICATED = 'AUTHENTICATED'
-export const authenticated = user => ({
-  type: AUTHENTICATED, user
-})
+// Dispatchers
+export const createOrFindUser = (email, password, firstName, lastName) =>
+  dispatch =>
+    axios.post('/api/users/',
+      {email, password, firstName, lastName})
+      .then(() => dispatch(login(email, password)))
+      .catch(() => dispatch(whoami()))  
 
 export const login = (username, password) =>
   dispatch =>
@@ -37,5 +48,3 @@ export const whoami = () =>
         dispatch(authenticated(user))
       })
       .catch(failed => dispatch(authenticated(null)))
-
-export default reducer
