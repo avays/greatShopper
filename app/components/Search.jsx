@@ -38,7 +38,6 @@ captureInput = evt => {
 const mapDispatchToProps = (dispatch) => {
   return {
     search: input =>{
-      console.log('input in search.jsx', input)
       dispatch(fetchAndGoToQueriedProduct(input))
     }
   }
