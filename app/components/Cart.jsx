@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addItem, removeItem, changeQuantity, clearCart } from '../reducers/cart';
 import { Link } from 'react-router';
+import CartItem from './CartItem';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -16,15 +17,11 @@ function Cart({ cart, add, remove, change, clear }){
      <ul>
        {
          cart.map((item, index) => (
-           <li key={index}>
-            <Link to={`/product/${item.product.sku}`}>
-              <h3>{item.product.name}</h3>
-              <img src={item.product.img}/>
-            </Link>
-       	  <h4>${ item.product.price && item.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h4>
-            <h6>Quantity: {item.quantity}</h6>
-            <button onClick= { () => { remove(item) }}>Remove from cart</button>
-           </li>
+           <CartItem
+            item={ item }
+            index={ index }
+            remove={ remove }
+           />
          ))
        }
       </ul>

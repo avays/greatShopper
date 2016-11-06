@@ -14,12 +14,14 @@ import Shipping from './components/Shipping';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
 import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts } from './enter-hooks';
+import { onProductLeave } from './leave-hooks';
+
 
 export default () => (
 	<Router history={browserHistory}>
     <Route path="/" component={Root} onEnter={loadCategories}>
       <IndexRoute component={Main} />
-      <Route path="/product/:sku" component={CurrentProduct} onEnter={onProductSelect} />
+      <Route path="/product/:sku" component={CurrentProduct} onEnter={onProductSelect} onLeave={onProductLeave}/>
       <Route path="/cart" component={Cart} />
       <Route path="/checkout" component={Checkout} >
         <Route path="/checkout/shipping" component={Shipping} />
