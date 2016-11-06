@@ -13,10 +13,13 @@ export const addItem = (product, quantity) => ({
   type: ADD_ITEM,
   productAndQuantity: {product, quantity}
 });
-export const removeItem = product => ({
-  type: REMOVE_ITEM,
-  product
-});
+export const removeItem = item => {
+  console.log('in action creator and item is ', item);
+  return {
+    type: REMOVE_ITEM,
+    item
+  }
+};
 export const changeQuantity = (product, quantity) => ({
   type: CHANGE_QUANTITY,
   productAndQuantity: {product, quantity}
@@ -44,9 +47,9 @@ export default function reducer (previousState = [], action) {
       })
 
     case REMOVE_ITEM:
-      return previousState.filter((item) => {
-        return (item.product.sku !== action.productAndQuantity.product.sku);
-      })
+      return previousState.filter(item => (
+        item.product.sku !== action.item.product.sku
+      ))
 
     case CLEAR_CART:
       return [];
