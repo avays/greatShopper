@@ -1,4 +1,5 @@
 'use strict'
+const Promise = require('bluebird');
 
 const db = require('APP/db')
 const {
@@ -24,8 +25,7 @@ customProductRoutes.get("/", function(req, res, next) {
 });
 
 customProductRoutes.get("/search/:searchInput", function(req, res, next) {
-
-	Product.findAll({
+const queryProductModel =	Product.findAll({
     where: {
       $or: [
         {name: {
@@ -47,7 +47,27 @@ customProductRoutes.get("/search/:searchInput", function(req, res, next) {
         ]
     }
   })
-		.then(products => res.json(products))
+
+  const queryCategoryModel = Category.findAll({
+    where: {
+      name: {
+          $ilike: `%${req.params.searchInput}%`
+      }
+    },
+    include: [Product]
+  })
+
+  Promise.all([queryProductModel, queryCategoryModel])
+    .spread((products, categories) => {
+      let matches = [];
+      categories.forEach(category => {
+        category.products.forEach(product => {
+          matches.push(product)
+        })
+      })
+      const productArray = [...products, ...matches];
+      return res.json(productArray)
+    })
 		.catch(next);
 });
 
