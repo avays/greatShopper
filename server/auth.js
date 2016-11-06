@@ -1,10 +1,13 @@
-const app = require('APP'), {env} = app
+const app = require('APP')//, {env} = app
 const debug = require('debug')(`${app.name}:auth`)
 const passport = require('passport')
 
 const User = require('APP/db/models/user')
 const OAuth = require('APP/db/models/oauth')
 const auth = require('express').Router()
+
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+require('APP/.env.js')
 
 
 /*************************
@@ -39,8 +42,8 @@ OAuth.setupStrategy({
   provider: 'facebook',
   strategy: require('passport-facebook').Strategy,
   config: {
-    clientID: env.FACEBOOK_CLIENT_ID,
-    clientSecret: env.FACEBOOK_CLIENT_SECRET,
+    clientID: process.env.FACEBOOK_CLIENT_ID,
+    clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     callbackURL: `${app.rootUrl}/api/auth/login/facebook`,
   },
   passport
@@ -48,16 +51,16 @@ OAuth.setupStrategy({
 
 // Google needs the GOOGLE_CONSUMER_SECRET AND GOOGLE_CONSUMER_KEY
 // environment variables.
-OAuth.setupStrategy({
-  provider: 'google',
-  strategy: require('passport-google-oauth').Strategy,
-  config: {
-    consumerKey: env.GOOGLE_CONSUMER_KEY,
-    consumerSecret: env.GOOGLE_CONSUMER_SECRET,
-    callbackURL: `${app.rootUrl}/api/auth/login/google`,
-  },
-  passport
-})
+// OAuth.setupStrategy({
+//   provider: 'google',
+//   strategy: require('passport-google-oauth').Strategy,
+//   config: {
+//     consumerKey: process.env.GOOGLE_CONSUMER_KEY,
+//     consumerSecret: process.env.GOOGLE_CONSUMER_SECRET,
+//     callbackURL: `${app.rootUrl}/api/auth/login/google`,
+//   },
+//   passport
+// })
 
 // Github needs the GITHUB_CLIENT_ID AND GITHUB_CLIENT_SECRET
 // environment variables.
@@ -65,8 +68,8 @@ OAuth.setupStrategy({
   provider: 'github',
   strategy: require('passport-github2').Strategy,
   config: {
-    clientID: env.GITHUB_CLIENT_ID,
-    clientSecrets: env.GITHUB_CLIENT_SECRET,
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecrets: process.env.GITHUB_CLIENT_SECRET,
     callbackURL: `${app.rootUrl}/api/auth/login/github`,
   },
   passport
@@ -118,7 +121,11 @@ passport.use(new (require('passport-local').Strategy) (
   }
 ))
 
-auth.get('/whoami', (req, res) => res.send(req.user))
+auth.get('/whoami', (req, res) => {
+ 
+  return res.send(req.user)
+
+})
 
 auth.post('/:strategy/login', (req, res, next) =>
   passport.authenticate(req.params.strategy, {
@@ -130,5 +137,39 @@ auth.post('/logout', (req, res, next) => {
   req.logout()
   res.redirect('/api/auth/whoami')
 })
+
+passport.use(new GoogleStrategy({
+      clientID: process.env.GOOGLE_CONSUMER_KEY,
+      clientSecret: process.env.GOOGLE_CONSUMER_SECRET,
+      callbackURL: '/api/auth/login/google'
+    },
+    // Google will send back the token and profile
+    function (token, refreshToken, profile, done) {
+
+      User.findOrCreate({
+        where: {
+          email: profile.emails[0].value
+        }
+      })
+          .spread(function (user) {
+            done(null, user);
+          })
+          .catch(done);
+
+      // the callback will pass back user profile information and each service (Facebook, Twitter, and Google) will pass it back a different way. Passport standardizes the information that comes back in its profile object.
+      /*
+       --- fill this part in ---
+       */
+    }));
+
+auth.get('/google', passport.authenticate('google', { scope : 'email' }));
+
+// handle the callback after Google has authenticated the user
+auth.get('/login/google',
+    passport.authenticate('google', {
+      successRedirect : '/', // or wherever
+      failureRedirect : '/' // or wherever
+    })
+);
 
 module.exports = auth
