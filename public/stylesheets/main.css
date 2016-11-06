@@ -66,3 +66,12 @@ footer {
 #searchImg {
   width: 20px;
   height: auto; }
+
+.notification {
+  height: 50px;
+  width: 150px;
+  margin: 0 auto;
+  background-color: "blue";
+  display: flex;
+  text-align: center;
+  padding: 10; }

@@ -17,7 +17,7 @@ function Cart({ cart, add, remove, change, clear }){
        {
          cart.map((item, index) => (
            <li key={index}>
-            <Link to={`item.product/${item.product.sku}`}>
+            <Link to={`/product/${item.product.sku}`}>
               <h3>{item.product.name}</h3>
               <img src={item.product.img}/>
             </Link>
@@ -30,10 +30,9 @@ function Cart({ cart, add, remove, change, clear }){
       </ul>
       <div>Total price: ${
         cart.map(item => {
-          // console.log("price", item.product.price, "quantity", item.quantity)
-          return +item.product.price * +item.quantity
+          return +item.product.price * +item.quantity;
         })
-          .reduce((sum,current) => {
+          .reduce((sum, current) => {
             return sum + current;
         }).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       }

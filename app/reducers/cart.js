@@ -13,13 +13,14 @@ export const addItem = (product, quantity) => ({
   type: ADD_ITEM,
   productAndQuantity: {product, quantity}
 });
+
 export const removeItem = item => {
-  console.log('in action creator and item is ', item);
   return {
     type: REMOVE_ITEM,
     item
-  }
+  };
 };
+
 export const changeQuantity = (product, quantity) => ({
   type: CHANGE_QUANTITY,
   productAndQuantity: {product, quantity}
@@ -34,22 +35,26 @@ export default function reducer (previousState = [], action) {
   switch (action.type) {
 
     case ADD_ITEM:
-      return [...previousState, {product: action.productAndQuantity.product, quantity: action.productAndQuantity.quantity}]
+      for (let item of previousState)  {
+        if (item.product.sku === action.productAndQuantity.product.sku) {
+          return previousState;
+        }
+      }
+      return [...previousState, {product: action.productAndQuantity.product, quantity: action.productAndQuantity.quantity}];
 
     case CHANGE_QUANTITY:
       return previousState.map((item) => {
-        if(item.product.sku === action.productAndQuantity.product.sku){
+        if (item.product.sku === action.productAndQuantity.product.sku) {
           return {product: item.product, quantity: action.productAndQuantity.quantity};
-        } 
-        else{
+        } else {
           return item;
         }
-      })
+      });
 
     case REMOVE_ITEM:
       return previousState.filter(item => (
         item.product.sku !== action.item.product.sku
-      ))
+      ));
 
     case CLEAR_CART:
       return [];
