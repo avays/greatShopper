@@ -82,6 +82,7 @@ footer {
   border-style: solid;
   border-radius: 10px;
   padding: 1em;
+  margin-bottom: 2em;
   width: 80vw; }
   .cart-item img {
     width: 30vw;
