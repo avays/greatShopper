@@ -19,7 +19,7 @@ class Shipping extends React.Component {
 
 
 	render(){
-		// make sure users can't move on with valid fields
+		// make sure users can't move on without valid fields
 		return (
 			<div>
 				<h2>Enter shipping address</h2>

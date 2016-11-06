@@ -54,14 +54,26 @@ customUserRoutes.put("/:id", function(req, res, next){
 
 customUserRoutes.post("/", function(req, res, next){
 
-	User.findOrCreate({where: {
-			email: req.body.email
-		}
-	})
-		.spread((user, created) => {
-			return created ? res.json(user) : res.status(300).send(user.email)
-		}
-	)
+	// Kenty: I've changed this from findorcreate to create because password isn't a searcheable field
+	// User.findOrCreate({where: {
+	// 		email: req.body.email,
+	// 		password: req.body.password,
+	// 		firstName: req.body.firstName,
+	// 		lastName: req.body.lastName
+	// 	}
+	// })
+	// 	.spread((user, created) => {
+	// 		return created ? res.json(user) : res.status(300).send(user.email)
+	// 	}
+	// )
+	User.create({ 
+		email: req.body.email,
+		password: req.body.password,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName, 
+		isAdmin: false 
+	}, { fields: [ 'email', 'password', 'password_digest','firstName', 'lastName' ] })
+		.then(user => res.json(user))
 		.catch(next);
 });
 
