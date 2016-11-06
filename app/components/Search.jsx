@@ -44,7 +44,10 @@ class Search extends Component {
 
   onSearch(evt) {
     evt.preventDefault();
-    this.props.submitQuery(this.state.search);
+    const query = this.state.search;
+    if (query.length) {   // no need to query empty string
+      this.props.submitQuery(query);
+    }
   }
 
   render() {

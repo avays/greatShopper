@@ -1,8 +1,7 @@
 import store from './store';
 import { fetchAndGoToProduct } from './reducers/currentProduct';
 import { fetchAndStoreCategories } from './reducers/categories';
-import { fetchAndGoToProducts } from './reducers/selectedProducts';
-import { fetchAndGoToQueriedProducts } from './reducers/selectedProducts';
+import { fetchAndGoToProducts, fetchAndGoToQueriedProducts } from './reducers/selectedProducts';
 
 
 export const onProductSelect = ({ params }) => {
@@ -14,10 +13,10 @@ export const loadCategories = () => {
 };
 
 export const loadCategoryProducts = ({ params }) => {
-  	store.dispatch(fetchAndGoToProducts(params.categoryName));
+	store.dispatch(fetchAndGoToProducts(params.categoryName));
 };
 
 export const loadQueriedProducts = ({ params }) => {
-	store.dispatch(fetchAndGoToQueriedProducts(params.query))
-}
+	store.dispatch(fetchAndGoToQueriedProducts(params.query));
+};
 

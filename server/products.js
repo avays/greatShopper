@@ -25,28 +25,28 @@ customProductRoutes.get("/", function(req, res, next) {
 });
 
 customProductRoutes.get("/search/:searchInput", function(req, res, next) {
-const queryProductModel =	Product.findAll({
-    where: {
-      $or: [
-        {name: {
-          $ilike: `%${req.params.searchInput}%`
-          }
-        },
-        {manufacturer: {
-          $ilike: `%${req.params.searchInput}%`
-          }
-        },
-        {location: {
-          $ilike: `%${req.params.searchInput}%`
-          }
-        },
-        {description: {
-          $ilike: `%${req.params.searchInput}%`
-          }
-        }
-        ]
-    }
-  })
+	const queryProductModel =	Product.findAll({
+	    where: {
+	      $or: [
+	        {name: {
+	          $ilike: `%${req.params.searchInput}%`
+	          }
+	        },
+	        {manufacturer: {
+	          $ilike: `%${req.params.searchInput}%`
+	          }
+	        },
+	        {location: {
+	          $ilike: `%${req.params.searchInput}%`
+	          }
+	        },
+	        {description: {
+	          $ilike: `%${req.params.searchInput}%`
+	          }
+	        }
+	        ]
+	    }
+	  });
 
   const queryCategoryModel = Category.findAll({
     where: {
@@ -55,21 +55,22 @@ const queryProductModel =	Product.findAll({
       }
     },
     include: [Product]
-  })
+  });
 
   Promise.all([queryProductModel, queryCategoryModel])
     .spread((products, categories) => {
       let matches = [];
       categories.forEach(category => {
         category.products.forEach(product => {
-          matches.push(product)
-        })
-      })
+          matches.push(product);
+        });
+      });
       const productArray = [...products, ...matches];
-      return res.json(productArray)
+      return res.json(productArray);
     })
 		.catch(next);
 });
+
 
 // name of product, manufacturer, location, word in description
 
