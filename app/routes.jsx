@@ -17,6 +17,7 @@ import Orders from './components/Orders';
 import SelectedOrder from './components/SelectedOrder';
 // import Account from './components/Account';
 import Admin from './components/Admin';
+import Payment from './components/Payment';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
 import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadOrders, onOrderSelect, loadAdmin } from './enter-hooks';
@@ -37,6 +38,7 @@ export default () => (
       <Route path="/cart" component={Cart} />
       <Route path="/checkout" component={Checkout} >
         <Route path="/checkout/shipping" component={Shipping} />
+        <Route path="/checkout/payment" component={Payment} />
       </Route>
       <Route path="/search/:query" component={SelectedProducts} onEnter={loadQueriedProducts} />
       <Route path="/:categoryName" component={SelectedProducts} onEnter={loadCategoryProducts} onLeave={deloadCategoryProducts}/>

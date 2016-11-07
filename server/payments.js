@@ -5,10 +5,10 @@ const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET);
 const Promise = require('bluebird');
 const {mustBeAdmin, mustHavePermission, mustBeLoggedIn, selfOnly}  = require("./utils")
 
-const customPaymentRoutes = require('express').Router() 
+const paymentRoutes = require('express').Router() 
 
 
-customPaymentRoutes.get("/:paymentid", function(req, res, next){
+paymentRoutes.get("/:paymentid", function(req, res, next){
 	/*
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
@@ -31,37 +31,40 @@ customPaymentRoutes.get("/:paymentid", function(req, res, next){
 				res.json(publicData);
 			}
 		});
+}); 
+
+
+paymentRoutes.post("/:id/:pid", function(req, res, next){
+	/*
+	if(!mustBeLoggedIn(req)){
+		return res.status(401).send('You must be logged in.')
+	}
+	if(!mustHavePermission(req)){
+		return res.status(403).send(`You do not have permission.`)
+	}
+	*/
+
+	const paymentData = {
+		amount: req.body.amount,
+		currency: '',
+		source: 'whut',
+		description: req.body.description,
+		receipt_email: req.body.email,
+		shipping: req.body.shipping
+	};
+
+	stripe.charges.create(paymentData, (err, charge) => {
+		if (err) {
+			next(err);
+		} else {
+			console.log('got charge back and it is ', charge)
+			res.json(charge);
+		}
+	});
+
 });
 
 
-// customPaymentRoutes.put("/:id/:pid", function(req, res, next){
-
-// 	if(!mustBeLoggedIn(req)){
-// 		return res.status(401).send('You must be logged in.')
-// 	}
-// 	if(!mustHavePermission(req)){
-// 		return res.status(403).send(`You do not have permission.`)
-// 	}
-
-// 	Payment.update(req.body, {where: {id: req.params.pid}})
-// 		.then(rowsModified => res.json(rowsModified))
-// 		.catch(next);
-// });
 
 
-
-
-// customPaymentRoutes.delete("/:id/:pid", function(req, res, next){
-
-// 	if(!mustBeLoggedIn(req)){
-// 		return res.status(401).send('You must be logged in.')
-// 	}
-// 	if(!mustHavePermission(req)){
-// 		return res.status(403).send(`You do not have permission.`)
-// 	}
-// 	Payment.destroy({where: {id: req.params.pid}})
-// 		.then(rowsModified => res.json(rowsModified))
-// 		.catch(next);
-// });
-
-module.exports = customPaymentRoutes;
+module.exports = paymentRoutes;
