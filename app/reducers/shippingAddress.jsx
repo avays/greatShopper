@@ -1,4 +1,3 @@
-import axios from 'axios';
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -23,7 +22,7 @@ const defaultState = {
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
 
-    case SET_ADDRESS:
+    case SET_SHIPPING_ADDRESS:
       return action.address;
 
     default:
@@ -34,19 +33,4 @@ export default function reducer (state = defaultState, action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-// export const fetchAndGoToOrder = (orderNumber) => {
-//   return dispatch => {
-//     axios.get(`/api/orders/${orderNumber}`)
-//       .then(order => {
-//         axios.get(`/api/payments/${order.data.payment_id}`)
-//           .then(publicData => {
-//             return Object.assign(order.data, publicData.data)
-//           })
-//           .then(combinedOrder => {
-//             dispatch(selectOrder(combinedOrder))
-//           })
-//           .catch(err => console.error('Stripe call failure', err))
-//       })
-//       .catch(err => console.error('API call failure', err))
-//   };
-// }
+

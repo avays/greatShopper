@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { setShippingAddress } from '../reducers/shippingAddress';
+import { LinkContainer } from 'react-router-bootstrap';
 
 /* -----------------    DUMB COMPONENT     ------------------ */
 
@@ -34,7 +35,9 @@ const DumbShipping = ({ name, street1, street2, city, state, zip, updateField, s
 		            <label>Zip:</label>
 		            <input required type="text" pattern="\d{5}" id="zip" onChange={updateField}/>
 		        </div>
-		    	<Button type="submit">Next: Payment</Button>
+		    	<LinkContainer to="/checkout/payment">
+			    	<Button type="submit">Next: Payment</Button>
+			    </LinkContainer>
 	    	</form>
 	</div>
 

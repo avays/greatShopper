@@ -8,6 +8,7 @@ import orders from  './orders';
 import selectedOrder from  './selectedOrder';
 import shippingAddress from './shippingAddress';
 
+
 const rootReducer = combineReducers({
 	currentProduct,
 	selectedProducts,
