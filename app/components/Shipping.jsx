@@ -1,56 +1,92 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap'
 
-/* -----------------    COMPONENT     ------------------ */
+/* -----------------    DUMB COMPONENT     ------------------ */
+
+const DumbShipping = ({ name, street1, street2, city, state, zip, updateField, submitAddress }) => (
+
+	<div>
+		<h2>Enter shipping address</h2>
+			<form onSubmit={submitAddress}>
+		        <div className="form-group">
+		            <label>Name:</label>
+		            <input required type="text" id="name" onChange={updateField}/>
+		        </div>
+		        <div className="form-group">
+		            <label>Street 1:</label>
+		            <input required type="text" id="street1" onChange={updateField}/>
+		        </div>
+		        <div className="form-group">
+		            <label>Street 2:</label>
+		            <input type="text" id="street2" onChange={updateField}/>
+		        </div>
+		        <div className="form-group">
+		            <label>City:</label>
+		            <input required type="text" id="city" onChange={updateField}/>
+		        </div>
+		        <div className="form-group">
+		            <label>State:</label>
+		            <input required type="text" pattern="[A-Z]{2}" id="state" onChange={updateField}/>
+		        </div>
+		        <div className="form-group">
+		            <label>Zip:</label>
+		            <input required type="text" pattern="\d{5}" id="zip" onChange={updateField}/>
+		        </div>
+		    	<Button type="submit">Next: Payment</Button>
+	    	</form>
+	</div>
+
+)
+
+
+/* -----------------    STATEFUL REACT COMPONENT     ------------------ */
 
 class Shipping extends React.Component {
 	constructor(props) {
-	super(props);
-	this.state = {
-		name: "",
-		street1: "",
-		street2: "",
-		city: "",
-		state: "",
-		zip: "",
+		super(props);
+		this.state = {
+			name: "",
+			street1: "",
+			street2: "",
+			city: "",
+			state: "",
+			zip: ""
 		}
+		this.updateField = this.updateField.bind(this);
+		this.submitAddress = this.submitAddress.bind(this);
+	}
+
+	updateField (evt) {
+		evt.preventDefault();
+		const key = evt.target.id;
+		const value = evt.target.value;
+		this.setState(prevState => { 
+			prevState[key] = value;
+			return prevState;
+		})
+	}
+
+	submitAddress(evt) {
+		evt.preventDefault()
+		console.log(`this.state is`, this.state)
 	}
 
 
 	render(){
-		// make sure users can't move on without valid fields
+		const { name, street1, street2, city, state, zip } = this.props
 		return (
-			<div>
-				<h2>Enter shipping address</h2>
-					<form>
-				        <div className="form-group">
-				            <label>Name:</label>
-				            <input type="text" id="name-field" onChange={this.updateField}/>
-				        </div>
-				        <div className="form-group">
-				            <label>Street 1:</label>
-				            <input type="text" id="street1-field" onChange={this.updateField}/>
-				        </div>
-				        <div className="form-group">
-				            <label>Street 2:</label>
-				            <input type="text" id="street2-field" onChange={this.updateField}/>
-				        </div>
-				        <div className="form-group">
-				            <label>City:</label>
-				            <input type="text" id="city-field" onChange={this.updateField}/>
-				        </div>
-				        <div className="form-group">
-				            <label>State:</label>
-				            <input type="text" id="state-field" onChange={this.updateField}/>
-				        </div>
-				        <div className="form-group">
-				            <label>Zip:</label>
-				            <textarea id="zip-field" onChange={this.updateField}/>
-				        </div>
-				    	<button type="submit">Next: Payment</button>
-			    	</form>
-			</div>
-		);
+			<DumbShipping 
+				name={name}
+				street1={street1}
+				street2={street2}
+				city={city}
+				state={state}
+				zip={zip}
+				updateField={this.updateField}
+				submitAddress={this.submitAddress}
+			/>
+		)
 	}
 }
 
