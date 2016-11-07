@@ -93,9 +93,9 @@ customProductRoutes.get("/:sku", function(req, res, next) {
 
 customProductRoutes.put("/:sku", function(req, res, next) {
 
-	if (!mustBeAdmin(req)) {
-		return res.status(403).send('You do not have administrative privileges')
-	}
+	// if (!mustBeAdmin(req)) {
+	// 	return res.status(403).send('You do not have administrative privileges')
+	// }
 
 	Product.update(req.body, {
 			where: {

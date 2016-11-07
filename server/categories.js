@@ -120,18 +120,15 @@ customCategoryRoutes.put("/:name", function(req, res, next) {
 
 customCategoryRoutes.post("/", function(req, res, next) {
 
-	if (!mustBeAdmin(req)) {
-		return res.status(403).send('You do not have administrative privileges')
-	}
+	// if (!mustBeAdmin(req)) {
+	// 	return res.status(403).send('You do not have administrative privileges')
+	// }
 
-	Category.findOrCreate({
-			where: {
-				name: req.body.name
-			}
+	Category.create({
+				name: req.body.name,
+				meta_category_id: req.body.meta_category_id
 		})
-		.spread((category, created) => {
-			return created ? res.json(category) : res.status(300).send("Category already exists.")
-		})
+		.then(category => res.json(category))
 		.catch(next);
 });
 

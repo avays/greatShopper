@@ -1,6 +1,15 @@
-footer {
+.footer {
   position: fixed;
   bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.footery {
+  position: fixed;
+  bottom: 60px;
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
