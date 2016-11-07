@@ -40,6 +40,17 @@ const productsToSeed = [
   {sku: 7487601920, quantity: 90, name: 'Aerodyne 021', manufacturer: 'Richard Mille', price: 272629, description: 'expensive'},
   {sku: 1598092930, quantity: 50, name: 'Black Caviar Bang', manufacturer: 'Hublot', size: 'Huge', color: 'Black', price: 895860, description: 'more expensive'},
   {sku: 6848737699, quantity: 30, name: 'Perpetual Calendar Platinum 2499', manufacturer: 'Patek Philippe', price: 3483900, description: 'most expensive'},
+  {sku: 5886712343, quantity: 50, name: 'Great Wall of China', imageUrl: '/images/Great-Wall-of-China_05.jpg', price: 10000000, location: 'China, various', description: 'CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA CHINA'},
+  {sku: 7220153663, quantity: 50, name: 'US-Mexico Wall', imageUrl: '/images/fence3.jpg', price: 1, location: 'US Southern Border', description: 'Mexico is paying for it!'},
+  {sku: 2118098049, quantity: 50, name: 'The Wall', imageUrl: '/images/game-of-thrones-wall.jpg', price: 70000000, location: 'Westeros', description: 'Winter is Coming, so keep those nasty white walkers at bay with this lovely full-size wall! Night\'s Watch sold separately.'},
+  {sku: 2478457506, quantity: 1, name: 'Trump Tower', imageUrl: '/images/homepage-bg-tower.jpg', price: 230000000, location: 'New York, NY', description: 'Could be yours!'},
+  {sku: 7909034199, quantity: 1, name: 'Marina Bay Sands', imageUrl: '/images/800px-Marina_Bay_Sands_in_the_evening_-_20101120.jpg', price: 888888888, location: 'Singapore', description: 'Three towers for the price of one!'},
+  {sku: 9370961945, quantity: 1, name: 'Big Cash Casino', imageUrl: '/images/bigCashCasino.jpg', price: 64000000, location: 'Atlantic City', description: 'It may come as no surprise that one of Atlantic City’s greatest draws is its casinos. Atlantic City gaming action comes in virtually every variety. Big Cash Casino is your chance to own part of the action!'},
+  {sku: 8078504454, quantity: 1, name: 'Sands Casino', imageUrl: '/images/SandsCasino.jpg', price: 100000000, location: 'Las Vegas', description: 'Own the historic Sands!'},
+  {sku: 6025238950, quantity: 1, name: 'Turtle Island', imageUrl: '/images/turtle-island.jpg', price: 20000000, location: 'Cayman Islands', description: 'The only island for true turtle lovers!'},
+  {sku: 1448780803, quantity: 1, name: 'Madagascar', imageUrl: '/images/baobab-ducks-000060800218_small.jpg', price: 11000000000, location: 'Africa', description: 'Actually a country but sure you can buy it!'},
+  {sku: 3525016095, quantity: 1, name: 'Cypress Point', imageUrl: '/images/cypress-point.jpg', price: 250000000, location: 'Pebble Beach, CA', description: 'One of the best golf courses named after a tree.'},
+  {sku: 6612167910, quantity: 1, name: 'Augusta National Golf Club', imageUrl: '/images/hole-16_0-1024x64072.jpg', price: 190000000, location: 'Augusta, GA', description: 'Golf course named after little-known ancient Etruscan monarch.'},
 ];
 
 
@@ -50,7 +61,18 @@ const categoryProductsToSeed = [
   {product_sku: 7662992825, category_id: 24},
   {product_sku: 7487601920, category_id: 17},
   {product_sku: 1598092930, category_id: 17},
-  {product_sku: 6848737699, category_id: 17}
+  {product_sku: 6848737699, category_id: 17},
+  {product_sku: 5886712343, category_id: 25},
+  {product_sku: 7220153663, category_id: 25},
+  {product_sku: 2118098049, category_id: 25},
+  {product_sku: 2478457506, category_id: 27},
+  {product_sku: 7909034199, category_id: 27},
+  {product_sku: 9370961945, category_id: 26},
+  {product_sku: 8078504454, category_id: 26},
+  {product_sku: 6025238950, category_id: 28},
+  {product_sku: 1448780803, category_id: 28},
+  {product_sku: 3525016095, category_id: 29},
+  {product_sku: 6612167910, category_id: 29}
 ];
 
 const usersToSeed = [

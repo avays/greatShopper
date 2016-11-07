@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap'
 
 const DumbShipping = ({ name, street1, street2, city, state, zip, updateField, submitAddress }) => (
 
-	<div>
+	<div className="comp-container">
 		<h2>Enter shipping address</h2>
 			<form onSubmit={submitAddress}>
 		        <div className="form-group">
@@ -61,7 +61,7 @@ class Shipping extends React.Component {
 		evt.preventDefault();
 		const key = evt.target.id;
 		const value = evt.target.value;
-		this.setState(prevState => { 
+		this.setState(prevState => {
 			prevState[key] = value;
 			return prevState;
 		})
@@ -76,7 +76,7 @@ class Shipping extends React.Component {
 	render(){
 		const { name, street1, street2, city, state, zip } = this.props
 		return (
-			<DumbShipping 
+			<DumbShipping
 				name={name}
 				street1={street1}
 				street2={street2}

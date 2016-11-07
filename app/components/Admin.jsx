@@ -26,12 +26,12 @@ class Admin extends Component{
 
     var product = {
       name: evt.target.productName.value,
-      sku: evt.target.sku.value, 
-      quantity: evt.target.quantity.value, 
-      imageUrl: evt.target.imageUrl.value, 
-      price: evt.target.price.value, 
+      sku: evt.target.sku.value,
+      quantity: evt.target.quantity.value,
+      imageUrl: evt.target.imageUrl.value,
+      price: evt.target.price.value,
       description: evt.target.description.value
-    } 
+    }
 
     var categoryProduct = {
       id: evt.target.category.value,
@@ -42,8 +42,8 @@ class Admin extends Component{
   }
 
  render(){
-   return ( 
-    <div className="order">
+   return (
+    <div className="order comp-container">
      <h3>Admin Panel</h3>
      {
       (this.props.user && this.props.user.isAdmin) ?
