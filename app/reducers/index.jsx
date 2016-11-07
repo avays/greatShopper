@@ -6,6 +6,7 @@ import cart from  './cart';
 import user from  './auth';
 import orders from  './orders';
 import selectedOrder from  './selectedOrder';
+import shippingAddress from './shippingAddress';
 
 const rootReducer = combineReducers({
 	currentProduct,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
 	cart,
 	user,
 	orders,
-	selectedOrder
+	selectedOrder,
+	shippingAddress
 });
 
 
