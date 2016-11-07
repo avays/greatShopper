@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addItem, removeItem, changeQuantity, clearCart } from '../reducers/cart';
+import { removeItem, changeQuantity, clearCart } from '../reducers/cart';
 import { Link } from 'react-router';
 import CartItem from './CartItem';
 import { Button } from 'react-bootstrap';
 
 /* -----------------    COMPONENT     ------------------ */
 
-function Cart({ cart, add, remove, change, clear }){
+function Cart({ cart, remove, change, clear }){
 
  return (
   <div className="cart">
@@ -22,6 +22,7 @@ function Cart({ cart, add, remove, change, clear }){
             key={ index }
             item={ item }
             remove={ remove }
+            change={ change }
            />
          ))
        }
@@ -51,7 +52,6 @@ function Cart({ cart, add, remove, change, clear }){
 
 const mapStateToProps = ({ cart }) => ({ cart });
 const mapDispatchToProps = (dispatch) => ({
-	add: (product, quantity) => dispatch(addItem(product, quantity)),
 	remove: (item) => dispatch(removeItem(item)),
 	change: (product, quantity) => dispatch(changeQuantity(product, quantity)),
 	clear: () => dispatch(clearCart())
