@@ -3,9 +3,16 @@ import { fetchAndGoToProduct } from './reducers/currentProduct';
 import { fetchAndStoreCategories } from './reducers/categories';
 import { fetchAndGoToProducts, fetchAndGoToQueriedProducts } from './reducers/selectedProducts';
 import { fetchAndGoToOrders} from './reducers/orders'
+import { fetchAndGoToOrder} from './reducers/orderItems'
+//import { selectOrder } from './reducers/orderItems'
+
 
 export const loadOrders = ({ params }) => {
 	store.dispatch(fetchAndGoToOrders(params.id));
+};
+
+export const onOrderSelect = ({ params }) => {
+	store.dispatch(fetchAndGoToOrder(params.orderNumber));
 };
 
 export const onProductSelect = ({ params }) => {
