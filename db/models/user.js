@@ -40,9 +40,12 @@ const User = db.define('users', {
     validate: {
       len: [6,50]
     }
+  },
+  stripe_user_id: {
+    type: Sequelize.STRING
   }
 }, {
-	indexes: [{fields: ['email'], unique: true,}],
+	indexes: [{fields: ['email'], unique: true}],
   hooks: {
     beforeCreate: setEmailAndPassword,
     beforeUpdate: setEmailAndPassword,

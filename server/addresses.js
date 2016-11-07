@@ -6,7 +6,6 @@ const {mustBeAdmin, mustHavePermission, mustBeLoggedIn, selfOnly}  = require("./
 const customAddressRoutes = require('express').Router() 
 
 const User = db.model("users");
-const Payment = db.model("payments");
 const Address = db.model("addresses");
 
 customAddressRoutes.get("/:id", function(req, res, next){

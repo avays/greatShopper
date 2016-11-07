@@ -1,7 +1,7 @@
 import store from './store';
 
 import { clearProduct } from './reducers/currentProduct';
-import { clearOrder } from './reducers/orderItems';
+import { clearOrder } from './reducers/selectedOrder';
 import { deloadProducts} from './reducers/selectedProducts'
 import { deloadAllOrders} from './reducers/orders'
 

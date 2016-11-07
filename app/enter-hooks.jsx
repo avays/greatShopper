@@ -2,9 +2,9 @@ import store from './store';
 import { fetchAndGoToProduct } from './reducers/currentProduct';
 import { fetchAndStoreCategories } from './reducers/categories';
 import { fetchAndGoToProducts, fetchAndGoToQueriedProducts } from './reducers/selectedProducts';
-import { fetchAndGoToOrders} from './reducers/orders'
-import { fetchAndGoToOrder} from './reducers/orderItems'
-//import { selectOrder } from './reducers/orderItems'
+import { fetchAndGoToOrders} from './reducers/orders';
+import { fetchAndGoToOrder} from './reducers/selectedOrder';
+//import { selectOrder } from './reducers/selectedOrder'
 
 
 export const loadOrders = ({ params }) => {

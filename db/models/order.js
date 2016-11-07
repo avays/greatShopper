@@ -24,9 +24,15 @@ const Order = db.define('orders', {
       notEmpty: true,
       isDate: true
     }
+  },
+  payment_id: {
+    type: Sequelize.STRING,
+    validate: {
+      notEmpty: true
+    }
   }
 }, {
-  indexes: [{fields: ['orderNumber'], unique: true,}],
+  indexes: [{fields: ['orderNumber'], unique: true}],
   hooks: {
     afterCreate: fireEmailToCustomer
   }

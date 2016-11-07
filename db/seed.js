@@ -76,10 +76,10 @@ const categoryProductsToSeed = [
 ];
 
 const usersToSeed = [
-  {firstName: 'Ad', lastName: 'Min', isAdmin: true, email: 'admin@admin.com', password: '123456'},
-  {firstName: 'Barack', lastName: 'Obama', email: 'barack@example.gov', password: '123456'},
-  {firstName: 'Porkchop', lastName: 'Dog', email: 'dogface@pupper.com', password: '555555'},
-  {firstName: 'Simba', lastName: 'Matata', email: 'king@priderock.com', password: '123456'},
+  {firstName: 'Ad', lastName: 'Min', isAdmin: true, email: 'admin@admin.com', password: '123456', stripe_user_id: "cus_9WJPbG2Wzb2MBd"},
+  {firstName: 'Barack', lastName: 'Obama', email: 'barack@example.gov', password: '123456', stripe_user_id: "cus_9WJPeESETNf406"},
+  {firstName: 'Porkchop', lastName: 'Dog', email: 'dogface@pupper.com', password: '555555', stripe_user_id: "cus_9WJQrOLyAHri10"},
+  {firstName: 'Simba', lastName: 'Matata', email: 'king@priderock.com', password: '123456', stripe_user_id: "cus_9WJQ93UCLoiPPp"},
   {firstName: 'Elsa', lastName: 'Bush', email: 'missionaccomplished@disney.com', password: '999999'},
   {firstName: 'Yeezy', lastName: 'West', email: 'shyboy77@hotmail.com', password: 'tswift'}
 ];
@@ -102,19 +102,8 @@ const addressesToSeed = [
   {alias: 'School', name: 'FSA', street1: '5 Hanover Sq', city: 'Manhattan', state: 'NY', zip: '10000', user_id: 5}
 ];
 
-const fakeCCNums = ['4444000022221111', '8888111100008888', '5555444411112222', '1111444411112222', '9999111199990000', '4444111144440000'];
-
-const paymentsToSeed = [
-  {cardType: 'Visa', number: fakeCCNums[0], expirationDate: '06-17', name: 'Alec Friedman', user_id: 1, billing_address_id: 1},
-  {cardType: 'MasterCard', number: fakeCCNums[1], expirationDate: '02-18', name: 'Barack Obama', user_id: 2, billing_address_id: 2},
-  {cardType: 'American Express', number: fakeCCNums[2], expirationDate: '03-17', name: 'Porkchop Dog', user_id: 3, billing_address_id: 3},
-  {cardType: 'Visa', number: fakeCCNums[3], expirationDate: '03-20', name: 'Bubba Dawg', user_id: 3, billing_address_id: 3},
-  {cardType: 'American Express', number: fakeCCNums[4], expirationDate: '12-17', name: 'Alec Friedman', user_id: 1, billing_address_id: 1},
-  {cardType: 'Visa', number: fakeCCNums[5], expirationDate: '11-20', name: 'Dumpling Pumpkin', user_id: 2, billing_address_id: 2}
-];
-
 const ordersToSeed = [
-  {status: 'shipped', submitDate: '2016-10-01', user_id: '1', address_id: '1', payment_id: '1'},
+  {status: 'shipped', submitDate: '2016-10-01', user_id: '1', address_id: '1', payment_id: 'ch_19DH9vKnanyZJ3ptI0EhIYDk'},
   {status: 'shipped', submitDate: '2016-09-28', user_id: '1', address_id: '2', payment_id: '2'},
   {status: 'pending', submitDate: '2016-10-28', user_id: '2', address_id: '3', payment_id: '2'},
   {status: 'delivered', submitDate: '2016-10-22', user_id: '2', address_id: '4', payment_id: '3'},
@@ -135,7 +124,6 @@ const seedReviews = () => db.Promise.mapSeries(reviewsToSeed, review => db.model
 const seedProducts = () => db.Promise.mapSeries(productsToSeed, product => db.model('products').create(product));
 const seedAddresses = () => db.Promise.mapSeries(addressesToSeed, address => db.model('addresses').create(address));
 const seedCategoryProducts = () => db.Promise.mapSeries(categoryProductsToSeed, categoryProduct => db.model('CategoryProduct').create(categoryProduct));
-const seedPayments = () => db.Promise.mapSeries(paymentsToSeed, payment => db.model('payments').create(payment));
 const seedOrders = () => db.Promise.mapSeries(ordersToSeed, order => db.model('orders').create(order));
 const seedOrderItems = () => db.Promise.mapSeries(orderItemsToSeed, order_item => db.model('order_items').create(order_item));
 
@@ -154,8 +142,6 @@ db.didSync
   .then(reviews => console.log(`Seeded ${reviews.length} reviews OK`))
   .then(seedAddresses)
   .then(addresses => console.log(`Seeded ${addresses.length} addresses OK`))
-  .then(seedPayments)
-  .then(payments => console.log(`Seeded ${payments.length} payments OK`))
   .then(seedOrders)
   .then(orders => console.log(`Seeded ${orders.length} orders OK`))
   .then(seedOrderItems)

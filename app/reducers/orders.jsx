@@ -35,7 +35,7 @@ export default function reducer (state = [], action) {
 
 export const fetchAndGoToOrders = (userid) => {
   return dispatch => {
-    axios.get(`/api/orders/${userid}`)
+    axios.get(`/api/orders/user/${userid}`)
       .then(orders => {
         dispatch(selectOrders(orders.data));
       })

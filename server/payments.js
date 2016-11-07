@@ -1,95 +1,67 @@
 'use strict'
 
-const db = require('APP/db')
+require('APP/.env.js');
+const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET);
+const Promise = require('bluebird');
 const {mustBeAdmin, mustHavePermission, mustBeLoggedIn, selfOnly}  = require("./utils")
 
 const customPaymentRoutes = require('express').Router() 
 
-const User = db.model("users");
-const Payment = db.model("payments");
-const Address = db.model("addresses");
 
-customPaymentRoutes.get("/:id", function(req, res, next){
-
+customPaymentRoutes.get("/:paymentid", function(req, res, next){
+	/*
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
 	}
 	if(!mustHavePermission(req)){
 		return res.status(403).send(`You do not have permission.`)
 	}
+	*/
 
-	User.findById(req.params.id, {	 	
-	 	include: [{
-	 		model: Payment
-			}]
-	 })
-		.then(payments => res.json(payments))
-		.catch(next);
+		stripe.charges.retrieve(req.params.paymentid, (err, charge) => {
+			if (err) {
+				next(err);
+			} else {
+				const publicData = {
+					brand: charge.source.brand,
+					last4: charge.source.last4,
+					exp_month: charge.source.exp_month,
+					exp_year: charge.source.exp_year
+				}
+				res.json(publicData);
+			}
+		});
 });
 
-customPaymentRoutes.get("/:id/:pid", function(req, res, next){
 
-	if(!mustBeLoggedIn(req)){
-		return res.status(401).send('You must be logged in.')
-	}
-	if(!mustHavePermission(req)){
-		return res.status(403).send(`You do not have permission.`)
-	}
+// customPaymentRoutes.put("/:id/:pid", function(req, res, next){
 
-	 Payment.findById(req.params.pid)
-		.then(payment => res.json(payment))
-		.catch(next);
-});
+// 	if(!mustBeLoggedIn(req)){
+// 		return res.status(401).send('You must be logged in.')
+// 	}
+// 	if(!mustHavePermission(req)){
+// 		return res.status(403).send(`You do not have permission.`)
+// 	}
 
-customPaymentRoutes.put("/:id/:pid", function(req, res, next){
-
-	if(!mustBeLoggedIn(req)){
-		return res.status(401).send('You must be logged in.')
-	}
-	if(!mustHavePermission(req)){
-		return res.status(403).send(`You do not have permission.`)
-	}
-
-	Payment.update(req.body, {where: {id: req.params.pid}})
-		.then(rowsModified => res.json(rowsModified))
-		.catch(next);
-});
-
-// customPaymentRoutes.post("/:id", function(req, res, next){
-	
-	// if(!mustBeLoggedIn(req)){
-	// 	return res.status(401).send('You must be logged in.')
-	// }
-	// if(!mustHavePermission(req)){
-	// 	return res.status(403).send(`You do not have permission.`)
-	// }
-
-	//// make this work... or use Swipe
-	// Payment.findOrCreate({where: {
-	// 		//number_digest: checkEncrypted(req.body.number),
-	// 		cardType: req.body.cardType,
-	// 		expirationDate: req.body.expirationDate
-	// 	}
-	// })
-	// 	.spread((payment, created) => {
-	// 		return created ? res.json(payment) : res.status(300).send(payment.email)
-	// 	}
-	// )
-	// 	.catch(next);
+// 	Payment.update(req.body, {where: {id: req.params.pid}})
+// 		.then(rowsModified => res.json(rowsModified))
+// 		.catch(next);
 // });
 
 
-customPaymentRoutes.delete("/:id/:pid", function(req, res, next){
 
-	if(!mustBeLoggedIn(req)){
-		return res.status(401).send('You must be logged in.')
-	}
-	if(!mustHavePermission(req)){
-		return res.status(403).send(`You do not have permission.`)
-	}
-	Payment.destroy({where: {id: req.params.pid}})
-		.then(rowsModified => res.json(rowsModified))
-		.catch(next);
-});
+
+// customPaymentRoutes.delete("/:id/:pid", function(req, res, next){
+
+// 	if(!mustBeLoggedIn(req)){
+// 		return res.status(401).send('You must be logged in.')
+// 	}
+// 	if(!mustHavePermission(req)){
+// 		return res.status(403).send(`You do not have permission.`)
+// 	}
+// 	Payment.destroy({where: {id: req.params.pid}})
+// 		.then(rowsModified => res.json(rowsModified))
+// 		.catch(next);
+// });
 
 module.exports = customPaymentRoutes;

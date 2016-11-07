@@ -16,7 +16,7 @@ export const clearOrder = () => ({
 
 /* ------------       REDUCER     ------------------ */
 
-export default function reducer (state = [], action) {
+export default function reducer (state = {}, action) {
   switch (action.type) {
 
     case SELECT_ORDER:
@@ -35,10 +35,17 @@ export default function reducer (state = [], action) {
 
 export const fetchAndGoToOrder = (orderNumber) => {
   return dispatch => {
-    axios.get(`/api/order_items/${orderNumber}`)
+    axios.get(`/api/orders/${orderNumber}`)
       .then(order => {
-        dispatch(selectOrder(order.data));
+        axios.get(`/api/payments/${order.data.payment_id}`)
+          .then(publicData => {
+            return Object.assign(order.data, publicData.data)
+          })
+          .then(combinedOrder => {
+            dispatch(selectOrder(combinedOrder))
+          })
+          .catch(err => console.error('Stripe call failure', err))
       })
-      .catch(err => console.error('Fetching order failed', err))
+      .catch(err => console.error('API call failure', err))
   };
 }
