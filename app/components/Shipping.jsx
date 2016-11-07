@@ -65,7 +65,6 @@ class Shipping extends React.Component {
 			prevState[key] = value;
 			return prevState;
 		})
-		// console.log(`key is ${key} and value is ${value}`)
 	}
 
 	submitAddress(evt) {

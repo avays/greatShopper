@@ -15,7 +15,7 @@ api
   .use('/payments', require('./payments'))
   .use('/orders', require('./orders'))
   .use('/order_items', require('./order_items'))
-  // .use('/category_products', require('./category_products'))
+  .use('/category_products', require('./category_products'))
 
 
 // Send along any errors
