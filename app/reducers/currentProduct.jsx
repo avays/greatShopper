@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {browserHistory} from "react-router";
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -67,6 +68,19 @@ export const updateProduct = product => {
         // console.log("pets are mini children")
         dispatch(fetchAndGoToProduct(product.sku))
       })
+      .catch(err => console.error('Fetching product failed', err))
+  }
+}
+
+export const addProduct = (product, categoryProduct) => {
+  return dispatch => {
+    console.log("AAAAAAAAA", product)
+    axios.post(`/api/products`, product)
+      .then(() => axios.post(`/api/category_products`, categoryProduct))
+      .then(() => {
+        dispatch(fetchAndGoToProduct(product.sku))
+      })
+      .then(browserHistory.push(`/product/${product.sku}`))
       .catch(err => console.error('Fetching product failed', err))
   }
 }
