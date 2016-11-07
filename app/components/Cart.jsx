@@ -4,6 +4,7 @@ import { removeItem, changeQuantity, clearCart } from '../reducers/cart';
 import { Link } from 'react-router';
 import CartItem from './CartItem';
 import { Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -36,7 +37,9 @@ function Cart({ cart, remove, change, clear }){
         }).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       }
       </div>
-      <Button><Link to="/checkout/shipping">Proceed to Checkout</Link></Button>
+      <LinkContainer to="/checkout/shipping">
+        <Button>Proceed to Checkout</Button>
+      </LinkContainer>
       <Button onClick={clear}>Clear all items from cart</Button>
      </div>
      :
