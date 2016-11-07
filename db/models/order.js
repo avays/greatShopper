@@ -6,15 +6,19 @@ const db = require('APP/db')
 
 const Order = db.define('orders', {
   orderNumber: {
-    type: Sequelize.STRING,
+    type: Sequelize.BIGINT,
+    allowNull: false,
+    unique: true,
+    primaryKey: true,
+    autoIncrement: true,
     validate: {
       notEmpty: true,
     }
   },
   status: {
-    type: Sequelize.ENUM('shipped', 'partially shipped', 'cancelled', 'pending', 'delivered', 'refunded') // could we use ARRAY instead?
+    type: Sequelize.ENUM('shipped', 'partially shipped', 'cancelled', 'pending', 'delivered', 'refunded') 
   },
-  sumbitDate: {
+  submitDate: {
     type: Sequelize.STRING,
     validate: {
       notEmpty: true,

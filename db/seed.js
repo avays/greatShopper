@@ -54,10 +54,12 @@ const categoryProductsToSeed = [
 ];
 
 const usersToSeed = [
-  {firstName: 'Alec', lastName: 'Friedman', email: 'dude@fellow.com', password: '654321'},
-  {firstName: 'Barack', lastName: 'Obama', email: 'barack@example.gov', password: '123458'},
+  {firstName: 'Ad', lastName: 'Min', isAdmin: true, email: 'admin@admin.com', password: '123456'},
+  {firstName: 'Barack', lastName: 'Obama', email: 'barack@example.gov', password: '123456'},
   {firstName: 'Porkchop', lastName: 'Dog', email: 'dogface@pupper.com', password: '555555'},
-  {firstName: 'Bubba', lastName: 'Dawg', email: 'doggo@pupper.com', password: '999999'}
+  {firstName: 'Simba', lastName: 'Matata', email: 'king@priderock.com', password: '123456'},
+  {firstName: 'Elsa', lastName: 'Bush', email: 'missionaccomplished@disney.com', password: '999999'},
+  {firstName: 'Yeezy', lastName: 'West', email: 'shyboy77@hotmail.com', password: 'tswift'}
 ];
 
 const reviewsToSeed = [
@@ -73,7 +75,9 @@ const addressesToSeed = [
   {alias: 'Home', name: 'Barack Obama', street1: '29 Mass Ave', street2: 'Unit 8', city: 'Boston', state: 'MA', zip: '02140', user_id: 2},
   {alias: 'Work', name: 'Porkchop Dog', street1: '100 W 99 St', street2: 'Floor 3 Office 12', city: 'New York', state: 'NY', zip: '10020', user_id: 3},
   {alias: 'Dad\'s House', name: 'Jordan Lysenko', street1: '12 Main St', city: 'Omaha', state: 'NE', zip: '34242', user_id: 4},
-  {alias: 'David', name: 'Bubba Dawg', street1: '59 Lone Star Ave', street2: 'Penthouse Suite', city: 'Houston', state: 'TX', zip: '54387', user_id: 4}
+  {alias: 'POTUS', name: 'Donald J Trump', street1: 'White', street2: 'House', city: 'Washington', state: 'DC', zip: '90210', user_id: 4},
+  {alias: 'Hilldog', name: 'Hillary Diane Rodham', street1: 'Rikers', city: 'New York City', state: 'NY', zip: '11111', user_id: 5},
+  {alias: 'School', name: 'FSA', street1: '5 Hanover Sq', city: 'Manhattan', state: 'NY', zip: '10000', user_id: 5}
 ];
 
 const fakeCCNums = ['4444000022221111', '8888111100008888', '5555444411112222', '1111444411112222', '9999111199990000', '4444111144440000'];
@@ -88,17 +92,18 @@ const paymentsToSeed = [
 ];
 
 const ordersToSeed = [
-  {orderNumber: '1', status: 'shipped', submitDate: '2016-10-01'},
-  {orderNumber: '2', status: 'shipped', submitDate: '2016-09-28'},
-  {orderNumber: '3', status: 'pending', submitDate: '2016-10-28'},
-  {orderNumber: '4', status: 'delivered', submitDate: '2016-10-22'},
-  {orderNumber: '5', status: 'delivered', submitDate: '2016-01-31'},
-  {orderNumber: '6', status: 'refunded', submitDate: '2016-08-15'},
-  {orderNumber: '7', status: 'partially shipped', submitDate: '2016-11-01'},
+  {status: 'shipped', submitDate: '2016-10-01', user_id: '1', address_id: '1', payment_id: '1'},
+  {status: 'shipped', submitDate: '2016-09-28', user_id: '1', address_id: '2', payment_id: '2'},
+  {status: 'pending', submitDate: '2016-10-28', user_id: '2', address_id: '3', payment_id: '2'},
+  {status: 'delivered', submitDate: '2016-10-22', user_id: '2', address_id: '4', payment_id: '3'},
+  {status: 'delivered', submitDate: '2016-01-31', user_id: '3', address_id: '5', payment_id: '3'},
+  {status: 'refunded', submitDate: '2016-08-15', user_id: '3', address_id: '5', payment_id: '4'},
+  {status: 'partially shipped', submitDate: '2016-11-01', user_id: '4', address_id: '6', payment_id: '5'}
 ];
 
 const orderItemsToSeed = [
-  {status: 'shipped', quantity: 1, priceAtPurchase: 250000, shippingDate: '2016-10-03', receiveDate: '2016-10-10', taxCost: 28000, shippingCost: 7.99, itemCost: 250000, order_id: 1, product_sku: 7487601920}
+  {status: 'shipped', quantity: 1, priceAtPurchase: 250000, shippingDate: '2016-10-03', receiveDate: '2016-10-10', taxCost: 28000, shippingCost: 7.99, itemCost: 250000,  product_sku: 7487601920, order_orderNumber: 1},
+  {status: 'shipped', quantity: 2, priceAtPurchase: 150, shippingDate: '2016-11-03', receiveDate: '2016-11-10', taxCost: 11, shippingCost: 7.99, itemCost: 100,  product_sku: 9154950247, order_orderNumber: 1}
 ];
 
 

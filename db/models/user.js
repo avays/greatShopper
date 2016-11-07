@@ -27,7 +27,7 @@ const User = db.define('users', {
 			notEmpty: true,
 		}
   },
-  // googleId: Sequelize.STRING, // unnecessary?
+   //googleId: Sequelize.STRING, // necessary if users should be allowed to keep googleId and email the same
 
   isAdmin: {
     type: Sequelize.BOOLEAN,

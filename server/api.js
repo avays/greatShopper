@@ -8,16 +8,14 @@ api
   .use('/auth', require('./auth'))
   .use('/users', require('./users'))
 
-  // new code 11/2
   .use('/reviews', require('./reviews'))
   .use('/categories', require('./categories'))
   .use('/addresses', require('./addresses'))
   .use('/products', require('./products'))
   .use('/payments', require('./payments'))
-  // .use('/orders', require('./orders'))
-  // .use('/order_items', require('./order_items'))
+  .use('/orders', require('./orders'))
+  .use('/order_items', require('./order_items'))
   // .use('/category_products', require('./category_products'))
-
 
 
 // Send along any errors

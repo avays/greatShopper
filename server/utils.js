@@ -1,11 +1,11 @@
 const mustBeAdmin = (req) => {
 	// admin probably needs to be redone
-	return req.session.passport && req.session.passport.user.isAdmin;
+	return req.session.passport && req.session.passport.user && req.session.passport.user.isAdmin;
 }
 
 const mustHavePermission = (req) => {
 	// admin probably needs to be redone
-  return (req.session.passport && req.session.passport.user.isAdmin) || (req.session.passport && (req.params.id === req.session.passport.user)) 
+  return (req.session.passport && req.session.passport.user  && req.session.passport.user.isAdmin) || (req.session.passport && (req.params.id === req.session.passport.user)) 
 }
 
 const mustBeLoggedIn = (req) => {

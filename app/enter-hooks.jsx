@@ -2,7 +2,11 @@ import store from './store';
 import { fetchAndGoToProduct } from './reducers/currentProduct';
 import { fetchAndStoreCategories } from './reducers/categories';
 import { fetchAndGoToProducts, fetchAndGoToQueriedProducts } from './reducers/selectedProducts';
+import { fetchAndGoToOrders} from './reducers/orders'
 
+export const loadOrders = ({ params }) => {
+	store.dispatch(fetchAndGoToOrders(params.id));
+};
 
 export const onProductSelect = ({ params }) => {
 	store.dispatch(fetchAndGoToProduct(params.sku));

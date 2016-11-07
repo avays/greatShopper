@@ -73,9 +73,12 @@ class Navigbar extends React.Component {
             </NavDropdown>
           </Nav>
           <Nav pullRight>
+            <LinkContainer to="/account"><NavItem>{this.props.user && "Your Account"}</NavItem></LinkContainer>
+            <LinkContainer to={`/orders/${this.props.user && this.props.user.id}`}><NavItem>{this.props.user && "Your Orders"}</NavItem></LinkContainer>
             <LinkContainer to="/cart"><NavItem>Cart ({this.props.cart && this.props.cart.length})</NavItem></LinkContainer>
-            {this.props.user && this.props.user.email ? <button onClick={this.props.signout}>Sign out</button> : <LinkContainer to="/login"><NavItem>Login</NavItem></LinkContainer>
+            {this.props.user && this.props.user.email ? <button onClick={this.props.signout}>Sign Out</button> : <LinkContainer to="/login"><NavItem>Login</NavItem></LinkContainer>
             }
+
           </Nav>
         </Navbar.Collapse>
       </Navbar>
