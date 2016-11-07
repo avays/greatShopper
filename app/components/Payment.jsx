@@ -16,7 +16,7 @@ import { setPayment } from '../reducers/payment';
 class Payment extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {scriptLoading: true};
+		this.state = {scriptLoading: true, scriptLoadingError: false};
 		// this.updateField = this.updateField.bind(this);
 	}
 
@@ -26,6 +26,10 @@ class Payment extends React.Component {
 
 	onScriptLoaded() {
 		this.setState({scriptLoading: false})
+	}
+
+	onScriptError() {
+		this.setState({scriptLoading: false, scriptLoadingError: true})
 	}
 
 
