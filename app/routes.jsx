@@ -15,12 +15,12 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Orders from './components/Orders';
 import OrderItems from './components/OrderItems';
-import Account from './components/Account';
+import Admin from './components/Admin';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
-import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadOrders, onOrderSelect, loadAccount } from './enter-hooks';
+import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadOrders, onOrderSelect, loadAdmin } from './enter-hooks';
 /* -----------------    ON-LEAVE HOOKS     ------------------ */
-import { onProductLeave, onOrderLeave, deloadCategoryProducts, deloadOrders, onAccountLeave} from './leave-hooks';
+import { onProductLeave, onOrderLeave, deloadCategoryProducts, deloadOrders, onAdminLeave} from './leave-hooks';
 
 
 export default () => (
@@ -29,7 +29,7 @@ export default () => (
       <IndexRoute component={Main} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
-      <Route path="/account/:id" component={Account}/>
+      <Route path="/admin" component={Admin}/>
       <Route path="/orders/:id" component={Orders} onEnter={loadOrders} onLeave={deloadOrders}/>
       <Route path="/order/:orderNumber" component={OrderItems} onEnter={onOrderSelect} onLeave={onOrderLeave}/>
       <Route path="/product/:sku" component={CurrentProduct} onEnter={onProductSelect} onLeave={onProductLeave} />
