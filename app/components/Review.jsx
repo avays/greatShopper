@@ -10,7 +10,7 @@ const makeStars = num => {
 };
 
 export default ({ review }) => (
-	<div className="review">
+	<div className="review comp-container">
 		<details>
 			<summary>{ review.summary }</summary>
 			<h6>Date purchased: { review.date }</h6>

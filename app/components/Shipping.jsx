@@ -7,8 +7,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 /* -----------------    DUMB COMPONENT     ------------------ */
 
 const DumbShipping = ({ name, street1, street2, city, state, zip, updateField, submitAddress }) => (
- 
-	<div>
+
+	<div className="comp-container">
 		<h2>Enter shipping address</h2>
 			<form onSubmit={submitAddress}>
 		        <div className="form-group">
@@ -80,7 +80,7 @@ class Shipping extends React.Component {
 	render(){
 		const { name, street1, street2, city, state, zip } = this.props
 		return (
-			<DumbShipping 
+			<DumbShipping
 				name={name}
 				street1={street1}
 				street2={street2}
