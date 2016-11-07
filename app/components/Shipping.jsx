@@ -21,7 +21,7 @@ class Shipping extends React.Component {
 	render(){
 		// make sure users can't move on without valid fields
 		return (
-			<div>
+			<div className="comp-container">
 				<h2>Enter shipping address</h2>
 					<form>
 				        <div className="form-group">

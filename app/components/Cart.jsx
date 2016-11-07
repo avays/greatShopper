@@ -10,7 +10,7 @@ import { Button } from 'react-bootstrap';
 function Cart({ cart, remove, change, clear }){
 
  return (
-  <div className="cart">
+  <div className="cart comp-container">
    <h3>Your Cart</h3>
    {
     (cart && cart.length) ?

@@ -9,7 +9,7 @@ import { Button } from 'react-bootstrap';
 function Orders({ orders }){
 
  return (
-  <div className="order">
+  <div className="order comp-container">
    <h3>Your Orders</h3>
    {
     (orders && orders.length) ?
