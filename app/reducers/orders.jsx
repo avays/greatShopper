@@ -3,30 +3,19 @@ import { browserHistory } from 'react-router';
 
 /* -----------------    ACTIONS     ------------------ */
 
-const SELECT_PRODUCTS = 'SELECT_PRODUCTS';
-const SEARCH_FOR_PRODUCTS = 'SEARCH_FOR_PRODUCTS';
-
-
+const SELECT_ORDERS = 'SELECT_ORDERS';
 
 /* ------------   ACTION CREATORS     ------------------ */
 
-const selectProducts = products => ({ type: SELECT_PRODUCTS, products });
-const searchForProducts = products => ({
-  type: SEARCH_FOR_PRODUCTS,
-  products
-});
-
+const selectOrders = orders => ({ type: SELECT_ORDERS, orders });
 
 /* ------------       REDUCER     ------------------ */
 
 export default function reducer (state = [], action) {
   switch (action.type) {
 
-    case SELECT_PRODUCTS:
-      return action.products;
-
-    case SEARCH_FOR_PRODUCTS:
-      return action.products;
+    case SELECT_ORDERS:
+      return action.orders;
 
     default:
       return state;
@@ -36,22 +25,12 @@ export default function reducer (state = [], action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-export const fetchAndGoToProducts = (categoryName) => {
+export const fetchAndGoToOrders = (userid) => {
   return dispatch => {
-    axios.get(`api/categories/${categoryName}`)
-      .then(category => {
-        dispatch(selectProducts(category.data[0] ? category.data[0].products : []));
-      });
-  };
-}
-
-export const fetchAndGoToQueriedProducts = search => {
-  return dispatch => {
-    axios.get(`/api/products/search/${search}`)
-      .then(products => {
-        dispatch(searchForProducts(products.data))
-        browserHistory.push(`/search/${search}`)
+    axios.get(`/api/orders/${userid}`)
+      .then(orders => {
+        dispatch(selectOrders(orders.data));
       })
-      .catch(err => console.error('Fetching product failed', err))
-  }
+      .catch(err => console.error('Fetching orders failed', err))
+  };
 }

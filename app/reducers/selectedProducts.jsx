@@ -5,15 +5,21 @@ import { browserHistory } from 'react-router';
 
 const SELECT_PRODUCTS = 'SELECT_PRODUCTS';
 const SEARCH_FOR_PRODUCTS = 'SEARCH_FOR_PRODUCTS';
+const DELOAD = 'DELOAD';
 
 
 
 /* ------------   ACTION CREATORS     ------------------ */
 
 const selectProducts = products => ({ type: SELECT_PRODUCTS, products });
+
 const searchForProducts = products => ({
   type: SEARCH_FOR_PRODUCTS,
   products
+});
+
+export const deloadProducts = () => ({
+  type: DELOAD
 });
 
 
@@ -27,6 +33,9 @@ export default function reducer (state = [], action) {
 
     case SEARCH_FOR_PRODUCTS:
       return action.products;
+
+    case DELOAD:
+      return [];
 
     default:
       return state;

@@ -13,12 +13,12 @@ const Payment = db.model("payments");
 
 customOrderRoutes.get("/:id", function(req, res, next){
 
-	if(!mustBeLoggedIn(req)){
-		return res.status(401).send('You must be logged in.')
-	}
-	if(!mustHavePermission(req)){
-		return res.status(403).send(`You do not have permission.`)
-	}
+	// if(!mustBeLoggedIn(req)){
+	// 	return res.status(401).send('You must be logged in.')
+	// }
+	// if(!mustHavePermission(req)){
+	// 	return res.status(403).send(`You do not have permission.`)
+	// }
 
 	Order.findAll({	 	
 	 	include: [

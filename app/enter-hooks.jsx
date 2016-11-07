@@ -5,7 +5,7 @@ import { fetchAndGoToProducts, fetchAndGoToQueriedProducts } from './reducers/se
 import { fetchAndGoToOrders} from './reducers/orders'
 
 export const loadOrders = ({ params }) => {
-	store.dispatch(fetchAndGoToOrders(params.orderNumber));
+	store.dispatch(fetchAndGoToOrders(params.id));
 };
 
 export const onProductSelect = ({ params }) => {

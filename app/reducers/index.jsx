@@ -4,7 +4,7 @@ import currentProduct from './currentProduct';
 import categories from  './categories'
 import cart from  './cart'
 import user from  './auth'
-import orders from  './auth'
+import orders from  './orders'
 
 const rootReducer = combineReducers({
 	currentProduct,

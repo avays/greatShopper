@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap';
 
 /* -----------------    COMPONENT     ------------------ */
 
-function Order({ orders }){
+function Orders({ orders }){
 
  return (
   <div className="order">
@@ -16,29 +16,20 @@ function Order({ orders }){
     <div>
      <ul>
        {
-         cart.map((item, index) => (
-           <OrderItem
-            key={ index }
-            item={ item }
-            remove={ remove }
-           />
+         orders.map((order, index) => (
+           <li key={ index }>
+            <p>Date placed: {order.submitDate}</p>
+            <p>Status: {order.status}</p>
+            <Button><Link to={`/order/${order.orderNumber}`}>Order details</Link></Button>
+            <hr></hr>
+           </li>
          ))
        }
       </ul>
-      <div>Total price: ${
-        cart.map(item => {
-          return +item.product.price * +item.quantity;
-        })
-          .reduce((sum, current) => {
-            return sum + current;
-        }).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-      }
-      </div>
-      <Button><Link to="/checkout/shipping">Proceed to Checkout</Link></Button>
-      <Button onClick={clear}>Clear all items from cart</Button>
+
      </div>
      :
-    <h3>Your cart is empty!</h3>
+    <h3>Your have no orders.</h3>
   }
 
  </div>);
@@ -48,12 +39,6 @@ function Order({ orders }){
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapStateToProps = ({ cart }) => ({ cart });
-const mapDispatchToProps = (dispatch) => ({
-	add: (product, quantity) => dispatch(addItem(product, quantity)),
-	remove: (item) => dispatch(removeItem(item)),
-	change: (product, quantity) => dispatch(changeQuantity(product, quantity)),
-	clear: () => dispatch(clearOrder())
-});
+const mapStateToProps = ({ orders }) => ({ orders });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Order);
+export default connect(mapStateToProps, null)(Orders);
