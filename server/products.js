@@ -108,17 +108,19 @@ customProductRoutes.put("/:sku", function(req, res, next) {
 
 customProductRoutes.post("/", function(req, res, next) {
 
-	if (!mustBeAdmin(req)) {
-		return res.status(403).send('You do not have administrative privileges')
-	}
-
-	Product.findOrCreate({
-			where: req.body
-
+	// if (!mustBeAdmin(req)) {
+	// 	return res.status(403).send('You do not have administrative privileges')
+	// }
+	console.log("WHAT IS S+III" , req.body)
+	Product.create({
+		  name: req.body.name,
+	      sku: req.body.sku, 
+	      quantity: req.body.quantity, 
+	      imageUrl: req.body.imageUrl, 
+	      price: req.body.price, 
+	      description: req.body.description
 		})
-		.spread((product, created) => {
-			return created ? res.json(product) : res.status(300).send("Product SKU already exists.")
-		})
+		.then(product => res.json(product))
 		.catch(next);
 });
 
