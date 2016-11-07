@@ -9,9 +9,27 @@ const User = db.model("users");
 const Order = db.model("orders");
 const Order_Item = db.model("order_items");
 const Address = db.model("addresses");
-const Payment = db.model("payments");
+const Product = db.model("products");
 
-customOrderRoutes.get("/:id", function(req, res, next){
+
+customOrderRoutes.get("/:ordernum", function(req, res, next) {
+
+	Order.findOne({
+		where: {
+			orderNumber: req.params.ordernum
+		},
+		include: [
+			{model: Address},
+			{model: Order_Item, include: [{model: Product}]}
+		]
+	})
+		.then(orders => {
+			res.json(orders)
+		})
+		.catch(next)
+});
+
+customOrderRoutes.get("/user/:userid", function(req, res, next){
 
 	// if(!mustBeLoggedIn(req)){
 	// 	return res.status(401).send('You must be logged in.')
@@ -24,13 +42,12 @@ customOrderRoutes.get("/:id", function(req, res, next){
 	 	include: [
 	 		{model: User,
 		 		where: {
-						id: req.params.id
+						id: req.params.userid
 					}
 			},
 			{model: Address},
 			{model: Order_Item/*,
 				include: [{all:true}]*/},
-			{model: Payment}
 			]
 	 })
 		.then(orders => res.json(orders))

@@ -6,22 +6,13 @@
 
 const User = require('./user')
 const Address = require("./address")
-const Payment = require("./payment")
 const Order = require("./order")
 const Order_Item = require("./order_item")
 const Review = require("./review")
 const Product = require("./product")
 const Category = require("./category")
 
-Payment.belongsTo(User,  {
-		allowNull: false
-	});
-User.hasMany(Payment, {onDelete: 'cascade'}); // for eager loading, also added cascade
-Payment.belongsTo(Address, {
-		as: "billingAddress",
-		allowNull: false
-	}
-);
+
 Address.belongsTo(User);
 User.hasMany(Address, { onDelete: 'cascade' }); // for eager loading, also added cascade delete
 Review.belongsTo(User,  {
@@ -35,9 +26,7 @@ User.hasMany(Order); // for eager loading
 Order.belongsTo(Address,  {
 		allowNull: false
 	});
-Order.belongsTo(Payment,  {
-		allowNull: false
-	});
+
 Order_Item.belongsTo(Order,  {
 		allowNull: false
 	});
@@ -58,5 +47,5 @@ Category.hasMany(Category, {as: "metaCategory"});
 
 
 
-module.exports = {User, Address, Payment, Order, Order_Item, Review, Product, Category }
+module.exports = {User, Address, Order, Order_Item, Review, Product, Category }
 

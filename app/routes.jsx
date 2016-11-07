@@ -14,7 +14,7 @@ import Shipping from './components/Shipping';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Orders from './components/Orders';
-import OrderItems from './components/OrderItems';
+import SelectedOrder from './components/SelectedOrder';
 // import Account from './components/Account';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
@@ -30,7 +30,7 @@ export default () => (
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/orders/:id" component={Orders} onEnter={loadOrders} onLeave={deloadOrders}/>
-      <Route path="/order/:orderNumber" component={OrderItems} onEnter={onOrderSelect} onLeave={onOrderLeave}/>
+      <Route path="/order/:orderNumber" component={SelectedOrder} onEnter={onOrderSelect} onLeave={onOrderLeave}/>
       <Route path="/product/:sku" component={CurrentProduct} onEnter={onProductSelect} onLeave={onProductLeave} />
       <Route path="/cart" component={Cart} />
       <Route path="/checkout" component={Checkout} >

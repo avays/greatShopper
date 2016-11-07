@@ -9,7 +9,6 @@ const User = db.model("users");
 const Order = db.model("orders");
 const Order_Item = db.model("order_items");
 const Address = db.model("addresses");
-const Payment = db.model("payments");
 const Product = db.model("products");
 
 customOrderItemRoutes.get("/:oon", function(req, res, next){

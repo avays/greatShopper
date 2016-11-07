@@ -7,7 +7,6 @@ class Shipping extends React.Component {
 	constructor(props) {
 	super(props);
 	this.state = {
-		alias: "",
 		name: "",
 		street1: "",
 		street2: "",
@@ -24,10 +23,6 @@ class Shipping extends React.Component {
 			<div>
 				<h2>Enter shipping address</h2>
 					<form>
-				        <div className="form-group">
-				            <label>Alias:</label>
-				            <input type="text" id="alias-field" onChange={this.updateField}/>
-				        </div>
 				        <div className="form-group">
 				            <label>Name:</label>
 				            <input type="text" id="name-field" onChange={this.updateField}/>

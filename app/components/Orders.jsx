@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 // import OrderItem from './OrderItem';
 import { Button } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -20,7 +21,9 @@ function Orders({ orders }){
            <li key={ index }>
             <p>Date Placed: {order.submitDate}</p>
             <p>Status: {order.status}</p>
-            <Button><Link to={`/order/${order.orderNumber}`}>Order details</Link></Button>
+            <LinkContainer to={`/order/${order.orderNumber}`}>
+              <Button>Order details</Button>
+            </LinkContainer>
             <hr></hr>
            </li>
          ))
