@@ -48,7 +48,7 @@ const OrderItem = db.define('order_items', {
   },
   getterMethods: {
   	totalCost: function(){
-  		return this.taxCost + this.shippingCost + this.itemCost;
+  		return +this.taxCost + +this.shippingCost + +this.itemCost;
   	}
   }
 })

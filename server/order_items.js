@@ -10,22 +10,22 @@ const Order = db.model("orders");
 const Order_Item = db.model("order_items");
 const Address = db.model("addresses");
 const Payment = db.model("payments");
+const Product = db.model("products");
 
-customOrderItemRoutes.get("/:oiid", function(req, res, next){
+customOrderItemRoutes.get("/:oon", function(req, res, next){
 
-	if(!mustBeLoggedIn(req)){
-		return res.status(401).send('You must be logged in.')
-	}
-	if(!mustHavePermission(req)){
-		return res.status(403).send(`You do not have permission.`)
-	}
+	// if(!mustBeLoggedIn(req)){
+	// 	return res.status(401).send('You must be logged in.')
+	// }
+	// if(!mustHavePermission(req)){
+	// 	return res.status(403).send(`You do not have permission.`)
+	// }
 
-	Order_Item.findById(req.params.oiid,{	 	
-	 	include: [
-	 		{all: true}
-			]
+	Order_Item.findAll({
+		where: {order_orderNumber: req.params.oon},
+	 	include: [{model: Order, include: [{all:true}]},{model: Product, include: [{all:true}]}]
 	 })
-		.then(item => res.json(item))
+		.then(items => res.json(items))
 		.catch(next);
 });
 

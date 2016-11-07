@@ -28,7 +28,8 @@ customOrderRoutes.get("/:id", function(req, res, next){
 					}
 			},
 			{model: Address},
-			{model: Order_Item},
+			{model: Order_Item/*,
+				include: [{all:true}]*/},
 			{model: Payment}
 			]
 	 })

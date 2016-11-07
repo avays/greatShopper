@@ -5,6 +5,7 @@ import categories from  './categories'
 import cart from  './cart'
 import user from  './auth'
 import orders from  './orders'
+import selectedOrder from  './orderItems'
 
 const rootReducer = combineReducers({
 	currentProduct,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   	categories,
   	cart,
   	user,
-  	orders
+  	orders,
+  	selectedOrder
 });
 
 

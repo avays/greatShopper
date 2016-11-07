@@ -18,7 +18,7 @@ function Orders({ orders }){
        {
          orders.map((order, index) => (
            <li key={ index }>
-            <p>Date placed: {order.submitDate}</p>
+            <p>Date Placed: {order.submitDate}</p>
             <p>Status: {order.status}</p>
             <Button><Link to={`/order/${order.orderNumber}`}>Order details</Link></Button>
             <hr></hr>
