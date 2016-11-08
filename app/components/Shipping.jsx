@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap';
+import { setShippingAddress } from '../reducers/shippingAddress';
+import { LinkContainer } from 'react-router-bootstrap';
 
 /* -----------------    DUMB COMPONENT     ------------------ */
 
 const DumbShipping = ({ name, street1, street2, city, state, zip, updateField, submitAddress }) => (
 
-	<div>
+	<div className="comp-container">
 		<h2>Enter shipping address</h2>
 			<form onSubmit={submitAddress}>
 		        <div className="form-group">
 		            <label>Name:</label>
-		            <input required type="text" id="name" onChange={updateField}/>
+		            <input required defaultValue={name} type="text" id="name" onChange={updateField}/>
 		        </div>
 		        <div className="form-group">
 		            <label>Street 1:</label>
@@ -27,13 +29,15 @@ const DumbShipping = ({ name, street1, street2, city, state, zip, updateField, s
 		        </div>
 		        <div className="form-group">
 		            <label>State:</label>
-		            <input required type="text" pattern="[A-Z]{2}" id="state" onChange={updateField}/>
+		            <input required type="text" pattern="[a-zA-Z]{2}" id="state" onChange={updateField}/>
 		        </div>
 		        <div className="form-group">
 		            <label>Zip:</label>
 		            <input required type="text" pattern="\d{5}" id="zip" onChange={updateField}/>
 		        </div>
-		    	<Button type="submit">Next: Payment</Button>
+		    	<LinkContainer to="/checkout/payment">
+			    	<Button type="submit">Next: Payment</Button>
+			    </LinkContainer>
 	    	</form>
 	</div>
 
@@ -61,22 +65,22 @@ class Shipping extends React.Component {
 		evt.preventDefault();
 		const key = evt.target.id;
 		const value = evt.target.value;
-		this.setState(prevState => { 
+		this.setState(prevState => {
 			prevState[key] = value;
 			return prevState;
-		})
+		});
 	}
 
 	submitAddress(evt) {
-		evt.preventDefault()
-		console.log(`this.state is`, this.state)
+		evt.preventDefault();
+		this.props.updateAddress(this.state);
 	}
 
 
 	render(){
 		const { name, street1, street2, city, state, zip } = this.props
 		return (
-			<DumbShipping 
+			<DumbShipping
 				name={name}
 				street1={street1}
 				street2={street2}
@@ -94,7 +98,7 @@ class Shipping extends React.Component {
 /* -----------------    CONTAINER     ------------------ */
 
 const mapDispatch = dispatch => ({
-  updateAddress: category => dispatch(updateShippingAddress(category))
+  updateAddress: address => dispatch(setShippingAddress(address))
 })
 
 export default connect(null, mapDispatch)(Shipping);
