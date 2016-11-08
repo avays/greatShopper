@@ -12,9 +12,22 @@ const { formatDate }  = require("./utils")
 const {mustBeAdmin, mustHavePermission, mustBeLoggedIn, selfOnly}  = require("./utils")
 
 const paymentRoutes = require('express').Router() 
+const nodemailer = require('nodemailer');
+const smtpTransport = require('nodemailer-smtp-transport');
+const wellknown = require('nodemailer-wellknown');
+
+const transport = nodemailer.createTransport({
+    service: 'AOL',
+    auth: {
+        user: process.env.EMAIL_USERNAME, 
+        pass: process.env.EMAIL_PASSWORD
+    }
+});
 
 
-paymentRoutes.get("/:paymentid", function(req, res, next){
+
+
+paymentRoutes.get("/:id/:paymentid", function(req, res, next){
 	
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
@@ -40,15 +53,6 @@ paymentRoutes.get("/:paymentid", function(req, res, next){
 
 
 paymentRoutes.post("/:token", function(req, res, next){
-	// Kenty: waiting for Dillon to rewrite this function
-	
-// >>>>>>> 25b35c4fb080d10c32839958b4373ef3bad521ef
-// 	if(!mustBeLoggedIn(req)){
-// 		return res.status(401).send('You must be logged in.')
-// 	}
-// 	if(!selfOnly(req)){
-// 		return res.status(403).send(`You do not have permission.`)
-// 	}
 
 	const createStripePromise = paymentData => {
 		return new Promise((resolve, reject) => {
@@ -72,7 +76,7 @@ paymentRoutes.post("/:token", function(req, res, next){
 				Address.findOrCreate({ 
 					where: {
 						name: orderDataFromStore.shippingAddress.name,
-						street1: orderDataFromStore.shippingAddress.stret1,
+						street1: orderDataFromStore.shippingAddress.street1,
 						street2: orderDataFromStore.shippingAddress.street2,
 						city: orderDataFromStore.shippingAddress.city,
 						state: orderDataFromStore.shippingAddress.state,
@@ -81,7 +85,7 @@ paymentRoutes.post("/:token", function(req, res, next){
 						user_id: orderDataFromStore.user_id
 					} 
 				})
-					.then(address => {
+					.spread((address, changed) => {
 						return address
 					})
 					.then(address => {
@@ -89,10 +93,9 @@ paymentRoutes.post("/:token", function(req, res, next){
 							status: 'pending',
 							submitDate: formatDate(),
 							user_id: orderDataFromStore.user_id,
-							address_id: address.id,
+							address_id: address.dataValues.id,
 							payment_id: charge.id							
 						}
-
 						return Order.create(newOrder)
 					})
 						.then(order => {
@@ -102,6 +105,19 @@ paymentRoutes.post("/:token", function(req, res, next){
 							return Order_Item.bulkCreate(withON)
 					})
 						.then(order_items => {
+
+			          var mailOptions = {
+		              from: '"Great Shopper" <great.shopper@aol.com>', // sender address
+		              to: orderDataFromStore.shippingAddress.email, // list of receivers
+		              subject: 'Your order has been placed', // Subject line
+		              text: `Your order has been placed! Your order number is ${charge.id} Thanks for shopping at Great Shopper.\n\n\nGreat Shopper Team`
+			          };
+			          transport.sendMail(mailOptions, function(error, info){
+			              if(error){
+			                  return console.log(error);
+			              }
+			              console.log('Message sent: ' + info.response);
+			        });
 						})
 						.catch(next)
 					}

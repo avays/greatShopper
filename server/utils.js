@@ -17,7 +17,7 @@ const mustBeLoggedIn = (req) => {
 }
 
 const selfOnly = (req) => {
- return req.session.passport && (req.params.id === req.session.passport.user) 
+ return req.session.passport && (req.params.id == req.session.passport.user) 
 }
 
 const formatDate = () => {

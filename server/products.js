@@ -65,7 +65,12 @@ customProductRoutes.get("/search/:searchInput", function(req, res, next) {
           matches.push(product);
         });
       });
-      const productArray = [...products, ...matches];
+      let productArray = [...products, ...matches]
+      let unique = [];
+      productArray.forEach(match => {
+      	//COMPLETE THIS
+      })
+
       return res.json(productArray);
     })
 		.catch(next);
