@@ -17,12 +17,13 @@ class Confirmation extends Component {
 	sendOrder(evt) {
 		evt.preventDefault();
 		
-		const { user_id, shippingAddress, order_items, email, amount  } = this.props;
+		const { user_id, shippingAddress, order_items, receipt_email, amount  } = this.props;
 		
 		const orderDataForStripe = {
 			amount,
-			email,
-			token: this.props.params.token
+			receipt_email,
+			source: this.props.params.token,
+			currency: 'usd'
 		};
 
 		const orderDataFromStore = {
@@ -37,9 +38,10 @@ class Confirmation extends Component {
 
 
 	render() {
+		const { cart, amount } = this.props;
 		return(
 			<div>
-				<p>CART info: { this.props.orderDataFromStore && this.props.orderDataFromStore.cart.length }</p>
+				<p>YOU WILL BE CHARGED: { amount }</p>
 				<h3>stripe token: {this.props.params.token}</h3>
 				<h3>MAKE SHOPPING GREAT AGAIN</h3>
 				<Button onClick={ this.sendOrder }>SUBMIT</Button>
@@ -67,10 +69,10 @@ const mapState = ({ cart, shippingAddress, user }) => {
 		}
 	});
 
-	const user_id = user.id || '';
+	const user_id = (user.id) ? user.id : null;
 
-	const email = shippingAddress.email;
-	const amount = 
+	const receipt_email = shippingAddress.email;
+	const amount = 100 *
 		cart
 			.map(item => (+item.quantity * +item.product.price))
 			.reduce((prev, curr) => prev + curr);
@@ -79,10 +81,10 @@ const mapState = ({ cart, shippingAddress, user }) => {
 		user_id,
 		shippingAddress,
 		order_items,
-		email,
-		amount
+		receipt_email,
+		amount,
+		cart
 	}
-	console.log(orderDataFromStore);
 	return orderDataFromStore;
 };
 
