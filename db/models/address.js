@@ -5,10 +5,6 @@ const Sequelize = require('sequelize')
 const db = require('APP/db')
 
 const Address = db.define('addresses', {
-  alias: {
-    type: Sequelize.STRING,
-    // defaultValue: defaultAddress(),
-  },
   name: {
     type: Sequelize.STRING,
     validate: {
