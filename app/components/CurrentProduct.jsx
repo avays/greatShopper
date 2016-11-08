@@ -110,7 +110,6 @@ class CurrentProduct extends Component {
 	changePriceField(evt) {
 		evt.preventDefault();
 		var price = evt.target.value.slice(4,-5)
-		 console.log(price) // how am I going to deal with commas?
 		this.setState({ price })
 	}
 
