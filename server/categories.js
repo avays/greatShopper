@@ -25,7 +25,7 @@ customCategoryRoutes.get("/", function(req, res, next) {
 customCategoryRoutes.get("/:name", function(req, res, next) {
 
 	// only return hidden products if admin
-	if (!mustBeAdmin(req)) {
+	// if (!mustBeAdmin(req)) {
 		Category.findAll({
 				where: {
 					name: req.params.name
@@ -41,24 +41,24 @@ customCategoryRoutes.get("/:name", function(req, res, next) {
 			})
 			.then(category => res.json(category))
 			.catch(next);
-	}
-	else{
-		Category.findAll({
-				where: {
-					name: req.params.name
-				},
-				include: [{
-					model: Product
-				}]
-			})
-			.then(category => res.json(category))
-			.catch(next);
-	}
+	// }
+	// else{
+	// 	Category.findAll({
+	// 			where: {
+	// 				name: req.params.name
+	// 			},
+	// 			include: [{
+	// 				model: Product
+	// 			}]
+	// 		})
+	// 		.then(category => res.json(category))
+	// 		.catch(next);
+	// }
 });
 
 customCategoryRoutes.get("/:name/:sku", function(req, res, next) {
 	// only return hidden products if admin
-	if (!mustBeAdmin(req)) {
+	// if (!mustBeAdmin(req)) {
 		Category.findAll({
 				where: {
 					name: req.params.name
@@ -75,22 +75,22 @@ customCategoryRoutes.get("/:name/:sku", function(req, res, next) {
 			})
 			.then(category => res.json(category))
 			.catch(next);
-	}
-	else{
-		Category.findAll({
-				where: {
-					name: req.params.name
-				},
-				include: [{
-					model: Product,
-					where: {
-						sku: req.params.sku
-					}
-				}]
-			})
-			.then(category => res.json(category))
-			.catch(next);
-	}
+	// }
+	// else{
+	// 	Category.findAll({
+	// 			where: {
+	// 				name: req.params.name
+	// 			},
+	// 			include: [{
+	// 				model: Product,
+	// 				where: {
+	// 					sku: req.params.sku
+	// 				}
+	// 			}]
+	// 		})
+	// 		.then(category => res.json(category))
+	// 		.catch(next);
+	// }
 });
 
 customCategoryRoutes.get("/meta/:name", function(req, res, next) {
@@ -105,14 +105,15 @@ customCategoryRoutes.get("/meta/:name", function(req, res, next) {
 
 customCategoryRoutes.put("/:name", function(req, res, next) {
 
-	if (!mustBeAdmin(req)) {
-		return res.status(403).send('You do not have administrative privileges')
-	}
-
-	Category.update(req.body, {
-			where: {
-				name: req.params.name
-			}
+	mustBeAdmin(req)
+		.then(userAdmin => {
+			userAdmin.data.isAdmin ? 
+			Category.update(req.body, {
+					where: {
+						name: req.params.name
+					}
+			})
+			: res.status(403).send('You do not have administrative privileges')
 		})
 		.then(rowsModified => res.json(rowsModified))
 		.catch(next);
@@ -120,28 +121,27 @@ customCategoryRoutes.put("/:name", function(req, res, next) {
 
 customCategoryRoutes.post("/", function(req, res, next) {
 
-	// if (!mustBeAdmin(req)) {
-	// 	return res.status(403).send('You do not have administrative privileges')
-	// }
-
-	Category.create({
+	mustBeAdmin(req)
+		.then(userAdmin => {
+			userAdmin.data.isAdmin ? 
+			Category.create({
 				name: req.body.name,
 				meta_category_id: req.body.meta_category_id
+			})
+			: res.status(403).send('You do not have administrative privileges')
 		})
 		.then(category => res.json(category))
 		.catch(next);
 });
 
 customCategoryRoutes.delete("/:name", function(req, res, next) {
-
-	if (!mustBeAdmin(req)) {
-		return res.status(403).send('You do not have administrative privileges')
-	}
-
-	Category.destroy({
-			where: {
-				name: req.params.name
-			}
+	mustBeAdmin(req)
+		.then(userAdmin => {
+			userAdmin.data.isAdmin ? 
+			Category.destroy({
+			where: {name: req.params.name}
+			})
+			: res.status(403).send('You do not have administrative privileges')
 		})
 		.then(rowsModified => res.json(rowsModified))
 		.catch(next);

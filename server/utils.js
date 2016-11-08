@@ -1,14 +1,19 @@
+const axios  = require('axios')
+
+// mustBeAdmin works differently, doesn't return a bool but rather a promise
 const mustBeAdmin = (req) => {
-	// admin probably needs to be redone
-	return req.session.passport && req.session.passport.user && req.session.passport.user.isAdmin;
+	const address = req.protocol + "://" + req.get('host') + "/";
+
+	return axios.get(`${address}api/users/checkAdmin/${req.session.passport.user}`)
 }
 
+// mustHavePermission NOT working since mustBeAdmin change
 const mustHavePermission = (req) => {
-	// admin probably needs to be redone
-  return (req.session.passport && req.session.passport.user  && req.session.passport.user.isAdmin) || (req.session.passport && (req.params.id === req.session.passport.user)) 
+  return false;
 }
 
 const mustBeLoggedIn = (req) => {
+	console.log("WAAAA", req.session)
   return req.session.passport && req.session.passport.user;
 }
 
