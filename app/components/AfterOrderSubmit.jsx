@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { browserHistory } from 'react-router';
 
-import { persistOrder } from '../reducers/orders';
-import { clearCart } from '../reducers/cart';
+// import { clearCart } from '../reducers/cart';
 
 
 /* -----------------    COMPONENT     ------------------ */
@@ -13,20 +12,18 @@ class AfterOrderSubmit extends Component {
 
 	constructor(props) {
 		super(props);
-		this.confirmPersist = this.confirmPersist.bind(this)
+		this.confirm = this.confirm.bind(this)
 
 	}
 
-	confirmPersist(evt) {
+	confirm(evt) {
 		evt.preventDefault();
-		const { charge, cart, shippingAddress, user } = this.props;
-		this.props.persist(charge, cart, shippingAddress, user);
-		this.props.clearCart();
+		// this.props.clearCart();
 		browserHistory.push('/');
 	}
 
 	render() {
-		const { charge, cart, shippingAddress, user } = this.props
+		const { charge } = this.props
 		return (
 			<div>
 				{
@@ -40,7 +37,7 @@ class AfterOrderSubmit extends Component {
 								<h3>Payment Success!</h3>
 								<p>Keep this transaction ID for your records: {charge.chargeData.id}</p>
 								<p>You should receive an email confirmation shortly.</p>
-								<Button onClick={ this.confirmPersist }>Cool!</Button>
+								<Button onClick={ this.confirm }>Cool!</Button>
 							</div>
 							:
 							<div>
@@ -57,11 +54,10 @@ class AfterOrderSubmit extends Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-const mapState = ({ charge, cart, shippingAddress, user }) => ({ charge, cart, shippingAddress, user });
+const mapState = ({ charge }) => ({ charge });
 
 const mapDispatch = dispatch => ({
-  persist: ( charge, cart, shippingAddress, user ) => dispatch(persistOrder(charge, cart, shippingAddress, user)),
-  clearCart: () => dispatch(clearCart())
+  // clearCart: () => dispatch(clearCart())
 })
 
 export default connect(mapState, mapDispatch)(AfterOrderSubmit);

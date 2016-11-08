@@ -46,6 +46,14 @@ customOrderItemRoutes.post("/", function(req, res, next){
 		.catch(next);
 });
 
+customOrderItemRoutes.post("/bulk", function(req, res, next){
+
+	Order_Item.bulkCreate(req.body.items)
+		.then(order => res.json(order))
+		.catch(next);
+});
+
+
 // Don't delete orders_items, just change their status
 // customOrderItemRoutes.delete("/:id/:pid", function(req, res, next){
 

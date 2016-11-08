@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { browserHistory } from 'react-router';
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -41,17 +40,4 @@ export const fetchAndGoToOrders = (userid) => {
       })
       .catch(err => console.error('Fetching orders failed', err))
   };
-}
-
-export const persistOrder = (charge, cart, shippingAddress, user) => {
-  return dispatch => {
-    axios.post(`/api/orders/`)
-      .then(order => {
-        console.log('made an order!')
-        console.log('still have access to stuff like address: ', shippingAddress)
-        console.log('Promisify the order-item creations')
-        console.log(order.data)
-      })
-      .catch(err => console.error('Persisting order failed', err))
-  }
 }

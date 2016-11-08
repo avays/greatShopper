@@ -62,17 +62,14 @@ customAddressRoutes.put("/:id/:aid", function(req, res, next){
 
 customAddressRoutes.post("/:id", function(req, res, next){
 
-	if(!mustBeLoggedIn(req)){
-		return res.status(401).send('You must be logged in.')
-	}
-	if(!mustHavePermission(req)){
-		return res.status(403).send(`You do not have permission.`)
-	}
+	// if(!mustBeLoggedIn(req)){
+	// 	return res.status(401).send('You must be logged in.')
+	// }
+	// if(!mustHavePermission(req)){
+	// 	return res.status(403).send(`You do not have permission.`)
+	// }
 
-	Address.findOrCreate({where: {
-			alias: req.body.alias
-		}
-	})
+	Address.findOrCreate(req.body)
 		.spread((address, created) => {
 			return created ? res.json(address) : res.status(300).send(address)
 		}
