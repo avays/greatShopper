@@ -7,8 +7,10 @@ const OAuth = require('APP/db/models/oauth')
 const auth = require('express').Router()
 
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
 require('APP/.env.js')
 
+const bcrypt = require('bcrypt')
 
 /*************************
  * Auth strategies
@@ -127,14 +129,28 @@ auth.get('/whoami', (req, res) => {
 
 })
 
-auth.post('/:strategy/login', (req, res, next) =>
-  passport.authenticate(req.params.strategy, {
-    successRedirect: '/'
-  })(req, res, next)
+auth.post('/:strategy/login', (req, res, next) =>{
+  /*console.log("ARSTARSTARST", req.body)
+
+    return new Promise((resolve, reject) =>
+    bcrypt.hash(req.body.password, 10, (err, hash) => {
+      if (err) reject(err)
+      req.session.hashword = hash
+      resolve(req)
+    })
+    )
+
+      .then(req => */passport.authenticate(req.params.strategy, {
+        successRedirect: '/'
+      })(req, res, next)//)
+}
 )
 
 auth.post('/logout', (req, res, next) => {
-  req.logout()
+  //console.log(bcrypt.compareSync('123456',req.session.hashword))
+  req.logout();
+  //delete req.session.hashword;
+  delete req.session.passport;
   res.redirect('/api/auth/whoami')
 })
 

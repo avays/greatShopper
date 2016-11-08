@@ -15,14 +15,14 @@ const paymentRoutes = require('express').Router()
 
 
 paymentRoutes.get("/:paymentid", function(req, res, next){
-	/*
+	
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
 	}
-	if(!mustHavePermission(req)){
+	if(!selfOnly(req)){
 		return res.status(403).send(`You do not have permission.`)
 	}
-	*/
+
 		stripe.charges.retrieve(req.params.paymentid, (err, charge) => {
 			if (err) {
 				next(err);
@@ -40,14 +40,15 @@ paymentRoutes.get("/:paymentid", function(req, res, next){
 
 
 paymentRoutes.post("/:token", function(req, res, next){
-	/*
-	if(!mustBeLoggedIn(req)){
-		return res.status(401).send('You must be logged in.')
-	}
-	if(!mustHavePermission(req)){
-		return res.status(403).send(`You do not have permission.`)
-	}
-	*/
+	// Kenty: waiting for Dillon to rewrite this function
+	
+// >>>>>>> 25b35c4fb080d10c32839958b4373ef3bad521ef
+// 	if(!mustBeLoggedIn(req)){
+// 		return res.status(401).send('You must be logged in.')
+// 	}
+// 	if(!selfOnly(req)){
+// 		return res.status(403).send(`You do not have permission.`)
+// 	}
 
 	const createStripePromise = paymentData => {
 		return new Promise((resolve, reject) => {
