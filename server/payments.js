@@ -33,30 +33,31 @@ paymentRoutes.get("/:paymentid", function(req, res, next){
 
 
 paymentRoutes.post("/:token", function(req, res, next){
-	/*
->>>>>>> 25b35c4fb080d10c32839958b4373ef3bad521ef
-	if(!mustBeLoggedIn(req)){
-		return res.status(401).send('You must be logged in.')
-	}
-	if(!selfOnly(req)){
-		return res.status(403).send(`You do not have permission.`)
-	}
+	// Kenty: waiting for Dillon to rewrite this function
+	
+// >>>>>>> 25b35c4fb080d10c32839958b4373ef3bad521ef
+// 	if(!mustBeLoggedIn(req)){
+// 		return res.status(401).send('You must be logged in.')
+// 	}
+// 	if(!selfOnly(req)){
+// 		return res.status(403).send(`You do not have permission.`)
+// 	}
 
-	const paymentData = {
-		amount: req.body.amount,
-		currency: 'usd',
-		source: req.body.token
-	};
+// 	const paymentData = {
+// 		amount: req.body.amount,
+// 		currency: 'usd',
+// 		source: req.body.token
+// 	};
 
-	stripe.charges.create(paymentData, (err, charge) => {
-		if (err) {
-			console.error('error from stripe', err)
-			next(err);
-		} else {
-			console.log('got charge back and it is ', charge)
-			res.json(charge);
-		}
-	});
+// 	stripe.charges.create(paymentData, (err, charge) => {
+// 		if (err) {
+// 			console.error('error from stripe', err)
+// 			next(err);
+// 		} else {
+// 			console.log('got charge back and it is ', charge)
+// 			res.json(charge);
+// 		}
+// 	});
 
 });
 
