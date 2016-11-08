@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import { submitOrder } from '../reducers/cart';
+import { submitOrder } from '../reducers/charge';
 
 /* -----------------    DUMB COMPONENT     ------------------ */
 
@@ -16,14 +15,12 @@ class Confirmation extends Component {
 
 	sendOrder(evt) {
 		evt.preventDefault();
-		console.log('in sendOrder method')
-		const amount = 100 * this.props.cart
+		const amount = this.props.cart
 			.map(item => (+item.quantity * +item.product.price))
 			.reduce((prev, curr) => prev + curr);
 		const orderData = {
 			amount,
 			email: this.props.shippingAddress.email,
-			shippingAddress: this.props.shippingAddress, 
 			token: this.props.params.token
 		}
 		this.props.orderSubmit(orderData);
@@ -35,8 +32,8 @@ class Confirmation extends Component {
 		return(
 			<div>
 				<h3>stripe token: {this.props.params.token}</h3>
-				<h3>CONFIRM, YO</h3>
-				<Button onClick={ this.sendOrder }>Submit Order</Button>
+				<h3>MAKE SHOPPING GREAT AGAIN</h3>
+				<Button onClick={ this.sendOrder }>SUBMIT</Button>
 			</div>
 		)
 	}

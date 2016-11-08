@@ -2,7 +2,8 @@
 
 require('APP/.env.js');
 const stripe = require('stripe')(process.env.STRIPE_TEST_SECRET);
-const Promise = require('bluebird');
+
+
 const {mustBeAdmin, mustHavePermission, mustBeLoggedIn, selfOnly}  = require("./utils")
 
 const paymentRoutes = require('express').Router() 
@@ -47,15 +48,14 @@ paymentRoutes.post("/:token", function(req, res, next){
 	const paymentData = {
 		amount: req.body.amount,
 		currency: 'usd',
-		source: req.body.token
+		source: req.body.token,
+		receipt_email: req.body.email
 	};
 
 	stripe.charges.create(paymentData, (err, charge) => {
 		if (err) {
-			console.error('error from stripe', err)
-			next(err);
+			res.json(err)
 		} else {
-			console.log('got charge back and it is ', charge)
 			res.json(charge);
 		}
 	});
@@ -67,5 +67,3 @@ paymentRoutes.post("/:token", function(req, res, next){
 
 module.exports = paymentRoutes;
 
-		// shipping: req.body.shippingAddress,
-		// email: req.body.email
