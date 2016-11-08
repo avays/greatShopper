@@ -1,4 +1,5 @@
 'use strict'
+const axios  = require('axios')
 
 const bcrypt = require('bcrypt')
 const Sequelize = require('sequelize')
@@ -32,14 +33,7 @@ const Order = db.define('orders', {
     }
   }
 }, {
-  indexes: [{fields: ['orderNumber'], unique: true}],
-  hooks: {
-    afterCreate: fireEmailToCustomer
-  }
+  indexes: [{fields: ['orderNumber'], unique: true}]
 })
-
-function fireEmailToCustomer(user) {
-  // fill in later
-}
 
 module.exports = Order
