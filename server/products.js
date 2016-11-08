@@ -111,7 +111,7 @@ customProductRoutes.post("/", function(req, res, next) {
 	// if (!mustBeAdmin(req)) {
 	// 	return res.status(403).send('You do not have administrative privileges')
 	// }
-	console.log("WHAT IS S+III" , req.body)
+
 	Product.create({
 		  name: req.body.name,
 	      sku: req.body.sku, 

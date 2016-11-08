@@ -74,7 +74,6 @@ export const updateProduct = product => {
 
 export const addProduct = (product, categoryProduct) => {
   return dispatch => {
-    console.log("AAAAAAAAA", product)
     axios.post(`/api/products`, product)
       .then(() => axios.post(`/api/category_products`, categoryProduct))
       .then(() => {

@@ -4,7 +4,7 @@ import { ReactScriptLoaderMixin } from 'react-script-loader';
 import { LinkContainer } from 'react-router-bootstrap';
 import { browserHistory } from 'react-router';
 
-require('APP/.env.js');
+
 
 /* -----------------     COMPONENT     ------------------ */
 
