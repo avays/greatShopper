@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import { ReactScriptLoaderMixin } from 'react-script-loader';
 import { LinkContainer } from 'react-router-bootstrap';
 import { browserHistory } from 'react-router';
+require('APP/.env.js');
 
 
 
@@ -46,12 +47,13 @@ var Payment = React.createClass({
     },
 
     stripeResponseHandler: function(status, response) {
-    	if (response.error) {
-		 	} else {
+        if (response.error) {
+            console.log('STRIPE ERROR', response.error);
+        } else {
     		console.log('STRIPE RESPONSE: ', response);
     		var token = response.id;
     		browserHistory.push(`/checkout/confirmation/${token}`);
-    	}
+	   }
     },
 
     render: function() {
@@ -91,7 +93,10 @@ var Payment = React.createClass({
 							</form>
 						</div>
 	   		}  
-    		</div>
+    		  <div>
+                <p> You will be able to review your order on the next screen</p>
+              </div>
+            </div>
       );
     }
 });

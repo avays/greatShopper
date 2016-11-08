@@ -46,4 +46,13 @@ customOrderItemRoutes.post("/", function(req, res, next){
 		.catch(next);
 });
 
+
+customOrderItemRoutes.post("/bulk", function(req, res, next){
+
+	Order_Item.bulkCreate(req.body.items)
+		.then(order => res.json(order))
+		.catch(next);
+});
+
+
 module.exports = customOrderItemRoutes;

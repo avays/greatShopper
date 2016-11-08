@@ -19,11 +19,12 @@ import SelectedOrder from './components/SelectedOrder';
 import Admin from './components/Admin';
 import Payment from './components/Payment';
 import Confirmation from './components/Confirmation';
+import AfterOrderSubmit from './components/AfterOrderSubmit';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
 import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadOrders, onOrderSelect, loadAdmin } from './enter-hooks';
 /* -----------------    ON-LEAVE HOOKS     ------------------ */
-import { onProductLeave, onOrderLeave, deloadCategoryProducts, deloadOrders, onAdminLeave} from './leave-hooks';
+import { onProductLeave, onOrderLeave, deloadCategoryProducts, deloadOrders, onAdminLeave, deloadSingleCharge} from './leave-hooks';
 
 
 export default () => (
@@ -41,9 +42,10 @@ export default () => (
         <Route path="/checkout/shipping" component={Shipping} />
         <Route path="/checkout/payment" component={Payment} />
         <Route path="/checkout/confirmation/:token" component={Confirmation} />
+        <Route path="/checkout/aftersubmit" component={AfterOrderSubmit} onLeave={deloadSingleCharge} />
       </Route>
       <Route path="/search/:query" component={SelectedProducts} onEnter={loadQueriedProducts} />
-      <Route path="/:categoryName" component={SelectedProducts} onEnter={loadCategoryProducts} onLeave={deloadCategoryProducts}/>
+      <Route path="/:categoryName" component={SelectedProducts} onEnter={loadCategoryProducts} onLeave={deloadCategoryProducts} />
     </Route>
   </Router>
 );

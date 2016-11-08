@@ -23,7 +23,7 @@ const Order = db.define('orders', {
     type: Sequelize.STRING,
     validate: {
       notEmpty: true,
-      isDate: true
+      // isDate: true
     }
   },
   payment_id: {

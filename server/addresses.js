@@ -62,6 +62,10 @@ customAddressRoutes.put("/:id/:aid", function(req, res, next){
 
 customAddressRoutes.post("/:id", function(req, res, next){
 
+
+
+	Address.findOrCreate(req.body)
+
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
 	}

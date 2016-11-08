@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { setShippingAddress } from '../reducers/shippingAddress';
-import { LinkContainer } from 'react-router-bootstrap';
 import { browserHistory } from 'react-router';
 
 /* -----------------    DUMB COMPONENT     ------------------ */

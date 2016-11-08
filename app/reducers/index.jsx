@@ -7,6 +7,7 @@ import user from  './auth';
 import orders from  './orders';
 import selectedOrder from  './selectedOrder';
 import shippingAddress from './shippingAddress';
+import charge from './charge';
 
 
 const rootReducer = combineReducers({
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
 	user,
 	orders,
 	selectedOrder,
-	shippingAddress
+	shippingAddress,
+	charge
 });
 
 

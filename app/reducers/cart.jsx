@@ -73,8 +73,10 @@ export const submitOrder = orderData => {
     axios.post(`/api/payments/${orderData.token}`, orderData)
       .then(charge => {
         console.log('CHARGE IS', charge.data)
+
+
         dispatch(clearCart())
       })
-      .catch(err => console.error('Order submission failed', err))
+      .catch(err => console.error(err))
   }
 }
