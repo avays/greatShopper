@@ -3,17 +3,18 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { setShippingAddress } from '../reducers/shippingAddress';
 import { LinkContainer } from 'react-router-bootstrap';
+import { browserHistory } from 'react-router';
 
 /* -----------------    DUMB COMPONENT     ------------------ */
 
-const DumbShipping = ({ name, street1, street2, city, state, zip, updateField, submitAddress }) => (
+const DumbShipping = ({ updateField, submitAddress }) => (
 
 	<div className="comp-container">
 		<h2>Enter shipping address</h2>
 			<form onSubmit={submitAddress}>
 		        <div className="form-group">
 		            <label>Name:</label>
-		            <input required defaultValue={name} type="text" id="name" onChange={updateField}/>
+		            <input required type="text" id="name" onChange={updateField}/>
 		        </div>
 		        <div className="form-group">
 		            <label>Street 1:</label>
@@ -35,9 +36,11 @@ const DumbShipping = ({ name, street1, street2, city, state, zip, updateField, s
 		            <label>Zip:</label>
 		            <input required type="text" pattern="\d{5}" id="zip" onChange={updateField}/>
 		        </div>
-		    	<LinkContainer to="/checkout/payment">
+		        <div className="form-group">
+		            <label>Email:</label>
+		            <input required type="email" id="email" onChange={updateField}/>
+		        </div>
 			    	<Button type="submit">Next: Payment</Button>
-			    </LinkContainer>
 	    	</form>
 	</div>
 
@@ -55,7 +58,8 @@ class Shipping extends React.Component {
 			street2: "",
 			city: "",
 			state: "",
-			zip: ""
+			zip: "",
+			email: ""
 		}
 		this.updateField = this.updateField.bind(this);
 		this.submitAddress = this.submitAddress.bind(this);
@@ -74,19 +78,13 @@ class Shipping extends React.Component {
 	submitAddress(evt) {
 		evt.preventDefault();
 		this.props.updateAddress(this.state);
+		browserHistory.push('/checkout/payment');
 	}
 
 
 	render(){
-		const { name, street1, street2, city, state, zip } = this.props
 		return (
 			<DumbShipping
-				name={name}
-				street1={street1}
-				street2={street2}
-				city={city}
-				state={state}
-				zip={zip}
 				updateField={this.updateField}
 				submitAddress={this.submitAddress}
 			/>

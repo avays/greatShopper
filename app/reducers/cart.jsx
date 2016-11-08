@@ -7,6 +7,7 @@ const REMOVE_ITEM = 'REMOVE_ITEM';
 const CHANGE_QUANTITY = 'CHANGE_QUANTITY';
 const CLEAR_CART = 'CLEAR_CART';
 
+
 /* ------------   ACTION CREATORS     ------------------ */
 
 export const addItem = (product, quantity) => ({
@@ -67,3 +68,13 @@ export default function reducer (previousState = [], action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
+export const submitOrder = orderData => {
+  return dispatch => {
+    axios.post(`/api/payments/${orderData.token}`, orderData)
+      .then(charge => {
+        console.log('CHARGE IS', charge.data)
+        dispatch(clearCart())
+      })
+      .catch(err => console.error('Order submission failed', err))
+  }
+}

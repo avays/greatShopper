@@ -13,7 +13,6 @@ const mustHavePermission = (req) => {
 }
 
 const mustBeLoggedIn = (req) => {
-	console.log("WAAAA", req.session)
   return req.session.passport && req.session.passport.user;
 }
 
