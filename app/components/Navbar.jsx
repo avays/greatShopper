@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Navbar, Nav, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, MenuItem, NavDropdown, Button } from 'react-bootstrap';
 import Search from './Search';
 import { Link } from 'react-router';
 import { logout } from '../reducers/auth';
@@ -28,7 +28,15 @@ class Navigbar extends React.Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Search />
-        <span style={{color: "white"}}>{this.props.user && this.props.user.firstName ? `Welcome back, ${this.props.user.firstName}!`: (this.props.user && this.props.user.email ? `Logged in as: ${this.props.user.email}` : '')}</span>
+        <span style={{color: "white"}}>
+         {
+            this.props.user ? 
+              `Welcome back, ${this.props.user.firstName || this.props.user.email}!`
+            :
+              ''
+          }
+
+        </span>
         <Navbar.Collapse>
           <Nav title="Departments">
             <NavDropdown title="Vehicles" id="vehicles-nav">
@@ -76,7 +84,7 @@ class Navigbar extends React.Component {
             <LinkContainer to="/admin"><NavItem>{this.props.user && this.props.user.isAdmin && "Admin Panel"}</NavItem></LinkContainer>
             <LinkContainer to={`/orders/${this.props.user && this.props.user.id}`}><NavItem>{this.props.user && "Your Orders"}</NavItem></LinkContainer>
             <LinkContainer to="/cart"><NavItem>Cart ({this.props.cart && this.props.cart.length})</NavItem></LinkContainer>
-            {this.props.user && this.props.user.email ? <button onClick={this.props.signout}>Sign Out</button> : <LinkContainer to="/login"><NavItem>Login</NavItem></LinkContainer>
+            {this.props.user && this.props.user.email ? <NavItem onClick={this.props.signout}>Sign Out</NavItem> : <LinkContainer to="/login"><NavItem>Login</NavItem></LinkContainer>
             }
 
           </Nav>

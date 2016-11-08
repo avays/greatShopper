@@ -2,24 +2,51 @@ import React from 'react'
 import {login} from 'APP/app/reducers/auth'
 import {connect} from 'react-redux'
 import { Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Button, Form, FormGroup, Col, FormControl, ControlLabel } from 'react-bootstrap';
 
 export const Login = ({ login }) => (
   <div>
-    <div>
-    <form onSubmit={evt => {
-      evt.preventDefault()
-      login(evt.target.username.value, evt.target.password.value)
+
+    <Form horizontal onSubmit={ (evt) => {
+      evt.preventDefault();
+      const email = evt.target.email.value;
+      const password = evt.target.password.value;
+      login(email, password)
     } }>
-      <label>Email:</label>
-      <input name="username" />
-      <label>Password:</label>
-      <input name="password" type="password" />
-      <input type="submit" value="Login" />
-    </form>
-    <Link to="/signup"><button>Sign up</button></Link>
-    </div>
-    <div><a href="/api/auth/google">Google Sign In</a></div>
-    <div><a href="/api/auth/facebook">Facebook Sign In</a></div>
+
+      <FormGroup controlId="formHorizontalEmail">
+        <Col componentClass={ControlLabel} sm={2}>
+          Email
+        </Col>
+        <Col sm={6}>
+          <FormControl name="email" type="email" placeholder="Email" />
+        </Col>
+      </FormGroup>
+
+      <FormGroup controlId="formHorizontalPassword">
+        <Col componentClass={ControlLabel} sm={2}>
+          Password
+        </Col>
+        <Col sm={6}>
+          <FormControl name="password" type="password" placeholder="Password" />
+        </Col>
+      </FormGroup>
+
+      <FormGroup>
+        <Col smOffset={2} sm={6}>
+          <Button type="submit">
+            Login
+          </Button>
+        </Col>
+      </FormGroup>
+    </Form>
+
+    <LinkContainer to="/signup">
+      <Button>Sign Up</Button>
+    </LinkContainer>
+
+    <Button><a href="/api/auth/google">Google Sign In</a></Button>
   </div>
 )
 
@@ -33,30 +60,3 @@ const mapDispatch = (dispatch) => ({
 
 export default connect(mapProps, mapDispatch)(Login);
 
-
-
-
-
-// BELOW IS ORIGIN LOGIN.JSX BEFORE 11/5
-/*
-import React from 'react'
-
-export const Login = ({ login }) => (
-  <form onSubmit={evt => {
-    evt.preventDefault()
-    login(evt.target.username.value, evt.target.password.value)
-  } }>
-    <input name="username" />
-    <input name="password" type="password" />
-    <input type="submit" value="Login" />
-  </form>
-)
-
-import {login} from 'APP/app/reducers/auth'
-import {connect} from 'react-redux'
-
-export default connect (
-  state => ({}),
-  {login},
-) (Login)
-*/

@@ -66,15 +66,14 @@ customProductRoutes.get("/search/:searchInput", function(req, res, next) {
         });
       });
       let productArray = [...products, ...matches]
-      let unique = [];
-      productArray.forEach(match => {
-      	//COMPLETE THIS
-      })
+      // NOTE: lots of console errors because of duplicates
+      //				Need to filter out in order to  
 
       return res.json(productArray);
     })
 		.catch(next);
 });
+
 
 
 // name of product, manufacturer, location, word in description
