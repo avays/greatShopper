@@ -93,32 +93,35 @@ customProductRoutes.get("/:sku", function(req, res, next) {
 
 customProductRoutes.put("/:sku", function(req, res, next) {
 
-	// if (!mustBeAdmin(req)) {
-	// 	return res.status(403).send('You do not have administrative privileges')
-	// }
-
-	Product.update(req.body, {
-			where: {
-				sku: req.params.sku
-			}
-		})
+	mustBeAdmin(req)
+		.then(userAdmin => {
+			userAdmin.data.isAdmin ? 
+			Product.update(req.body, {
+					where: {
+						sku: req.params.sku
+					}
+			})
+			: res.status(403).send('You do not have administrative privileges')
+		})			
 		.then(rowsModified => res.json(rowsModified))
 		.catch(next);
 });
 
 customProductRoutes.post("/", function(req, res, next) {
 
-	// if (!mustBeAdmin(req)) {
-	// 	return res.status(403).send('You do not have administrative privileges')
-	// }
-
-	Product.create({
-		  name: req.body.name,
-	      sku: req.body.sku, 
-	      quantity: req.body.quantity, 
-	      imageUrl: req.body.imageUrl, 
-	      price: req.body.price, 
-	      description: req.body.description
+	mustBeAdmin(req)
+		.then(userAdmin => {
+			console.log("AAAAAAA")
+			userAdmin.data.isAdmin ? 
+			Product.create({
+				  name: req.body.name,
+			      sku: req.body.sku, 
+			      quantity: req.body.quantity, 
+			      imageUrl: req.body.imageUrl, 
+			      price: req.body.price, 
+			      description: req.body.description
+			})
+			: res.status(403).send('You do not have administrative privileges')
 		})
 		.then(product => res.json(product))
 		.catch(next);
@@ -126,14 +129,15 @@ customProductRoutes.post("/", function(req, res, next) {
 
 customProductRoutes.delete("/:sku", function(req, res, next) {
 
-	if (!mustBeAdmin(req)) {
-		return res.status(403).send('You do not have administrative privileges')
-	}
-
-	Product.destroy({
-			where: {
-				sku: req.params.sku
-			}
+	mustBeAdmin(req)
+		.then(userAdmin => {
+			userAdmin.data.isAdmin ? 
+			Product.destroy({
+					where: {
+						sku: req.params.sku
+					}
+			})
+			: res.status(403).send('You do not have administrative privileges')
 		})
 		.then(rowsModified => res.json(rowsModified))
 		.catch(next);

@@ -18,13 +18,14 @@ const Product = db.model("products");
 
 customCategoryProductsRoutes.post("/", function(req, res, next) {
 
-	// if (!mustBeAdmin(req)) {
-	// 	return res.status(403).send('You do not have administrative privileges')
-	// }
-
-	CategoryProduct.create({
+	mustBeAdmin(req)
+		.then(userAdmin => {
+			userAdmin.data.isAdmin ? 
+			CategoryProduct.create({
 				category_id: req.body.id,
 				product_sku: req.body.sku
+			})
+			: res.status(403).send('You do not have administrative privileges')
 		})
 		.then(categoryproduct => res.json(categoryproduct))
 		.catch(next);
