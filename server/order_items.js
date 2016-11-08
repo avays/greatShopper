@@ -13,12 +13,12 @@ const Product = db.model("products");
 
 customOrderItemRoutes.get("/:oon", function(req, res, next){
 
-	// if(!mustBeLoggedIn(req)){
-	// 	return res.status(401).send('You must be logged in.')
-	// }
-	// if(!mustHavePermission(req)){
-	// 	return res.status(403).send(`You do not have permission.`)
-	// }
+	if(!mustBeLoggedIn(req)){
+		return res.status(401).send('You must be logged in.')
+	}
+	if(!selfOnly(req)){
+		return res.status(403).send(`You do not have permission.`)
+	}
 
 	Order_Item.findAll({
 		where: {order_orderNumber: req.params.oon},
@@ -45,19 +45,5 @@ customOrderItemRoutes.post("/", function(req, res, next){
 		.then(order => res.json(order))
 		.catch(next);
 });
-
-// Don't delete orders_items, just change their status
-// customOrderItemRoutes.delete("/:id/:pid", function(req, res, next){
-
-// 	if(!mustBeLoggedIn(req)){
-// 		return res.status(401).send('You must be logged in.')
-// 	}
-// 	if(!mustHavePermission(req)){
-// 		return res.status(403).send(`You do not have permission.`)
-// 	}
-// 	OrderItem.destroy({where: {id: req.params.pid}})
-// 		.then(rowsModified => res.json(rowsModified))
-// 		.catch(next);
-// });
 
 module.exports = customOrderItemRoutes;

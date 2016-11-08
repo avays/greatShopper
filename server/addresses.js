@@ -13,7 +13,7 @@ customAddressRoutes.get("/:id", function(req, res, next){
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
 	}
-	if(!mustHavePermission(req)){
+	if(!selfOnly(req)){
 		return res.status(403).send(`You do not have permission.`)
 	}
 
@@ -32,7 +32,7 @@ customAddressRoutes.get("/:id/:aid", function(req, res, next){
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
 	}
-	if(!mustHavePermission(req)){
+	if(!selfOnly(req)){
 		return res.status(403).send(`You do not have permission.`)
 	}
 
@@ -51,7 +51,7 @@ customAddressRoutes.put("/:id/:aid", function(req, res, next){
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
 	}
-	if(!mustHavePermission(req)){
+	if(!selfOnly(req)){
 		return res.status(403).send(`You do not have permission.`)
 	}
 
@@ -65,7 +65,7 @@ customAddressRoutes.post("/:id", function(req, res, next){
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
 	}
-	if(!mustHavePermission(req)){
+	if(!selfOnly(req)){
 		return res.status(403).send(`You do not have permission.`)
 	}
 
@@ -85,7 +85,7 @@ customAddressRoutes.delete("/:id/:aid", function(req, res, next){
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
 	}
-	if(!mustHavePermission(req)){
+	if(!selfOnly(req)){
 		return res.status(403).send(`You do not have permission.`)
 	}
 	Address.destroy({where: {id: req.params.aid}})

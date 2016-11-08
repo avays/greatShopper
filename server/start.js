@@ -37,7 +37,7 @@ module.exports = app
   // expiration in the response cookie.
   // To send again the response cookie to the client we need to
   // update the session object.
-  //console.log(req.session)
+  //console.log("SESSIoN:        ", req.session)
   
   req.session.renewSession = Date.now();
   next();

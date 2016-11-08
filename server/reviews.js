@@ -20,7 +20,7 @@ customReviewRoutes.get("/:sku", function(req, res, next){
 });
 
 customReviewRoutes.get("/:sku/:rid", function(req, res, next){
-	// Kenty note: I changed the next line from req.params.id to req.params.rid
+
 	 Review.findById(req.params.rid, {	 	
 	 	include: [{model: User, attributes: ['firstName', 'lastName']}]
 	 })
@@ -28,23 +28,11 @@ customReviewRoutes.get("/:sku/:rid", function(req, res, next){
 		.catch(next);
 });
 
-// // Kenty note: newly added 11/4, this route finds all reviews of a user, route won't work though since it will conflict with the /:sku get route
-// customReviewRoutes.get("/:id", function(req, res, next){
-// 	 Review.findAll({	 	
-// 	 	include: [{
-// 			model: User, 
-// 	 		where: {id: req.params.id},
-// 	 		attributes: ['firstName', 'lastName']}]
-// 	 })
-// 		.then(review => res.json(review))
-// 		.catch(next);
-// });
-
 customReviewRoutes.put("/:id/:rid", function(req, res, next){
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
 	}
-	if(!mustHavePermission(req)){
+	if(!selfOnly(req)){
 		return res.status(403).send(`You do not have permission.`)
 	}
 
@@ -58,7 +46,7 @@ customReviewRoutes.post("/:id/:sku", function(req, res, next){
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
 	}
-	if(!mustHavePermission(req)){
+	if(!selfOnly(req)){
 		return res.status(403).send(`You do not have permission.`)
 	}
 
@@ -82,7 +70,7 @@ customReviewRoutes.delete("/:id/:rid", function(req, res, next){
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
 	}
-	if(!mustHavePermission(req)){
+	if(!selfOnly(req)){
 		return res.status(403).send(`You do not have permission.`)
 	}
 
