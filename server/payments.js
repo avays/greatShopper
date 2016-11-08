@@ -34,7 +34,7 @@ paymentRoutes.get("/:paymentid", function(req, res, next){
 }); 
 
 
-paymentRoutes.post("/:id/:pid", function(req, res, next){
+paymentRoutes.post("/:token", function(req, res, next){
 	/*
 	if(!mustBeLoggedIn(req)){
 		return res.status(401).send('You must be logged in.')
@@ -46,15 +46,13 @@ paymentRoutes.post("/:id/:pid", function(req, res, next){
 
 	const paymentData = {
 		amount: req.body.amount,
-		currency: '',
-		source: 'whut',
-		description: req.body.description,
-		receipt_email: req.body.email,
-		shipping: req.body.shipping
+		currency: 'usd',
+		source: req.body.token
 	};
 
 	stripe.charges.create(paymentData, (err, charge) => {
 		if (err) {
+			console.error('error from stripe', err)
 			next(err);
 		} else {
 			console.log('got charge back and it is ', charge)
@@ -68,3 +66,6 @@ paymentRoutes.post("/:id/:pid", function(req, res, next){
 
 
 module.exports = paymentRoutes;
+
+		// shipping: req.body.shippingAddress,
+		// email: req.body.email
