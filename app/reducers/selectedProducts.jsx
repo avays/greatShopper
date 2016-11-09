@@ -64,3 +64,15 @@ export const fetchAndGoToQueriedProducts = search => {
       .catch(err => console.error('Fetching product failed', err))
   }
 }
+
+export const fetchSomeProducts = () => {
+  return dispatch => {
+    axios.get(`api/products`)
+      .then(products => {
+          if(products.data){
+            var arr = products.data.filter(product => product.sku.slice(-1) < 5)
+          dispatch(selectProducts(arr));
+        }
+      });
+  };
+}

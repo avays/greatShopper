@@ -11,24 +11,24 @@ export default class DumbCarousel extends Component {
     return(
       <Carousel >
         <Carousel.Item>
-          <Image width={900} height={500} alt="900x500" src="/images/default.jpg" responsive />
+          <Image width={900} height={500} alt="900x500" src="/images/patek.jpg" responsive />
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h3>Perpetual Calendar Platinum 2499</h3>
+            <p>Patek Philippe. The one and only.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <Image width={900} height={500} alt="900x500" src="/images/default.jpg" responsive/>
+          <Image width={900} height={500} alt="900x500" src="/images/yacht.jpg" responsive/>
           <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3>Dominator 800</h3>
+            <p>Immerse yourself in a luxury playground by the sea.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <Image width={900} height={500} alt="900x500" src="/images/default.jpg" responsive/>
+          <Image width={900} height={500} alt="900x500" src="/images/tie.jpg" responsive/>
           <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            <h3>Stefano Ricci</h3>
+            <p>Silk. Made in Italy.</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>

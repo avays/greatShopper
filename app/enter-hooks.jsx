@@ -1,7 +1,7 @@
 import store from './store';
 import { fetchAndGoToProduct } from './reducers/currentProduct';
 import { fetchAndStoreCategories } from './reducers/categories';
-import { fetchAndGoToProducts, fetchAndGoToQueriedProducts } from './reducers/selectedProducts';
+import { fetchAndGoToProducts, fetchAndGoToQueriedProducts , fetchSomeProducts } from './reducers/selectedProducts';
 import { fetchAndGoToOrders} from './reducers/orders';
 import { fetchAndGoToOrder} from './reducers/selectedOrder';
 //import { selectOrder } from './reducers/selectedOrder'
@@ -31,3 +31,6 @@ export const loadQueriedProducts = ({ params }) => {
 	store.dispatch(fetchAndGoToQueriedProducts(params.query));
 };
 
+export const loadProducts = () => {
+	store.dispatch(fetchSomeProducts());
+};
