@@ -66,6 +66,9 @@ body {
   width: 150px;
   height: auto; }
 
+.thumbLink {
+  text-decoration: none; }
+
 .cart {
   margin-bottom: 150px;
   min-height: 400px;

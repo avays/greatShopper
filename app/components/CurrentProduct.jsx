@@ -27,7 +27,7 @@ const DumbCurrentProduct = ({ modifyProduct, state, changeNameField, changeDescr
               />
 			<h5>SKU { currentProduct.sku }</h5>
 			<ContentEditable
-                html={`<h4>${ currentProduct.price && currentProduct.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h4>`}
+                html={`<h4>$${ currentProduct.price && currentProduct.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h4>`}
                 disabled={!(user && user.isAdmin)}      
                 onChange={changePriceField}
               />
