@@ -28,7 +28,7 @@ function Cart({ cart, remove, change, clear }){
          ))
        }
       </ul>
-      <div>Total price: ${
+      <h3>Total price: ${
         cart.map(item => {
           return +item.product.price * +item.quantity;
         })
@@ -36,11 +36,11 @@ function Cart({ cart, remove, change, clear }){
             return sum + current;
         }).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       }
-      </div>
+      </h3>
       <LinkContainer to="/checkout/shipping">
-        <Button>Proceed to Checkout</Button>
+        <Button className="btn-primary">Proceed to Checkout</Button>
       </LinkContainer>
-      <Button onClick={clear}>Clear all items from cart</Button>
+      <Button className="btn-danger" onClick={clear}>Clear cart</Button>
      </div>
      :
     <h3>Your cart is empty!</h3>

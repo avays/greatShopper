@@ -12,7 +12,11 @@ class Cart extends React.Component {
 			<div className="comp-container" id="checkout-banner">
 				<h2>Checkout</h2>
 				<div>
-					<h4>Items in your cart: </h4>
+					{
+						(this.props.cart && this.props.cart.length) ?
+						<h4>Items in your cart: </h4> :
+						''
+					}
 				{ 
 					this.props.cart && this.props.cart.map((item, index) => {
 						const title = (<h3>{item.product.name}</h3>)
@@ -26,7 +30,7 @@ class Cart extends React.Component {
 						     </Col>
 						     <Col sm={4}>
 						      <LinkContainer to={`/product/${item.product.sku}`}>
-						      	<Button>View Product</Button>
+						      	<Button className="btn-info">View Product</Button>
 						      </LinkContainer>
 					      </Col>
 					    </Panel>
