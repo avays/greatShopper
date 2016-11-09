@@ -22,7 +22,7 @@ class Main extends Component {
           <Link to={`product/${product.sku}`}>
             <h4>{product.name}</h4>
             <img className="imgThumb" src={product.img} />
-            <p>${product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+            <p className="gallery-price">${product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
           </Link>
          </div>
        ))

@@ -30,11 +30,16 @@ body {
 
 .productThumbnail {
     width: 25%;
-    height: 300px;
+    height: 280px;
     position: relative;
+    margin-top: 5%;
 }
 
-.productThumbnail > p {
+.gallery-price {
     position: absolute;
     bottom: 0;
+}
+
+.form-control {
+    width: 30%;
 }
