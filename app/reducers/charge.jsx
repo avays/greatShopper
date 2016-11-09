@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import { clearCart } from './cart';
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -43,30 +44,17 @@ export default function reducer (previousState = defaultState, action) {
 
 /* ------------       DISPATCHERS     ------------------ */
 
-// need to send cart, shippingAddress, and user
-// could maybe bundle this data together on the frontEnd and then send
-/*
-  const orderDataFromStore = {
-    user_id,
-    shippingAddress,
-    order_items
-  }
-  */
-
-  /*
-      order items is an array of: 
-    return {
-      quantity: item.quantity,
-      priceAtPurchase: +item.product.price,
-      product_sku: item.product.sku
-    }
-  */
 
 
 export const submitOrder = (orderDataForStripe, orderDataFromStore) => {
   return dispatch => {
     axios.post(`/api/payments/${orderDataForStripe.token}`, {orderDataForStripe, orderDataFromStore})
       .then(charge => {
+        
+        if (charge.data.id) {
+          dispatch(clearCart())
+        }
+
         dispatch(receiveCharge(charge.data));
       })
       .then(browserHistory.push('/checkout/aftersubmit'))

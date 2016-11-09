@@ -44,7 +44,6 @@ function SelectedOrder({ selectedOrder }){
             </LinkContainer>
             <p>Price at Purchase: {item.priceAtPurchase.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
             <p>Status: {item.status}</p>
-            <Button>Return item</Button>
             <hr></hr>
            </li>
          ))
