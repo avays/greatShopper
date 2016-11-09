@@ -37,10 +37,12 @@ export const fetchAndGoToOrder = (orderNumber) => {
   return dispatch => {
     axios.get(`/api/orders/${orderNumber}`)
       .then(order => {
-        console.log('id we want is', order.data.payment_id)
-        axios.get(`/api/payments/${order.data.payment_id}`)
+        console.log('ORDER IS', order.data)
+        axios.get(`/api/payments/${order.data.user_id}/${order.data.payment_id}`)
           .then(publicData => {
-            return Object.assign(order.data, publicData.data)
+            const myObj = Object.assign(order.data, publicData.data)
+            console.log('myObj is', myObj)
+            return myObj;
           })
           .then(combinedOrder => {
             dispatch(selectOrder(combinedOrder))

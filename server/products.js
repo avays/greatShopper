@@ -65,11 +65,15 @@ customProductRoutes.get("/search/:searchInput", function(req, res, next) {
           matches.push(product);
         });
       });
-      const productArray = [...products, ...matches];
+      let productArray = [...products, ...matches]
+      // NOTE: lots of console errors because of duplicates
+      //				Need to filter out in order to  
+
       return res.json(productArray);
     })
 		.catch(next);
 });
+
 
 
 // name of product, manufacturer, location, word in description

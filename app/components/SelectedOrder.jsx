@@ -16,7 +16,7 @@ function SelectedOrder({ selectedOrder }){
     <div>
     <p>Date Placed: {selectedOrder.submitDate}</p>
     <p>Status: {selectedOrder.status}</p>
-    <ul>Shipping Address:     {selectedOrder.address.alias}
+    <ul>Shipping Address:
       <li>{selectedOrder.address.name}</li>
       <li>{selectedOrder.address.street1}</li>
       <li>{selectedOrder.address.street2}</li>
