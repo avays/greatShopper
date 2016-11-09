@@ -27,3 +27,14 @@ body {
   padding-bottom: 6rem;
   min-height: 100%;
 }
+
+.productThumbnail {
+    width: 25%;
+    height: 300px;
+    position: relative;
+}
+
+.productThumbnail > p {
+    position: absolute;
+    bottom: 0;
+}

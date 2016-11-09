@@ -37,6 +37,15 @@ body {
   padding-bottom: 6rem;
   min-height: 100%; }
 
+.productThumbnail {
+  width: 25%;
+  height: 300px;
+  position: relative; }
+
+.productThumbnail > p {
+  position: absolute;
+  bottom: 0; }
+
 #currentProduct {
   margin-bottom: 150px;
   min-height: 400px;
@@ -115,4 +124,8 @@ body {
 
 #checkout-banner {
   width: 80vw;
+  margin: 0 auto; }
+
+img {
+  float: none;
   margin: 0 auto; }
