@@ -22,7 +22,7 @@ import Confirmation from './components/Confirmation';
 import AfterOrderSubmit from './components/AfterOrderSubmit';
 
 /* -----------------    ON-ENTER HOOKS     ------------------ */
-import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadOrders, onOrderSelect, loadAdmin } from './enter-hooks';
+import { onProductSelect, loadCategories, loadCategoryProducts, loadQueriedProducts, loadOrders, onOrderSelect, loadAdmin, loadProducts } from './enter-hooks';
 /* -----------------    ON-LEAVE HOOKS     ------------------ */
 import { onProductLeave, onOrderLeave, deloadCategoryProducts, deloadOrders, onAdminLeave, deloadSingleCharge} from './leave-hooks';
 
@@ -30,7 +30,7 @@ import { onProductLeave, onOrderLeave, deloadCategoryProducts, deloadOrders, onA
 export default () => (
 	<Router history={browserHistory}>
     <Route path="/" component={Root} onEnter={loadCategories}>
-      <IndexRoute component={Main} />
+      <IndexRoute component={Main} onEnter={loadProducts}/>
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/admin" component={Admin}/>

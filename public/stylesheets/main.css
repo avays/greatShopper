@@ -13,7 +13,7 @@
 .main-container {
   display: flex;
   flex-direction: column;
-  background-color: lightyellow;
+  background-color: white;
   margin: 0 auto;
   max-width: 80vw;
   max-height: 100%;
@@ -21,6 +21,11 @@
   min-width: 500px;
   margin-bottom: 150px;
   clear: both; }
+
+.gallery {
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap; }
 
 html {
   height: 100%;
