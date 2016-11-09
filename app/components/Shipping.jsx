@@ -17,7 +17,7 @@ const DumbShipping = ({ updateField, submitAddress }) => (
 	          Name
 	        </Col>
 	        <Col sm={6}>
-	          <FormControl name="Name" type="text" placeholder="Name" onChange={updateField} />
+	          <FormControl name="name" type="text" placeholder="Name" onChange={updateField} />
 	        </Col>
 	      </FormGroup>
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
+import { Button, Row, Panel, Col } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { submitOrder } from '../reducers/charge';
 
 
@@ -38,13 +39,36 @@ class Confirmation extends Component {
 
 
 	render() {
-		const { cart, amount } = this.props;
+		const { cart, amount, shippingAddress } = this.props;
+		const indollars = amount / 100;
+		const title = ( <h3>Shipping Address</h3> )
 		return(
 			<div>
-				<p>YOU WILL BE CHARGED: { amount }</p>
-				<h3>stripe token: {this.props.params.token}</h3>
-				<h3>MAKE SHOPPING GREAT AGAIN</h3>
-				<Button onClick={ this.sendOrder }>SUBMIT</Button>
+				<Row>
+			    <Panel header={title}>
+			      <Col sm={4}>
+				      <h5>Name: {shippingAddress.name}</h5>
+				      <h5>Street: {shippingAddress.street1}</h5>
+				      <h5>Apt/Unit: {shippingAddress.street2}</h5>
+				      <h5>City: {shippingAddress.city}</h5>
+				      <h5>State: {shippingAddress.state}</h5>
+				      <h5>Zip: {shippingAddress.zip}</h5>
+				      <h5>Email: {shippingAddress.email}</h5>
+				     </Col>
+				     <Col sm={4}>
+				      <LinkContainer to={`/cart/`}>
+				      	<Button className="btn-warning">Edit Cart</Button>
+				      </LinkContainer>
+				      <LinkContainer to={`/checkout/shipping`}>
+				      	<Button className="btn-warning">Edit Address</Button>
+				      </LinkContainer>
+			      </Col>
+			    </Panel>
+			  </Row>
+
+				<h3>ORDER TOTAL: ${ indollars.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h3>
+
+				<Button className="btn-success" onClick={ this.sendOrder }>MAKE SHOPPING GREAT AGAIN</Button>
 			</div>
 		)
 	}
@@ -52,12 +76,6 @@ class Confirmation extends Component {
 
 /* -----------------    CONTAINER     ------------------ */
 
-// HERE , we can filter out exactly what parts of state we would need to persist an order
-// need to total order amount, product ids and quantities, prices, shippingAddress info, userID (if exists)
-
-// order_items: array of products, each one has ID and price
-// user: just user ID, if there is one
-// transaction_total: calculate this from the cart
 
 
 const mapState = ({ cart, shippingAddress, user }) => { 
