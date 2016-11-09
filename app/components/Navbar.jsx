@@ -23,14 +23,16 @@ class Navigbar extends React.Component {
       <Navbar inverse collapseOnSelect style={this.props.user && this.props.user.isAdmin ? {backgroundColor: "maroon"}:  {backgroundColor: "black"}}>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/">Great Shopper</Link>
+            <Link to="/">
+              <img id="logo" src="/GreatShopperWithBack.svg"/>
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Search />
         <span style={{color: "white"}}>
          {
-            this.props.user ? 
+            this.props.user ?
               `Welcome back, ${this.props.user.firstName || this.props.user.email}!`
             :
               ''
