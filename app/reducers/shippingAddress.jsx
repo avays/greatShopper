@@ -10,14 +10,7 @@ export const setShippingAddress = address => ({ type: SET_SHIPPING_ADDRESS, addr
 
 /* ------------       REDUCER     ------------------ */
 
-const defaultState = {
-  name: '',
-  street1: '',
-  street2: '',
-  city: '',
-  state: '',
-  zip: ''
-};
+const defaultState = {};
 
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
