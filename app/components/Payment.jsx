@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Form, FormGroup, Col, FormControl, ControlLabel } from 'react-bootstrap';
 import { ReactScriptLoaderMixin } from 'react-script-loader';
 import { LinkContainer } from 'react-router-bootstrap';
 import { browserHistory } from 'react-router';
@@ -58,48 +58,84 @@ var Payment = React.createClass({
 
     render: function() {
       return (
-     		<div>
+     		<div className="comp-container">
 	     		{
 	     			(this.state.scriptLoading) ?
-	     			<h3>Payment form loading...</h3> :
+	     			<h3>Payment form loading...</h3>
+                    :
 	     			<div>
-							<h2>Enter payment info</h2>
-							<form action="/your-charge-code" method="POST" id="payment-form" onSubmit={this.sendPayment}>
-							  <span className="payment-errors"></span>
+        				<h2>Enter payment info</h2>
+                      <Form horizontal onSubmit={this.sendPayment}>
+                      <FormGroup controlId="formHorizontalCardNumber">
+                        <Col componentClass={ControlLabel} sm={2}>
+                          Card Number
+                        </Col>
+                        <Col sm={6}>
+                          <FormControl name="number" type="text" placeholder="Card Number" data-stripe="number" />
+                        </Col>
+                      </FormGroup>
 
-							  <div className="form-row">
-							    <label>
-							      <span>Card Number</span>
-							      <input name="number" type="text" size="20" data-stripe="number" />
-							    </label>
-							  </div>
+                      <FormGroup controlId="formHorizontalExpiration">
+                        <Col componentClass={ControlLabel} sm={2}>
+                          Expiration
+                        </Col>
+                        <Col sm={2}>
+                            <FormControl name="exp_month" type="text" pattern="\d{2}" placeholder="MM" data-stripe="exp_month" />
+                            <FormControl name="exp_year" type="text" pattern="\d{2}" placeholder="YY" data-stripe="exp_month" />
+                        </Col>
+                      </FormGroup>
 
-							  <div className="form-row">
-							    <label>
-							      <span>Expiration (MM/YY)</span>
-							      <input name="exp_month" type="text" size="2" data-stripe="exp_month" />
-							    </label>
-							    <span> / </span>
-							    <input name="exp_year" type="text" size="2" data-stripe="exp_year" />
-							  </div>
-
-							  <div className="form-row">
-							    <label>
-							      <span>CVC</span>
-							      <input name="cvc" type="text" size="4" data-stripe="cvc" />
-							    </label>
-							  </div>
-							  <input type="submit" className="submit" value="Submit Payment" />
-							</form>
-						</div>
+                      <FormGroup controlId="formHorizontalCVC">
+                        <Col componentClass={ControlLabel} sm={2}>
+                          cvc
+                        </Col>
+                        <Col sm={4}>
+                          <FormControl name="cvc" type="password" pattern="\d{3}" placeholder="CVC"  data-stripe="cvc" />
+                        </Col>
+                      </FormGroup>
+                      <Button type="submit">Next: Confirmation</Button>
+                      </Form>
+                    </div>
 	   		}  
     		  <div>
                 <p> You will be able to review your order on the next screen</p>
               </div>
             </div>
-      );
+        )
     }
 });
 
 
 export default Payment;
+
+
+
+
+    // <form action="/your-charge-code" method="POST" id="payment-form" onSubmit={this.sendPayment}>
+    //   <span className="payment-errors"></span>
+
+    //   <div className="form-row">
+    //     <label>
+    //       <span>Card Number</span>
+    //       <input name="number" type="text" size="20" data-stripe="number" />
+    //     </label>
+    //   </div>
+
+    //   <div className="form-row">
+    //     <label>
+    //       <span>Expiration (MM/YY)</span>
+    //       <input name="exp_month" type="text" size="2" data-stripe="exp_month" />
+    //     </label>
+    //     <span> / </span>
+    //     <input name="exp_year" type="text" size="2" data-stripe="exp_year" />
+    //   </div>
+
+    //   <div className="form-row">
+    //     <label>
+    //       <span>CVC</span>
+    //       <input name="cvc" type="text" size="4" data-stripe="cvc" />
+    //     </label>
+    //   </div>
+    //   <input type="submit" className="submit" value="Submit Payment" />
+    // </form>
+

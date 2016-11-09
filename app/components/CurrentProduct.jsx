@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Image } from 'react-bootstrap';
+import { Image, Button, Form, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import Review from './Review';
 import Notification from './Notification';
 import { addItem } from '../reducers/cart';
@@ -31,14 +31,25 @@ const DumbCurrentProduct = ({ modifyProduct, state, changeNameField, changeDescr
                 disabled={!(user && user.isAdmin)}      
                 onChange={changePriceField}
               />
-			<form onSubmit={ addToCart }>
-				<select onChange={ changeAmnt } name="dropdown">
-					<option value="1" defaultValue>1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-				</select>
-				<button type="submit">Add To Cart</button>
-			</form>
+
+			<Form onSubmit={ addToCart }>
+				<FormGroup controlId="formControlsSelect">
+		      <ControlLabel>Number</ControlLabel>
+		      <FormControl componentClass="select" placeholder="1" onChange={ changeAmnt }>
+		        <option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+		      </FormControl>
+		    </FormGroup>
+
+		    <Button type="submit">Add To Cart</Button>
+	    </Form>
+
+
+
+
 		</info>
 		<description>
 			<h4>PRODUCT DETAILS</h4>
