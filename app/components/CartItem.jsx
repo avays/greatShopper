@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { Glyphicon } from 'react-bootstrap';
+import { Glyphicon, Button, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 
 /* -----------------    DUMB COMPONENT     ------------------ */
@@ -30,20 +30,29 @@ export default class CartItem extends Component {
       </Link>
       <item-details>
         <h4>${ item.product.price && item.product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') }</h4>
-        <div>
-          <h6>Quantity:</h6>
-          <select value={item.quantity.toString()} onChange={ this.onItemQuantityChange } name="dropdown">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-        </div>
-        <button onClick= { () => { remove(item) }}><Glyphicon glyph="remove" /></button>
+
+        <Form>
+          <FormGroup controlId="formControlsSelect">
+            <ControlLabel>Quantity</ControlLabel>
+            <FormControl componentClass="select" value={item.quantity.toString()} onChange={ this.onItemQuantityChange }>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </FormControl>
+          </FormGroup>
+
+            <ControlLabel>Remove</ControlLabel>
+            <div>
+              <Button onClick= { () => { remove(item) }}><Glyphicon glyph="remove" /></Button> 
+            </div>
+        </Form>
       </item-details>
      </li>
     );
   }
 }
+
+
 

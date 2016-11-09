@@ -46,7 +46,7 @@ export const Login = ({ login }) => (
       <Button>Sign Up</Button>
     </LinkContainer>
 
-    <Button><a href="/api/auth/google">Google Sign In</a></Button>
+    <Button href="/api/auth/google">Google Sign In</Button>
   </div>
 )
 
