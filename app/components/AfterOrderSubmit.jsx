@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { browserHistory } from 'react-router';
-
-// import { clearCart } from '../reducers/cart';
+import { LinkContainer } from 'react-router-bootstrap';
 
 
 /* -----------------    COMPONENT     ------------------ */
@@ -12,14 +10,6 @@ class AfterOrderSubmit extends Component {
 
 	constructor(props) {
 		super(props);
-		this.confirm = this.confirm.bind(this)
-
-	}
-
-	confirm(evt) {
-		evt.preventDefault();
-		// this.props.clearCart();
-		browserHistory.push('/');
 	}
 
 	render() {
@@ -27,7 +17,7 @@ class AfterOrderSubmit extends Component {
 		return (
 			<div>
 				{
-					!charge.received ?
+					(charge && !charge.received) ?
 					<span>Move along, move along...</span>
 					:
 					<div>
@@ -37,7 +27,9 @@ class AfterOrderSubmit extends Component {
 								<h3>Payment Success!</h3>
 								<p>Keep this transaction ID for your records: {charge.chargeData.id}</p>
 								<p>You should receive an email confirmation shortly.</p>
-								<Button onClick={ this.confirm }>Cool!</Button>
+								<LinkContainer to="/">
+									<Button>Cool!</Button>
+								</LinkContainer>
 							</div>
 							:
 							<div>
@@ -56,22 +48,8 @@ class AfterOrderSubmit extends Component {
 
 const mapState = ({ charge }) => ({ charge });
 
-const mapDispatch = dispatch => ({
-  // clearCart: () => dispatch(clearCart())
-})
 
-export default connect(mapState, mapDispatch)(AfterOrderSubmit);
+export default connect(mapState, null)(AfterOrderSubmit);
 
 
-/*
-if failed --> display error (charge.message, no charge.id)
-if success -->
-	1. display success message
-	2. 
 
-
-	charge.amount (order total)
-	charge.id (stripe transaction id)
-	charge.receiptid (maybe?)
-
-*/
