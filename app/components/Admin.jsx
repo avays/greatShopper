@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { Button } from 'react-bootstrap';
 import { addCategory } from '../reducers/categories'
 import { addProduct } from '../reducers/currentProduct'
+import { Select, Option, Button, Form, FormGroup, Col, FormControl, ControlLabel } from 'react-bootstrap';
+
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -43,20 +44,20 @@ class Admin extends Component{
 
  render(){
    return (
-    <div className="order comp-container">
-     <h3>Admin Panel</h3>
+    <div className="comp-container">
+     <h2>Admin Panel</h2>
      {
       (this.props.user && this.props.user.isAdmin) ?
       <div>
       <div>
-      <p>Create New Category</p>
-      <form onSubmit={ this.makeCategory }>
-        <div className="form-group">
-          <label>Category Name:</label>
-          <input type="text"  name="categoryName"/>
-        </div>
-        <div className="form-group">
-          <label>Meta Category:</label>
+      <h4>Create New Category</h4>
+      <Form horizontal onSubmit={ this.makeCategory }>
+        <FormGroup controlId="formHorizontalCat">
+          <Col componentClass={ControlLabel} sm={2}>Category Name:</Col>
+           <FormControl type="text"  name="categoryName"/>
+        </FormGroup>
+        <FormGroup controlId="formHorizontalName">
+          <Col componentClass={ControlLabel} sm={2}>Meta Category:</Col>
             <select name="metaCategory">
               <option value="1">Accessories</option>
               <option value="4">Apparel</option>
@@ -64,45 +65,45 @@ class Admin extends Component{
               <option value="5">Services</option>
               <option value="2">Vehicles</option>
             </select>
-        </div>
-        <button type="submit">Create</button>
-      </form>
+        </FormGroup>
+        <Button type="submit">Create</Button>
+      </Form>
        </div>
        <div>
-      <p>Create New Product</p>
-      <form onSubmit={ this.makeProduct }>
-        <div className="form-group">
-          <label>Product Name:</label>
-          <input type="text"  name="productName"/>
-        </div>
-        <div className="form-group">
-          <label>Category:</label>
+      <h4>Create New Product</h4>
+      <Form horizontal onSubmit={ this.makeProduct }>
+        <FormGroup controlId="formHorizontalProd">
+          <Col componentClass={ControlLabel} sm={2}>Product Name:</Col>
+          <FormControl type="text"  name="productName"/>
+        </FormGroup>
+        <FormGroup controlId="formHorizontalProdName">
+          <Col componentClass={ControlLabel} sm={2}>Category:</Col>
             <select name="category">
               {this.props.categories && this.props.categories.filter(category => ((category.id !== 1) && (category.id !== 2) && (category.id !== 3) && (category.id !== 4) && (category.id !== 5))).map(category => <option value={`${category.id}`}>{category.name}</option>)}
             </select>
-        </div>
-        <div className="form-group">
-          <label>SKU:</label>
-          <input type="text"  name="sku"/>
-        </div>
-        <div className="form-group">
-          <label>Quantity:</label>
-          <input type="text"  name="quantity"/>
-        </div>
-        <div className="form-group">
-          <label>Image URL:</label>
-          <input type="text"  name="imageUrl"/>
-        </div>
-        <div className="form-group">
-          <label>Price:</label>
-          <input type="text"  name="price"/>
-        </div>
-        <div className="form-group">
-          <label>Description:</label>
-          <input type="text"  name="description"/>
-        </div>
-        <button type="submit">Create</button>
-      </form>
+        </FormGroup>
+        <FormGroup controlId="formHorizontalSku">
+          <Col componentClass={ControlLabel} sm={2}>SKU:</Col>
+          <FormControl type="text"  name="sku"/>
+        </FormGroup>
+        <FormGroup controlId="formHorizontalQuant">
+          <Col componentClass={ControlLabel} sm={2}>Quantity:</Col>
+          <FormControl type="text"  name="quantity"/>
+        </FormGroup>
+        <FormGroup controlId="formHorizontalUrl">
+          <Col componentClass={ControlLabel} sm={2}>Image URL:</Col>
+          <FormControl type="text"  name="imageUrl"/>
+        </FormGroup>
+        <FormGroup controlId="formHorizontalPrice">
+          <Col componentClass={ControlLabel} sm={2}>Price:</Col>
+          <FormControl type="text"  name="price"/>
+        </FormGroup>
+        <FormGroup controlId="formHorizontalDesc">
+          <Col componentClass={ControlLabel} sm={2}>Description:</Col>
+          <FormControl type="text"  name="description"/>
+        </FormGroup>
+        <Button type="submit">Create</Button>
+      </Form>
        </div>
        </div>
 

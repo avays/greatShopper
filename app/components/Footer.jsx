@@ -12,7 +12,7 @@ export default class Footer extends Component {
       <div>
         <footer className="footer">
           <div className="container">
-            <p className="text-muted">Place sticky footer content here.</p>
+            <p className="text-muted">Great Shopper</p>
           </div>
        </footer>
       </div>

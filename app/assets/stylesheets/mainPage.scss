@@ -27,3 +27,19 @@ body {
   padding-bottom: 6rem;
   min-height: 100%;
 }
+
+.productThumbnail {
+    width: 25%;
+    height: 280px;
+    position: relative;
+    margin-top: 5%;
+}
+
+.gallery-price {
+    position: absolute;
+    bottom: 0;
+}
+
+.form-control {
+    width: 40%;
+}
