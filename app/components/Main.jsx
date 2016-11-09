@@ -11,6 +11,11 @@ export default class Main extends Component {
     return (
       <div className="main-container">
       	<Carousel />
+        <Carousel />
+        <Carousel />
+        <Carousel />
+        <Carousel />
+        <Carousel />
       </div>
     )
   }

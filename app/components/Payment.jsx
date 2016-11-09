@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { ReactScriptLoaderMixin } from 'react-script-loader';
 import { LinkContainer } from 'react-router-bootstrap';
-import { setPayment } from '../reducers/payment';
 
 
 /* -----------------    DUMB COMPONENT     ------------------ */

@@ -16,11 +16,10 @@
   background-color: lightyellow;
   margin: 0 auto;
   max-width: 80vw;
-  max-height: 100%;
-  min-height: 500px;
+  min-height: 100%;
   min-width: 500px;
-  margin-bottom: 150px;
-  clear: both; }
+  clear: both;
+  margin-bottom: 10px; }
 
 html {
   height: 100%;
@@ -107,3 +106,12 @@ body {
 
 .comp-container {
   margin-bottom: 150px; }
+
+#mainLogo {
+  width: 50%;
+  height: auto;
+  margin: 0 auto; }
+
+.mainBar {
+  display: flex;
+  justify-content: space-around; }
