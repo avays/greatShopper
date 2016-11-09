@@ -107,3 +107,7 @@ body {
 
 .comp-container {
   margin-bottom: 150px; }
+
+#checkout-banner {
+  width: 80vw;
+  margin: 0 auto; }
