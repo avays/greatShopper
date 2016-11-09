@@ -12,10 +12,10 @@ function SelectedProducts({ selectedProducts }){
      { (selectedProducts && selectedProducts.length) ? (
        selectedProducts && selectedProducts.map(product => (
          <div className="productThumbnail" key={product.sku}>
-          <Link className="thumbLink" to={`product/${product.sku}`}>
+          <Link to={`product/${product.sku}`}>
             <h4>{product.name}</h4>
             <img className="imgThumb" src={product.img} />
-            <p>Price: ${product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+            <p>Price: ${product.price && product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>  
           </Link>
          </div>
        ))
